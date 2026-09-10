@@ -1,4 +1,5 @@
 <title>Money Belief Compass</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A free, trauma-informed money beliefs quiz. Answer 60+ prompts to uncover the personalized unconscious beliefs behind your money belief system, and why your mind might be refusing wealth.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,14 +321,59 @@
   @media print{
     .topbar, .btn, .results-actions{display:none!important;}
     body{background:#fff; color:#000;}
+    .belief-card, .qcard, .synthesis, .compound-card{box-shadow:none!important; break-inside:avoid;}
   }
 
   @media (max-width:640px){
-    .map-row{grid-template-columns:96px 1fr auto;}
+    .shell, .shell-wide{padding:0 16px;}
+    .topbar{padding-block:11px;}
+    .topbar-inner{gap:10px;}
+    .brand{font-size:.88rem; gap:7px;}
+    .brand-mark{width:19px; height:19px;}
+    .progress-label{font-size:.66rem;}
+
+    .hero{padding:32px 0 32px;}
+    .hero-eyebrow{font-size:.66rem; padding:5px 10px; margin-bottom:16px;}
+    .hero h1{max-width:none;}
+    .hero-lede{font-size:1rem; margin-top:16px;}
+    .chip-row{flex-direction:column; margin:24px 0 26px;}
+    .chip{flex-basis:auto;}
+    .safety-note{padding:15px 16px; font-size:.85rem;}
+    .btn-row{gap:10px;}
+    .btn{width:100%; padding:14px 20px;}
+    .btn-row.results-actions{flex-direction:column;}
+
+    .quiz-wrap{padding:26px 0 80px;}
+    .section-title{font-size:1.4rem;}
+    .qcard{padding:18px 16px 17px;}
+    .qcard-prompt{font-size:1rem;}
+
+    .scale-row{gap:2px;}
+    .scale-dot{width:26px; height:26px;}
+    .scale-cap{max-width:5.2ch; font-size:.66rem;}
+
+    .opt-btn{padding:12px 14px; font-size:.92rem;}
+    .word-chip{padding:9px 14px; font-size:.87rem;}
+
+    .quiz-nav{gap:10px;}
+    .quiz-nav .btn{flex:1;}
+
+    .results-wrap{padding:22px 0 70px;}
+    .synthesis{padding:20px 18px 19px;}
+    .synthesis h2{font-size:1.18rem;}
+
+    .map-row{grid-template-columns:96px 1fr auto; gap:8px;}
     .map-label{font-size:.76rem;}
-    .scale-cap{max-width:6ch;}
-    .qcard{padding:20px 18px 18px;}
-    .belief-card{padding:24px 18px 22px 22px;}
+    .cards-head h2{font-size:1.28rem;}
+    .belief-card{padding:22px 16px 20px 20px;}
+    .belief-statement{font-size:1.14rem; max-width:none;}
+    .script-row-head{gap:6px;}
+  }
+
+  @media (max-width:400px){
+    .progress-wrap{display:none!important;}
+    .hero h1{font-size:1.9rem;}
+    .scale-cap{max-width:4.4ch;}
   }
 </style>
 
@@ -368,7 +414,7 @@
     </div>
 
     <div class="btn-row" style="margin-top:32px;">
-      <button class="btn" id="btn-start">Begin, gently →</button>
+      <button class="btn" id="btn-start">Begin →</button>
     </div>
   </section>
 
@@ -426,9 +472,11 @@
 
     <div class="results-footer">
       <p>This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.</p>
-      <p>If you'd like to keep this: use your browser's print or "save as PDF" option. Nothing is stored anywhere else.</p>
+      <p>Downloading or sharing is entirely up to you. Nothing here is stored anywhere else, this page forgets everything the moment you close it.</p>
       <div class="btn-row results-actions">
-        <button class="btn" id="btn-print">Save / print results</button>
+        <button class="btn" id="btn-pdf">Download as PDF</button>
+        <button class="btn btn-ghost" id="btn-share-whatsapp">Share on WhatsApp</button>
+        <button class="btn btn-ghost" id="btn-share-email">Share by email</button>
         <button class="btn btn-ghost" id="btn-restart">Start over</button>
       </div>
     </div>
@@ -782,6 +830,7 @@ SECTIONS.forEach((sec, si) => {
 });
 const answers = {}; // key: `${secId}-${qi}` -> value (number | index | array of indices)
 let sectionIndex = -1; // -1 = welcome, SECTIONS.length = results
+let shareText = ''; // set by renderResults, read by the share buttons
 
 const el = (id) => document.getElementById(id);
 const topbar = el('topbar');
@@ -965,7 +1014,14 @@ el('btn-restart').addEventListener('click', () => {
   Object.keys(answers).forEach(k => delete answers[k]);
   goWelcome();
 });
-el('btn-print').addEventListener('click', () => window.print());
+el('btn-pdf').addEventListener('click', () => window.print());
+el('btn-share-whatsapp').addEventListener('click', () => {
+  window.open('https://wa.me/?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
+});
+el('btn-share-email').addEventListener('click', () => {
+  const subject = 'My money belief results';
+  window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(shareText);
+});
 
 /* ---------- scoring ---------- */
 const WORDGRID_WEIGHT = 12;
@@ -1032,6 +1088,10 @@ function renderResults(){
   }
   synth += ' Below is your full picture: ' + selected.length + ' belief' + (selected.length===1?'':'s') + ' that showed up strongly enough to be worth naming, in the order they showed up most.';
   el('synthesis-text').innerHTML = '<p>' + synth + '</p>';
+
+  // text used by the share buttons, built from this person's actual top result
+  const topStatement = DIMENSIONS[selected[0]].belief;
+  shareText = 'I just took the Money Belief Compass, a free trauma-informed quiz about unconscious money beliefs. One of mine: "' + topStatement + '" Worth 15 minutes if you are curious about yours: https://moneybeliefs.org';
 
   // money script snapshot (4-category summary)
   const scriptRows = el('script-rows');
