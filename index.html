@@ -570,7 +570,7 @@
     <span class="hero-eyebrow" id="handoff-eyebrow">Nicely done</span>
     <h1 id="handoff-title">Hand the device to your partner</h1>
     <p class="hero-lede" id="handoff-body"></p>
-    <div class="name-field">
+    <div class="name-field" id="handoff-name-field">
       <label for="name-input-b" id="name-label-b">What should we call you? (optional)</label>
       <input type="text" id="name-input-b" maxlength="30" placeholder="Person B">
     </div>
@@ -1077,12 +1077,12 @@ I18N.en.UI = {
   modeSoloTitle: "Just me",
   modeSoloDesc: "A private reflection, just for you.",
   modeTurnsTitle: "Take turns, one device",
-  modeTurnsDesc: "One of you goes first and hands the device over. Results appear together once you're both done.",
+  modeTurnsDesc: "Swap the device back and forth section by section, so no one sits around waiting.",
   modeTogetherTitle: "Answer together",
   modeTogetherDesc: "Sit side by side and answer each question as you go, one row for each of you.",
   turnsIntroEyebrow: "Taking this together",
-  turnsIntroTitle: "One device, two turns",
-  turnsIntroBody: "The first person answers on their own, then hands the device over. The second person starts fresh, without seeing any of the first person's answers. Once you're both done, you'll see both sets of results side by side. It might help to look away from the screen while your partner answers, if you'd rather keep your own answers private until the end.",
+  turnsIntroTitle: "One device, taking turns",
+  turnsIntroBody: "You'll pass the device back and forth after every section, so neither of you is stuck waiting through the whole thing. Each person answers their own section without seeing what the other put down until the very end. Once you've both finished the last section, you'll see both sets of results side by side.",
   togetherIntroEyebrow: "Taking this together",
   togetherIntroTitle: "Answer side by side",
   togetherIntroBody: "Each question will show a row for each of you, so you can both answer it before moving to the next one. Answer honestly for yourself, even if you can see what your partner picked. There's no reason your answers need to match.",
@@ -1095,7 +1095,8 @@ I18N.en.UI = {
   handoffEyebrow: "Nicely done",
   handoffTitle: "Hand the device to your partner",
   handoffBody: (name) => name + "'s answers are saved and hidden until you're both finished. When you're ready, it's your partner's turn.",
-  finishTurnBtn: "Finish my turn →",
+  continueAsBtn: (name) => "Continue as " + name + " →",
+  finishSectionBtn: "Hand over →",
   finishTogetherBtn: "See our results →",
   answeringAs: (name) => "Answering as " + name,
   answeringTogether: (a,b) => a + " & " + b + " answering together",
@@ -1492,12 +1493,12 @@ I18N.es.UI = {
   modeSoloTitle: "Solo yo",
   modeSoloDesc: "Una reflexión privada, solo para ti.",
   modeTurnsTitle: "Túrnense, un dispositivo",
-  modeTurnsDesc: "Uno de ustedes empieza y luego pasa el dispositivo. Los resultados aparecen juntos cuando ambos hayan terminado.",
+  modeTurnsDesc: "Vayan pasando el dispositivo sección por sección, para que nadie se quede esperando sin hacer nada.",
   modeTogetherTitle: "Respondan juntos",
   modeTogetherDesc: "Siéntense uno al lado del otro y respondan cada pregunta a medida que avanzan, una fila para cada uno.",
   turnsIntroEyebrow: "Haciendo esto juntos",
-  turnsIntroTitle: "Un dispositivo, dos turnos",
-  turnsIntroBody: "La primera persona responde sola, y luego pasa el dispositivo. La segunda persona empieza desde cero, sin ver ninguna de las respuestas de la primera. Cuando ambos hayan terminado, verán los dos conjuntos de resultados uno junto al otro. Puede ayudar apartar la vista de la pantalla mientras tu pareja responde, si prefieres mantener tus propias respuestas privadas hasta el final.",
+  turnsIntroTitle: "Un dispositivo, turnándose",
+  turnsIntroBody: "Se irán pasando el dispositivo después de cada sección, así ninguno de los dos se queda esperando todo el rato. Cada persona responde su propia sección sin ver lo que puso la otra hasta el final. Cuando ambos hayan terminado la última sección, verán los dos conjuntos de resultados uno junto al otro.",
   togetherIntroEyebrow: "Haciendo esto juntos",
   togetherIntroTitle: "Respondan uno al lado del otro",
   togetherIntroBody: "Cada pregunta mostrará una fila para cada uno, así ambos pueden responderla antes de pasar a la siguiente. Responde con honestidad por ti mismo, aunque puedas ver lo que eligió tu pareja. No hay ninguna razón para que sus respuestas coincidan.",
@@ -1510,7 +1511,8 @@ I18N.es.UI = {
   handoffEyebrow: "Bien hecho",
   handoffTitle: "Pasa el dispositivo a tu pareja",
   handoffBody: (name) => "Las respuestas de " + name + " están guardadas y ocultas hasta que ambos terminen. Cuando estés listo, es el turno de tu pareja.",
-  finishTurnBtn: "Terminar mi turno →",
+  continueAsBtn: (name) => "Continuar como " + name + " →",
+  finishSectionBtn: "Pasar el turno →",
   finishTogetherBtn: "Ver nuestros resultados →",
   answeringAs: (name) => "Respondiendo como " + name,
   answeringTogether: (a,b) => a + " y " + b + " respondiendo juntos",
@@ -1907,12 +1909,12 @@ I18N.it.UI = {
   modeSoloTitle: "Solo io",
   modeSoloDesc: "Una riflessione privata, solo per te.",
   modeTurnsTitle: "Fate a turno, un dispositivo",
-  modeTurnsDesc: "Uno di voi inizia e poi passa il dispositivo. I risultati appaiono insieme quando entrambi avrete finito.",
+  modeTurnsDesc: "Passatevi il dispositivo una sezione alla volta, così nessuno resta ad aspettare senza far nulla.",
   modeTogetherTitle: "Rispondete insieme",
   modeTogetherDesc: "Sedetevi fianco a fianco e rispondete a ogni domanda mentre andate avanti, una riga per ciascuno di voi.",
   turnsIntroEyebrow: "Farlo insieme",
-  turnsIntroTitle: "Un dispositivo, due turni",
-  turnsIntroBody: "La prima persona risponde da sola, poi passa il dispositivo. La seconda persona inizia da zero, senza vedere le risposte della prima. Quando entrambi avrete finito, vedrete i due insiemi di risultati fianco a fianco. Può aiutare distogliere lo sguardo dallo schermo mentre il tuo partner risponde, se preferisci tenere le tue risposte private fino alla fine.",
+  turnsIntroTitle: "Un dispositivo, a turno",
+  turnsIntroBody: "Vi passerete il dispositivo dopo ogni sezione, così nessuno dei due resta ad aspettare per tutto il tempo. Ognuno risponde alla propria sezione senza vedere cosa ha scritto l'altro, fino alla fine. Quando entrambi avrete finito l'ultima sezione, vedrete i due insiemi di risultati fianco a fianco.",
   togetherIntroEyebrow: "Farlo insieme",
   togetherIntroTitle: "Rispondete fianco a fianco",
   togetherIntroBody: "Ogni domanda mostrerà una riga per ciascuno di voi, così potete rispondere entrambi prima di passare alla successiva. Rispondi con onestà per te stesso, anche se puoi vedere cosa ha scelto il tuo partner. Non c'è alcuna ragione per cui le vostre risposte debbano coincidere.",
@@ -1925,7 +1927,8 @@ I18N.it.UI = {
   handoffEyebrow: "Ben fatto",
   handoffTitle: "Passa il dispositivo al tuo partner",
   handoffBody: (name) => "Le risposte di " + name + " sono salvate e nascoste finché non avrete finito entrambi. Quando sei pronto, tocca al tuo partner.",
-  finishTurnBtn: "Termina il mio turno →",
+  continueAsBtn: (name) => "Continua come " + name + " →",
+  finishSectionBtn: "Passa il turno →",
   finishTogetherBtn: "Vedi i nostri risultati →",
   answeringAs: (name) => "Stai rispondendo come " + name,
   answeringTogether: (a,b) => a + " e " + b + " state rispondendo insieme",
@@ -1974,16 +1977,25 @@ let mode = 'solo'; // 'solo' | 'turns' | 'together'
 let activePerson = 'A'; // 'A' | 'B', only meaningful in 'turns' mode during the quiz
 let nameA = '';
 let nameB = '';
-let answersA = null; // saved snapshot once person A (or the 'together' pair) is done
+let answersA = null; // built up live in 'turns' (per-section handoffs) and 'together' (simultaneous) modes
 let answersB = null;
 let viewingPerson = null; // null | 'A' | 'B' -- individual results drill-down from the compare screen
 let currentScreenId = 'welcome';
+let justFinishedPerson = null; // 'A' | 'B' -- who just finished a section, for the handoff screen's body text
+let pendingSectionIndex = 0; // which section the handoff screen's continue button leads to
 
 const el = (id) => document.getElementById(id);
 const topbar = el('topbar');
 const progressWrap = el('progress-wrap');
 
 function keyFor(secId, qi){ return secId + '-' + qi; }
+
+// which live answers object the single-person question renderer reads from and writes to:
+// 'turns' alternates between answersA and answersB every section; solo (and drill-down elsewhere) uses the scratch `answers`
+function activeAnswers(){
+  if (mode === 'turns') return activePerson === 'A' ? answersA : answersB;
+  return answers;
+}
 
 function hideAllScreens(){
   el('screen-welcome').hidden = true;
@@ -2065,8 +2077,18 @@ function goHandoff(){
   currentScreenId = 'handoff';
   hideAllScreens();
   el('screen-handoff').hidden = false;
-  el('handoff-body').textContent = UI.handoffBody(nameA || UI.personADefault);
-  el('name-input-b').value = nameB;
+
+  const finishedName = justFinishedPerson === 'A' ? (nameA || UI.personADefault) : (nameB || UI.personBDefault);
+  el('handoff-body').textContent = UI.handoffBody(finishedName);
+
+  // only B's very first turn ever needs a name prompt; A's name is always captured up front
+  const needsName = (activePerson === 'B' && !nameB);
+  el('handoff-name-field').hidden = !needsName;
+  if (needsName) el('name-input-b').value = nameB;
+
+  const nextName = activePerson === 'A' ? (nameA || UI.personADefault) : (nameB || UI.personBDefault);
+  el('btn-handoff-start').textContent = needsName ? UI.startBtn : UI.continueAsBtn(nextName);
+
   topbar.classList.remove('is-quiz');
   progressWrap.hidden = true;
   el('person-badge').hidden = true;
@@ -2135,9 +2157,11 @@ function renderSection(i){
   }
 
   el('btn-back').disabled = false;
-  el('btn-continue').textContent = (i === SECTIONS.length - 1)
-    ? (mode === 'turns' ? UI.finishTurnBtn : mode === 'together' ? UI.finishTogetherBtn : UI.seeResultsBtn)
-    : UI.continueBtn;
+  el('btn-continue').textContent = (mode === 'turns')
+    ? UI.finishSectionBtn
+    : (i === SECTIONS.length - 1)
+      ? (mode === 'together' ? UI.finishTogetherBtn : UI.seeResultsBtn)
+      : UI.continueBtn;
 }
 
 function renderQuestion(sec, q, qi, group){
@@ -2160,7 +2184,7 @@ function renderQuestion(sec, q, qi, group){
   }
 
   if (sec.kind === 'likert') {
-    const current = answers[key];
+    const current = activeAnswers()[key];
     card.innerHTML = promptHtml +
       '<div class="scale" role="radiogroup" aria-label="' + escapeHtml(q.text) + '">' +
         '<div class="scale-row">' +
@@ -2178,11 +2202,11 @@ function renderQuestion(sec, q, qi, group){
       '<p class="skip-line">' + escapeHtml(UI.skipLikert) + '</p>';
     group.appendChild(card);
     card.querySelectorAll('input[type=radio]').forEach(inp => {
-      inp.addEventListener('change', () => { answers[key] = parseInt(inp.value, 10); });
+      inp.addEventListener('change', () => { activeAnswers()[key] = parseInt(inp.value, 10); });
     });
   } else {
     // scenario or memory: same rendering
-    const current = answers[key];
+    const current = activeAnswers()[key];
     card.innerHTML = promptHtml +
       '<div class="opt-list" role="radiogroup" aria-label="options">' +
         q.options.map((o, oi) => (
@@ -2197,10 +2221,11 @@ function renderQuestion(sec, q, qi, group){
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const oi = parseInt(btn.getAttribute('data-oi'), 10);
-        if (answers[key] === oi) { delete answers[key]; }
-        else { answers[key] = oi; }
+        const src = activeAnswers();
+        if (src[key] === oi) { delete src[key]; }
+        else { src[key] = oi; }
         buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-        if (answers[key] !== undefined) btn.setAttribute('aria-pressed', 'true');
+        if (src[key] !== undefined) btn.setAttribute('aria-pressed', 'true');
       });
     });
   }
@@ -2290,7 +2315,7 @@ function renderWordGrid(sec, group){
     return;
   }
 
-  const current = Array.isArray(answers[key]) ? answers[key].slice() : [];
+  const current = Array.isArray(activeAnswers()[key]) ? activeAnswers()[key].slice() : [];
   card.innerHTML =
     '<div class="grid-counter"><span><strong id="wg-count">' + current.length + '</strong> ' + escapeHtml(UI.gridSuffix) + '</span><span>' + escapeHtml(UI.gridTap) + '</span></div>' +
     '<div class="word-grid" id="wg-grid">' +
@@ -2302,7 +2327,7 @@ function renderWordGrid(sec, group){
   group.appendChild(card);
 
   function refresh(){
-    const sel = Array.isArray(answers[key]) ? answers[key] : [];
+    const sel = Array.isArray(activeAnswers()[key]) ? activeAnswers()[key] : [];
     el('wg-count').textContent = sel.length;
     card.querySelectorAll('.word-chip').forEach(chip => {
       const wi = parseInt(chip.getAttribute('data-wi'), 10);
@@ -2315,7 +2340,8 @@ function renderWordGrid(sec, group){
   card.querySelectorAll('.word-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const wi = parseInt(chip.getAttribute('data-wi'), 10);
-      let sel = Array.isArray(answers[key]) ? answers[key].slice() : [];
+      const src = activeAnswers();
+      let sel = Array.isArray(src[key]) ? src[key].slice() : [];
       if (sel.includes(wi)) {
         sel = sel.filter(x => x !== wi);
       } else if (sel.length < 3) {
@@ -2323,7 +2349,7 @@ function renderWordGrid(sec, group){
       } else {
         return; // already at 3, ignore
       }
-      if (sel.length) answers[key] = sel; else delete answers[key];
+      if (sel.length) src[key] = sel; else delete src[key];
       refresh();
     });
   });
@@ -2395,16 +2421,14 @@ el('btn-start').addEventListener('click', () => {
 el('btn-turns-back').addEventListener('click', () => goWelcome());
 el('btn-turns-start').addEventListener('click', () => {
   nameA = el('name-input-a').value.trim();
-  Object.keys(answers).forEach(k => delete answers[k]);
-  answersA = null; answersB = null; viewingPerson = null;
+  answersA = {}; answersB = {}; viewingPerson = null;
   activePerson = 'A';
   goSection(0);
 });
 
 el('btn-handoff-start').addEventListener('click', () => {
-  nameB = el('name-input-b').value.trim();
-  activePerson = 'B';
-  goSection(0);
+  if (activePerson === 'B' && !nameB) { nameB = el('name-input-b').value.trim(); }
+  goSection(pendingSectionIndex);
 });
 
 el('btn-together-back').addEventListener('click', () => goWelcome());
@@ -2418,8 +2442,7 @@ el('btn-together-start').addEventListener('click', () => {
 
 el('btn-back').addEventListener('click', () => {
   if (sectionIndex <= 0) {
-    if (mode === 'turns' && activePerson === 'A') { goTurnsIntro(); return; }
-    if (mode === 'turns' && activePerson === 'B') { goHandoff(); return; }
+    if (mode === 'turns') { activePerson = 'A'; goTurnsIntro(); return; }
     if (mode === 'together') { goTogetherIntro(); return; }
     goWelcome();
     return;
@@ -2427,19 +2450,24 @@ el('btn-back').addEventListener('click', () => {
   goSection(sectionIndex - 1);
 });
 el('btn-continue').addEventListener('click', () => {
-  if (sectionIndex < SECTIONS.length - 1) { goSection(sectionIndex + 1); return; }
-  if (mode === 'turns' && activePerson === 'A') {
-    answersA = {...answers};
-    Object.keys(answers).forEach(k => delete answers[k]);
-    goHandoff();
-  } else if (mode === 'turns' && activePerson === 'B') {
-    answersB = {...answers};
-    goCompare();
-  } else if (mode === 'together') {
-    goCompare();
-  } else {
-    goResults();
+  if (mode === 'turns') {
+    justFinishedPerson = activePerson;
+    if (justFinishedPerson === 'A') {
+      activePerson = 'B';
+      pendingSectionIndex = sectionIndex;
+      goHandoff();
+    } else if (sectionIndex < SECTIONS.length - 1) {
+      activePerson = 'A';
+      pendingSectionIndex = sectionIndex + 1;
+      goHandoff();
+    } else {
+      goCompare();
+    }
+    return;
   }
+  if (sectionIndex < SECTIONS.length - 1) { goSection(sectionIndex + 1); return; }
+  if (mode === 'together') { goCompare(); }
+  else { goResults(); }
 });
 function resetToSolo(){
   Object.keys(answers).forEach(k => delete answers[k]);
@@ -2737,7 +2765,7 @@ function applyLang(lang){
   if (currentScreenId === 'quiz') renderSection(sectionIndex);
   else if (currentScreenId === 'results') renderResults();
   else if (currentScreenId === 'compare') renderCompare();
-  else if (currentScreenId === 'handoff') el('handoff-body').textContent = UI.handoffBody(nameA || UI.personADefault);
+  else if (currentScreenId === 'handoff') goHandoff();
   updatePersonBadge();
 }
 
