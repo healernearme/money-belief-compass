@@ -1,0 +1,1106 @@
+<title>Money Belief Compass</title>
+<meta name="description" content="A free, trauma-informed money beliefs quiz. Answer 60+ prompts to uncover the personalized unconscious beliefs behind your money belief system, and why your mind might be refusing wealth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700,9..144,800&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#F1ECDF;
+    --surface:#FBF9F2;
+    --surface-2:#E7DFC9;
+    --border:#D6CBAA;
+    --ink:#231C11;
+    --ink-2:#5B5138;
+    --ink-3:#8C8163;
+    --accent:#128857;
+    --accent-strong:#0C6A41;
+    --accent-ink:#F3FCF6;
+    --accent-soft:#D3E9D6;
+    --gold:#B4841F;
+    --gold-strong:#8C6417;
+    --gold-soft:#F3E3BC;
+    --wine:#B14962;
+    --wine-strong:#8C3149;
+    --wine-soft:#F3D8DF;
+    --slate:#106E96;
+    --slate-strong:#0B5473;
+    --slate-soft:#CDE6EF;
+    --shadow: 0 1px 2px rgba(30,22,10,.08), 0 8px 24px -12px rgba(30,22,10,.24);
+    --radius-s: 8px;
+    --radius-m: 14px;
+    --radius-l: 22px;
+    --font-display: "Fraunces", Georgia, "Iowan Old Style", serif;
+    --font-body: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#17130A;
+      --surface:#201A0F;
+      --surface-2:#292214;
+      --border:#3D3420;
+      --ink:#F3EEDD;
+      --ink-2:#C9BEA0;
+      --ink-3:#948968;
+      --accent:#1E9E63;
+      --accent-strong:#4FC287;
+      --accent-ink:#06130A;
+      --accent-soft:#1E3A28;
+      --gold:#BE842A;
+      --gold-strong:#E8B159;
+      --gold-soft:#3A2A11;
+      --wine:#C95A7A;
+      --wine-strong:#E68CA5;
+      --wine-soft:#3A1B24;
+      --slate:#3D8FBD;
+      --slate-strong:#77B8DD;
+      --slate-soft:#12293A;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#17130A;
+    --surface:#201A0F;
+    --surface-2:#292214;
+    --border:#3D3420;
+    --ink:#F3EEDD;
+    --ink-2:#C9BEA0;
+    --ink-3:#948968;
+    --accent:#1E9E63;
+    --accent-strong:#4FC287;
+    --accent-ink:#06130A;
+    --accent-soft:#1E3A28;
+    --gold:#BE842A;
+    --gold-strong:#E8B159;
+    --gold-soft:#3A2A11;
+    --wine:#C95A7A;
+    --wine-strong:#E68CA5;
+    --wine-soft:#3A1B24;
+    --slate:#3D8FBD;
+    --slate-strong:#77B8DD;
+    --slate-soft:#12293A;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px -14px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  [hidden]{display:none!important;}
+  h1,h2,h3{font-family:var(--font-display); text-wrap:balance; margin:0; font-weight:600; color:var(--ink);}
+  p{margin:0;}
+  button{font-family:inherit; font-size:inherit; color:inherit; cursor:pointer;}
+  ::selection{background:var(--accent-soft); color:var(--ink);}
+  :focus-visible{outline:2.5px solid var(--gold); outline-offset:3px; border-radius:6px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms!important; transition-duration:.001ms!important;}
+  }
+
+  .shell{max-width:700px; margin-inline:auto; padding:0 20px;}
+  .shell-wide{max-width:800px; margin-inline:auto; padding:0 20px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid transparent;
+    padding-block:14px;
+  }
+  .topbar.is-quiz{border-bottom-color:var(--border);}
+  .topbar-inner{display:flex; align-items:center; gap:16px; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:600; font-size:1.02rem; color:var(--ink); white-space:nowrap;}
+  .brand-mark{width:22px; height:22px; flex:none; color:var(--accent);}
+  .progress-wrap{flex:1; display:flex; align-items:center; gap:12px; min-width:0;}
+  .progress-track{flex:1; height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; border:1px solid var(--border);}
+  .progress-fill{height:100%; background:linear-gradient(90deg, var(--accent), var(--gold)); border-radius:99px; transition:width .4s ease;}
+  .progress-label{font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:.72rem; color:var(--ink-3); white-space:nowrap;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px 24px; border-radius:99px; border:1px solid transparent;
+    font-weight:600; font-size:.96rem; letter-spacing:.01em;
+    background:var(--accent); color:var(--accent-ink);
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--accent-strong);}
+  .btn:active{transform:scale(.98);}
+  .btn-ghost{
+    background:transparent; color:var(--ink-2); border-color:var(--border); box-shadow:none;
+  }
+  .btn-ghost:hover{background:var(--surface-2); color:var(--ink);}
+  .btn-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .btn[disabled]{opacity:.45; cursor:not-allowed;}
+
+  /* ---------- welcome screen ---------- */
+  .hero{padding:56px 0 40px;}
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent-strong); background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding:6px 12px; border-radius:99px; margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.1rem, 5vw, 3.1rem); line-height:1.08; letter-spacing:-.01em; max-width:16ch;}
+  .hero h1 .accent-word{color:var(--gold-strong); font-style:italic; font-weight:600;}
+  .hero-lede{font-size:1.12rem; color:var(--ink-2); max-width:52ch; margin-top:20px;}
+  .hero-lede + .hero-lede{margin-top:14px;}
+  .chip-row{display:flex; gap:12px; flex-wrap:wrap; margin:32px 0 34px;}
+  .chip{
+    flex:1 1 170px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-m);
+    padding:16px 18px; box-shadow:var(--shadow);
+  }
+  .chip-num{font-family:var(--font-mono); font-size:.78rem; color:var(--accent-strong); font-weight:600; margin-bottom:6px; display:block;}
+  .chip-text{font-size:.9rem; color:var(--ink-2);}
+  .safety-note{
+    margin-top:30px; padding:18px 20px; border-radius:var(--radius-m);
+    background:var(--surface-2); border:1px solid var(--border); font-size:.88rem; color:var(--ink-2);
+  }
+  .safety-note strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- quiz screen ---------- */
+  .quiz-wrap{padding:38px 0 100px;}
+  .section-head{margin-bottom:30px;}
+  .section-eyebrow{font-family:var(--font-mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; display:block;}
+  .section-title{font-size:clamp(1.5rem,3.4vw,1.95rem);}
+  .section-note{color:var(--ink-2); font-size:.94rem; margin-top:10px; max-width:54ch;}
+
+  .qgroup{display:flex; flex-direction:column; gap:26px;}
+  .qcard{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-l);
+    padding:24px 24px 22px; box-shadow:var(--shadow);
+  }
+  .qcard-prompt{font-size:1.05rem; line-height:1.5; color:var(--ink); margin-bottom:18px;}
+  .qcard.is-memory .qcard-prompt{font-family:var(--font-display); font-size:1.18rem; font-style:italic; color:var(--ink);}
+
+  /* likert scale */
+  .scale{display:flex; flex-direction:column; gap:10px;}
+  .scale-row{display:flex; align-items:center; justify-content:space-between; gap:6px;}
+  .scale-option{display:flex; flex-direction:column; align-items:center; gap:8px; flex:1;}
+  .scale-dot-wrap input{position:absolute; opacity:0; width:1px; height:1px;}
+  .scale-dot{
+    width:30px; height:30px; border-radius:50%; border:2px solid var(--border); background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center; transition:all .15s ease; cursor:pointer;
+  }
+  .scale-dot-wrap{position:relative; display:block;}
+  .scale-dot-wrap input:checked + .scale-dot{
+    border-color:var(--accent); background:var(--accent);
+  }
+  .scale-dot-wrap input:focus-visible + .scale-dot{outline:2.5px solid var(--gold); outline-offset:3px;}
+  .scale-dot:hover{border-color:var(--accent);}
+  .scale-caps{display:flex; justify-content:space-between; margin-top:2px;}
+  .scale-cap{font-size:.72rem; color:var(--ink-3); max-width:9ch; line-height:1.25;}
+  .scale-cap.right{text-align:right;}
+
+  /* option buttons (scenario / memory) */
+  .opt-list{display:flex; flex-direction:column; gap:9px;}
+  .opt-btn{
+    text-align:left; padding:13px 16px; border-radius:var(--radius-s); border:1.5px solid var(--border);
+    background:var(--surface-2); font-size:.95rem; color:var(--ink); transition:all .12s ease;
+    display:flex; align-items:center; gap:12px;
+  }
+  .opt-btn:hover{border-color:var(--accent); background:var(--accent-soft);}
+  .opt-btn .dot{width:9px; height:9px; border-radius:50%; border:1.5px solid var(--ink-3); flex:none; transition:all .12s ease;}
+  .opt-btn[aria-pressed="true"]{border-color:var(--accent); background:var(--accent-soft); font-weight:600;}
+  .opt-btn[aria-pressed="true"] .dot{background:var(--accent); border-color:var(--accent);}
+
+  .skip-line{margin-top:12px; font-size:.82rem; color:var(--ink-3);}
+
+  /* word grid */
+  .grid-counter{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;
+    font-family:var(--font-mono); font-size:.8rem; color:var(--ink-3);
+  }
+  .grid-counter strong{color:var(--accent-strong); font-weight:600;}
+  .word-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .word-chip{
+    padding:11px 18px; border-radius:99px; border:1.5px solid var(--border); background:var(--surface-2);
+    font-size:.92rem; color:var(--ink); transition:all .12s ease;
+  }
+  .word-chip:hover{border-color:var(--accent); background:var(--accent-soft);}
+  .word-chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600;}
+  .word-chip[data-blocked="true"]{opacity:.4; cursor:not-allowed;}
+
+  .quiz-nav{
+    display:flex; justify-content:space-between; align-items:center; margin-top:38px; gap:12px;
+  }
+
+  /* ---------- results ---------- */
+  .results-wrap{padding:34px 0 90px;}
+  .results-head{margin-bottom:8px;}
+  .results-kicker{font-family:var(--font-mono); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-strong); margin-bottom:12px; display:block;}
+  .results-head h1{font-size:clamp(1.9rem,4.4vw,2.5rem); max-width:20ch;}
+  .results-sub{color:var(--ink-3); font-size:.85rem; margin-top:10px; font-family:var(--font-mono); font-variant-numeric:tabular-nums;}
+
+  .synthesis{
+    margin-top:30px; padding:26px 26px 24px; border-radius:var(--radius-l);
+    background:linear-gradient(160deg, var(--surface), var(--surface-2));
+    border:1px solid var(--border); box-shadow:var(--shadow);
+  }
+  .synthesis h2{font-size:1.35rem; margin-bottom:12px;}
+  .synthesis p{color:var(--ink-2); font-size:1rem; line-height:1.65;}
+  .synthesis p + p{margin-top:12px;}
+  .synthesis em{color:var(--gold-strong); font-style:italic;}
+
+  .scripts-section{margin-top:44px;}
+  .scripts-title{font-size:1.1rem; margin-bottom:4px;}
+  .scripts-caption{color:var(--ink-3); font-size:.85rem; margin-bottom:24px; max-width:64ch; line-height:1.6;}
+  .script-rows{display:flex; flex-direction:column; gap:20px;}
+  .script-row{display:flex; flex-direction:column; gap:7px;}
+  .script-row-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .script-name{font-family:var(--font-display); font-weight:600; font-size:1.05rem; color:var(--ink);}
+  .script-pct{font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-weight:700; font-size:1.05rem; color:var(--script-color);}
+  .script-track{height:14px; border-radius:99px; background:var(--surface-2); border:1px solid var(--border); overflow:hidden;}
+  .script-fill{height:100%; border-radius:99px; background:var(--script-color);}
+  .script-desc{color:var(--ink-3); font-size:.85rem; max-width:60ch;}
+
+  .map-section{margin-top:44px;}
+  .map-title{font-size:1.1rem; margin-bottom:4px;}
+  .map-caption{color:var(--ink-3); font-size:.85rem; margin-bottom:20px;}
+  .map-rows{display:flex; flex-direction:column; gap:9px;}
+  .map-row{display:grid; grid-template-columns:minmax(120px,180px) 1fr auto; align-items:center; gap:12px;}
+  .map-label{font-size:.83rem; color:var(--ink-2); text-align:right;}
+  .map-row.is-top .map-label{color:var(--ink); font-weight:600;}
+  .map-track{height:10px; border-radius:99px; background:var(--surface-2); border:1px solid var(--border); overflow:hidden;}
+  .map-fill{height:100%; border-radius:99px; background:var(--ink-3); opacity:.55;}
+  .map-row.is-top .map-fill{background:linear-gradient(90deg, var(--accent), var(--gold)); opacity:1;}
+  .map-pct{font-family:var(--font-mono); font-size:.78rem; color:var(--ink-3); font-variant-numeric:tabular-nums; width:3.2ch; text-align:right;}
+  .map-row.is-top .map-pct{color:var(--ink); font-weight:600;}
+
+  .cards-section{margin-top:52px;}
+  .cards-head{margin-bottom:22px;}
+  .cards-head h2{font-size:1.5rem;}
+  .cards-head p{color:var(--ink-2); font-size:.92rem; margin-top:8px; max-width:56ch;}
+
+  .belief-card{
+    position:relative; padding:28px 26px 26px 30px; margin-bottom:20px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-l);
+    box-shadow:var(--shadow);
+  }
+  .belief-card::before{
+    content:""; position:absolute; left:0; top:22px; bottom:22px; width:4px; border-radius:99px;
+    background:var(--gold);
+  }
+  .belief-card.rank-1::before, .belief-card.rank-2::before{background:linear-gradient(180deg, var(--accent), var(--gold));}
+  .belief-rank-row{display:flex; align-items:baseline; gap:12px; margin-bottom:10px;}
+  .belief-rank{font-family:var(--font-mono); font-size:.78rem; color:var(--gold-strong); font-weight:600;}
+  .belief-eyebrow{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3);}
+  .belief-statement{font-size:1.28rem; line-height:1.38; margin-bottom:16px; max-width:38ch;}
+  .belief-statement::before{content:"\201C"; color:var(--accent);}
+  .belief-statement::after{content:"\201D"; color:var(--accent);}
+  .belief-block{color:var(--ink-2); font-size:.95rem; margin-top:12px; line-height:1.6;}
+  .belief-block-label{display:block; font-weight:600; color:var(--ink); font-size:.82rem; margin-bottom:4px;}
+  .belief-reflect{
+    margin-top:18px; padding:14px 16px; border-radius:var(--radius-s);
+    background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    font-size:.92rem; color:var(--ink); font-style:italic;
+  }
+
+  .compound-section{margin-top:40px;}
+  .compound-section h2{font-size:1.25rem; margin-bottom:16px;}
+  .compound-card{
+    padding:18px 20px; border-radius:var(--radius-m); background:var(--gold-soft);
+    border:1px solid color-mix(in srgb, var(--gold) 30%, transparent); margin-bottom:12px;
+  }
+  .compound-card h3{font-size:1rem; margin-bottom:6px; color:var(--gold-strong);}
+  .compound-card p{font-size:.9rem; color:var(--ink-2); line-height:1.55;}
+
+  .results-footer{
+    margin-top:52px; padding-top:30px; border-top:1px solid var(--border);
+  }
+  .results-footer p{color:var(--ink-3); font-size:.85rem; line-height:1.6; max-width:60ch;}
+  .results-footer p + p{margin-top:10px;}
+  .results-actions{margin-top:22px;}
+
+  @media print{
+    .topbar, .btn, .results-actions{display:none!important;}
+    body{background:#fff; color:#000;}
+  }
+
+  @media (max-width:640px){
+    .map-row{grid-template-columns:96px 1fr auto;}
+    .map-label{font-size:.76rem;}
+    .scale-cap{max-width:6ch;}
+    .qcard{padding:20px 18px 18px;}
+    .belief-card{padding:24px 18px 22px 22px;}
+  }
+</style>
+
+<div id="app">
+
+  <header class="topbar" id="topbar">
+    <div class="shell topbar-inner" id="topbar-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12 3v3.4M12 17.6V21M3 12h3.4M17.6 12H21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="2.6" fill="currentColor"/>
+        </svg>
+        Money Belief Compass
+      </div>
+      <div class="progress-wrap" id="progress-wrap" hidden>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <span class="progress-label" id="progress-label">Section 1 / 14</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== WELCOME ========== -->
+  <section id="screen-welcome" class="shell hero">
+    <span class="hero-eyebrow">A private, self-guided reflection</span>
+    <h1>The money <span class="accent-word">belief system</span> you didn't choose</h1>
+    <p class="hero-lede">Most of what shapes how we handle money isn't really about money. It's about safety, worth, belonging, and what we picked up, often long before we had words for it, about wanting things for ourselves.</p>
+    <p class="hero-lede">This is a mix of statements to agree or disagree with, some quick scenarios, a few memory prompts, and one round where you'll pick from a table of thirty words. Together they map a specific, personal set of beliefs that may be quietly shaping your relationship with money. Not a generic "money type", your own particular pattern.</p>
+
+    <div class="chip-row">
+      <div class="chip"><span class="chip-num">~15-20 min</span><span class="chip-text">Go slowly, or quickly. There's no timer.</span></div>
+      <div class="chip"><span class="chip-num">Skip anything</span><span class="chip-text">If a question doesn't sit right, just leave it and continue.</span></div>
+      <div class="chip"><span class="chip-num">Stays with you</span><span class="chip-text">Nothing is sent anywhere. It all stays in this browser.</span></div>
+    </div>
+
+    <div class="safety-note">
+      <strong>Before you begin:</strong> this is a reflective tool, not a diagnosis or a substitute for therapy. It asks about present-day feelings, instincts, and associations, not for you to recount specific difficult memories. Go at whatever pace feels okay, and stop anytime. If anything here brings up something heavy, it's probably worth exploring further with a therapist.
+    </div>
+
+    <div class="btn-row" style="margin-top:32px;">
+      <button class="btn" id="btn-start">Begin, gently →</button>
+    </div>
+  </section>
+
+  <!-- ========== QUIZ ========== -->
+  <section id="screen-quiz" class="shell quiz-wrap" hidden>
+    <div class="section-head">
+      <span class="section-eyebrow" id="q-eyebrow"></span>
+      <h2 class="section-title" id="q-title"></h2>
+      <p class="section-note" id="q-note"></p>
+    </div>
+    <div class="qgroup" id="q-group"></div>
+    <div class="quiz-nav">
+      <button class="btn btn-ghost" id="btn-back">← Back</button>
+      <button class="btn" id="btn-continue">Continue →</button>
+    </div>
+  </section>
+
+  <!-- ========== RESULTS ========== -->
+  <section id="screen-results" class="shell-wide results-wrap" hidden>
+    <div class="results-head">
+      <span class="results-kicker">Your results</span>
+      <h1>Why part of you might be keeping money at a distance</h1>
+      <p class="results-sub" id="results-sub"></p>
+    </div>
+
+    <div class="synthesis">
+      <h2>What's showing up most</h2>
+      <p id="synthesis-text"></p>
+    </div>
+
+    <div class="scripts-section">
+      <h3 class="scripts-title">Your money script snapshot</h3>
+      <p class="scripts-caption">Financial psychology groups money patterns into four broad scripts: avoidance, worship, status, and vigilance. Here's how your answers land across all four, alongside the personalized picture below. Because this tool is built around beliefs that push money away, avoidance and vigilance tend to run higher for most people; that's expected, not a flaw in your answers.</p>
+      <div class="script-rows" id="script-rows"></div>
+    </div>
+
+    <div class="map-section">
+      <h3 class="map-title">Your full pattern map</h3>
+      <p class="map-caption">All 15 dimensions this tool looks at. The highlighted ones below are the beliefs you'll see written out in full.</p>
+      <div class="map-rows" id="map-rows"></div>
+    </div>
+
+    <div class="cards-section">
+      <div class="cards-head">
+        <h2 id="cards-heading">Your beliefs, in your own results</h2>
+        <p>Ranked by how strongly each one showed up in your answers, not by how "bad" it is. These are protective patterns, not character flaws.</p>
+      </div>
+      <div id="cards-list"></div>
+    </div>
+
+    <div class="compound-section" id="compound-section" hidden>
+      <h2>Where these connect</h2>
+      <div id="compound-list"></div>
+    </div>
+
+    <div class="results-footer">
+      <p>This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.</p>
+      <p>If you'd like to keep this: use your browser's print or "save as PDF" option. Nothing is stored anywhere else.</p>
+      <div class="btn-row results-actions">
+        <button class="btn" id="btn-print">Save / print results</button>
+        <button class="btn btn-ghost" id="btn-restart">Start over</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const DIMENSIONS = {
+  SCARCITY: { label:"There's never enough", belief:"No matter how much I have, it won't be enough.",
+    root:"If money felt unpredictable when you were growing up, or there was even one stretch where it genuinely ran out, your nervous system may have learned that resources are never quite stable enough to relax into. That kind of learning doesn't update easily just because your bank balance has.",
+    showsUp:"Over-saving and still feeling behind. Replaying prices in your head long after you've paid them. A flicker of dread that shows up even when your accounts are, by any reasonable measure, fine.",
+    reflection:"When you picture having enough, what actually gets in the way of believing it?",
+    refusalPhrase:"a nervous system that's still bracing for a scarcity which isn't true anymore" },
+  UNSAFE: { label:"Money makes me a target", belief:"Having money makes me exposed, unsafe, or a target.",
+    root:"This one often has a specific memory attached: a time being noticed, or having more than someone else, came with real consequences. Envy, resentment, even danger. So the body learned to link visibility with risk, and money is one of the most visible things there is.",
+    showsUp:"Downplaying wins. Undercharging for your work. A quiet discomfort with anyone knowing your actual numbers.",
+    reflection:"Whose attention did you learn to avoid, and does money bring that same kind of attention now?",
+    refusalPhrase:"an old sense that being seen with more invites danger" },
+  UNWORTHY: { label:"I don't deserve it", belief:"I don't deserve to have more than I need.",
+    root:"Somewhere along the way, you may have absorbed the idea that your needs came second, or that wanting things for yourself wasn't quite allowed. That belief rarely arrives as a single sentence. It's usually built from years of small moments.",
+    showsUp:"Giving windfalls away almost immediately. Discomfort being paid what you're actually worth. Guilt arriving before joy when things go well.",
+    reflection:"If you truly believed you deserved ease, what would you let yourself have this week?",
+    refusalPhrase:"a quiet belief that you haven't earned the right to more" },
+  GREED: { label:"Wanting more makes me bad", belief:"Wanting more money makes me a greedy, bad person.",
+    root:"Plenty of families, religions, and communities treat ambition as morally suspect, even while quietly needing it to survive. If you grew up in one of those, wanting more may have gotten tangled up with being a worse person.",
+    showsUp:"Apologising before naming a price. Discomfort negotiating. Treating ambition as something to hide rather than something you're allowed to have.",
+    reflection:"Who taught you that wanting more said something bad about who you are?",
+    refusalPhrase:"a fear that wanting more says something shameful about you" },
+  LOYALTY: { label:"Doing better would be a betrayal", belief:"Having more than the people I come from would be a kind of betrayal.",
+    root:"When love and struggle were tangled together growing up, doing noticeably better can start to feel, underneath, like leaving people behind. Nobody has to say this out loud for it to take hold.",
+    showsUp:"Self-sabotage right before things improve. Guilt about spending on yourself. Real discomfort outearning a parent, a sibling, or a partner.",
+    reflection:"Is there someone you're quietly staying small for, out of love or loyalty?",
+    refusalPhrase:"a loyalty to where you came from that makes moving forward feel like leaving someone behind" },
+  CORRUPTION: { label:"Money will change me for the worse", belief:"Money will turn me into someone colder, harder, or less myself.",
+    root:"Maybe it was a character on TV, a relative, or just the general story your family told about wealthy people: that something gets lost along the way to having more. If that story ran deep enough, staying at a distance from money can feel like staying yourself.",
+    showsUp:"Avoiding financial growth to protect your identity. Discomfort around wealthier peers. Keeping money at arm's length from your sense of self.",
+    reflection:"What part of yourself are you afraid money would take, and is that actually true?",
+    refusalPhrase:"a fear that becoming financially secure means becoming someone you wouldn't recognise" },
+  LOVESPLIT: { label:"Money and love can't fully coexist", belief:"People with money aren't loved for who they really are.",
+    root:"If you ever watched a relationship where money complicated trust, someone being courted for their resources, love turning conditional once wealth showed up, that can teach you the two don't mix safely.",
+    showsUp:"Hiding financial success from a partner. Discomfort being asked for money. A reflexive suspicion of people's motives once you have more.",
+    reflection:"Where did you learn that money complicates love, and is that still true here?",
+    refusalPhrase:"a suspicion that money and real love can't fully coexist" },
+  VISIBILITY: { label:"Success invites judgment", belief:"If I succeed visibly, I'll be judged, envied, or punished for it.",
+    root:"This one is usually rooted in something that actually happened: being teased, excluded, or quietly resented after a win. The nervous system remembers that, and starts shrinking you back down before it can happen again.",
+    showsUp:"Downplaying achievements. Hesitating to share good news. Staying at a level that feels safe, even when you're capable of more.",
+    reflection:"What happened the last time you let yourself be seen doing well?",
+    refusalPhrase:"a memory of being teased, excluded, or punished for doing well" },
+  CONTROL: { label:"More money means more obligation", belief:"Having money means I'll owe people, or lose control of my own choices.",
+    root:"If help ever came with strings attached, emotional repayment, obligation, a debt that was never quite named, you may have learned that resources and control are linked. More money starts to look like more leverage other people can hold.",
+    showsUp:"Avoiding financial dependence in either direction. Discomfort with shared finances. Turning down help even when it's freely offered.",
+    reflection:"What did receiving cost you before, that you're still quietly guarding against?",
+    refusalPhrase:"a wariness that more money means more obligation to people who might use it against you" },
+  PRODUCTIVITY: { label:"I'm only worth what I produce", belief:"My worth is measured by how much I earn or produce.",
+    root:"If love or approval growing up tracked closely with achievement, being useful, being impressive, rather than simply being there, it's an easy leap to make: your worth has to be earned fresh, every day, through what you produce.",
+    showsUp:"Difficulty resting without guilt. Self-esteem that rises and falls with income. Feeling like a failure during ordinary slow periods.",
+    reflection:"Who would you still be if you earned nothing for a month?",
+    refusalPhrase:"a belief that your worth has to be earned through output, not simply given" },
+  SUFFERING: { label:"I have to suffer to deserve good things", belief:"I have to struggle first, before I'm allowed to receive something good.",
+    root:"When ease itself was scarce or suspect growing up, comfort had to be earned through hardship, or treated as an undeserved luxury, that can settle into a rule: good things only count if they cost you something first.",
+    showsUp:"Making things harder than they need to be. Distrusting opportunities that come easily. A flicker of guilt around financial ease.",
+    reflection:"What would it mean to let something be easy, without earning it first?",
+    refusalPhrase:"an old rule that good things only count if they were hard won" },
+  SABOTAGE: { label:"Some part of me pulls back right before it lands", belief:"Part of me quietly undermines financial progress before it fully lands.",
+    root:"This is usually protective, not self-destructive. If disappointment is familiar territory, undoing things yourself can feel safer than waiting to be disappointed by someone, or something, else.",
+    showsUp:"Missed deadlines right near a big opportunity. A spending spree right after progress. Procrastinating on the one task that would actually move things forward.",
+    reflection:"What might this pattern be protecting you from feeling?",
+    refusalPhrase:"a protective habit of pulling back right before something good fully lands" },
+  RECEIVING: { label:"Receiving feels unsafe", belief:"Receiving, help, gifts, money, makes me feel exposed or indebted.",
+    root:"If accepting help ever came with shame, strings, or a quiet loss of independence, receiving stopped feeling simple. It started feeling like the first move in a transaction you hadn't agreed to.",
+    showsUp:"Discomfort accepting compliments, gifts, or payment. A reflex to reciprocate immediately. Real difficulty asking for what you need.",
+    reflection:"What does it feel like in your body, right now, to imagine simply receiving, without paying it back?",
+    refusalPhrase:"a discomfort with simply receiving, without needing to earn it or pay it back" },
+  ABANDON: { label:"I'll be left behind if I outgrow people", belief:"If I outgrow the people I love financially, I'll lose them.",
+    root:"In families or communities where belonging depended on staying at a similar level, sameness was what kept everyone feeling safe together. Growing past that can feel less like success and more like a risk to the relationship itself.",
+    showsUp:"Slowing your own growth to match others. Hiding progress from people you love. Discomfort with financial independence inside close relationships.",
+    reflection:"Whose love do you fear you'd lose if you truly let yourself thrive?",
+    refusalPhrase:"a fear that growing beyond the people you love means losing them" },
+  NUMBING: { label:"It's easier not to look", belief:"It's safer not to look closely at money at all.",
+    root:"Avoidance is often just a nervous system doing its job. If a topic once carried real distress, looking away became the fastest reliable route back to feeling calm, and that shortcut can stick around long after the original reason has passed.",
+    showsUp:"Avoiding bank balances. Unopened bills. Vague answers when someone asks about your finances. A quiet relief whenever the subject changes.",
+    reflection:"What feeling shows up first, right before you'd normally look away?",
+    refusalPhrase:"a habit of looking away because looking closely once felt like too much" }
+};
+
+const MONEY_SCRIPTS = [
+  { id:"AVOIDANCE", label:"Money Avoidance", color:"--accent",
+    desc:"Pushing money away: discomfort with having it, wanting it, or being seen with it.",
+    dims:["UNWORTHY","GREED","SUFFERING","SABOTAGE","NUMBING","LOVESPLIT","CORRUPTION"] },
+  { id:"WORSHIP", label:"Money Worship", color:"--gold",
+    desc:"A belief that more money would finally make things okay, paired with a sense that there's never quite enough.",
+    dims:["SCARCITY","PRODUCTIVITY"] },
+  { id:"STATUS", label:"Money Status", color:"--wine",
+    desc:"Linking your worth or sense of belonging to how your finances compare with everyone else's.",
+    dims:["VISIBILITY","ABANDON","LOYALTY"] },
+  { id:"VIGILANCE", label:"Money Vigilance", color:"--slate",
+    desc:"Wariness around money: watching for strings, obligations, or being taken advantage of.",
+    dims:["UNSAFE","CONTROL","RECEIVING"] }
+];
+
+const COMPOUND_INSIGHTS = [
+  { pair:["UNWORTHY","PRODUCTIVITY"], title:"Worth, on a meter",
+    text:"Your sense of deserving seems tightly linked to output, as if worth has to be earned fresh every day with nothing carried over from yesterday." },
+  { pair:["LOYALTY","ABANDON"], title:"The staying-small agreement",
+    text:"Doing better may unconsciously feel like it puts real relationships at risk, so part of you may have settled on a quiet compromise: enough progress to get by, not so much that it leaves anyone behind." },
+  { pair:["SABOTAGE","VISIBILITY"], title:"Success, right up until it's seen",
+    text:"Pulling back may not really be about the money. It may be about what happens after: being watched, judged, or expected to keep performing." },
+  { pair:["UNSAFE","NUMBING"], title:"Looking away to stay safe",
+    text:"The avoidance here is probably not laziness. It may be one of the fastest ways your body found to lower a threat response that money conversations reliably trigger." },
+  { pair:["RECEIVING","CONTROL"], title:"Debt before it's owed",
+    text:"Even freely given things can register as a future obligation, which makes simply receiving feel like signing something you haven't read yet." },
+  { pair:["CORRUPTION","LOVESPLIT"], title:"Keeping money at arm's length from love",
+    text:"There may be an old fear that financial success and being genuinely, uncomplicatedly loved can't fully occupy the same life at once." },
+  { pair:["SCARCITY","SUFFERING"], title:"Enough has to be earned in blood",
+    text:"Relaxing into enough may feel unsafe unless it came at a real cost. Ease on its own can end up feeling untrustworthy." },
+  { pair:["GREED","UNWORTHY"], title:"Wanting less so it can't be wrong",
+    text:"If wanting more feels shameful, wanting less, staying small, can start to feel like the only clearly acceptable option." }
+];
+
+const SECTIONS = [
+  { id:"A", title:"Where it started", kind:"likert", note:"Simple statements about growing up. Agree, disagree, there's no right answer, and you can skip anything.",
+    questions:[
+      { text:"Growing up, I sensed that money could disappear at any moment, even when things looked fine on the surface.", dim:"SCARCITY" },
+      { text:"In my house, “we can't afford that” was something I heard a lot, without always understanding why.", dim:"SCARCITY" },
+      { text:"I learned that good things had to be earned through hard work or hardship, never just given.", dim:"SUFFERING" },
+      { text:"Money conversations in my family felt tense, so I learned to tune them out.", dim:"NUMBING" },
+      { text:"Wanting more than my family had felt like it would mean leaving someone behind.", dim:"LOYALTY" }
+    ]},
+  { id:"SCN1", title:"In the moment: windfall", kind:"scenario", note:"Pick whichever reaction feels like your actual, honest first instinct, not the most reasonable one.",
+    questions:[
+      { text:"You unexpectedly receive £500, no strings attached. Your first instinct is to:", options:[
+        { label:"Save it immediately and tell no one", dim:"UNSAFE" },
+        { label:"Feel guilty, and want to give some of it away", dim:"UNWORTHY" },
+        { label:"Spend it fairly quickly, before something changes", dim:"SCARCITY" },
+        { label:"Feel suspicious, like there's a catch somewhere", dim:"SUFFERING" } ]},
+      { text:"Now picture it's £50,000 instead. Same thing: unexpected, no strings attached. What's the first thing that changes?", options:[
+        { label:"The stakes. Suddenly it feels like something to hide", dim:"UNSAFE" },
+        { label:"The doubt. I start wondering if I'd manage it well", dim:"PRODUCTIVITY" },
+        { label:"The guilt gets bigger too, not smaller", dim:"UNWORTHY" },
+        { label:"Mostly relief. It would just be useful", dim:null } ]},
+      { text:"A close friend or sibling unexpectedly comes into £50,000. Underneath the happiness for them, your honest first reaction is:", options:[
+        { label:"A pang of comparison I'm not proud of", dim:"GREED" },
+        { label:"A quiet wondering if it'll change things between us", dim:"ABANDON" },
+        { label:"An assumption that it'll change who they are", dim:"CORRUPTION" },
+        { label:"Genuine happiness, nothing complicated attached", dim:null } ]},
+      { text:"Thinking about checking your bank balance right now, you notice:", options:[
+        { label:"A pull to put it off a little longer", dim:"NUMBING" },
+        { label:"Anxiety that it's worse than you think", dim:"SCARCITY" },
+        { label:"A tight, on-guard feeling in your body", dim:"UNSAFE" },
+        { label:"Not much of a reaction either way", dim:null } ]}
+    ]},
+  { id:"BN", title:"Safety, in mind and body", kind:"likert", note:"Some of these are about thoughts, some are about physical sensation. Both count.",
+    questions:[
+      { text:"If people around me knew exactly how much money I had, I'd feel uncomfortably exposed.", dim:"UNSAFE" },
+      { text:"Negotiating for more money, or even just thinking about it, makes my stomach tighten.", dim:"UNSAFE" },
+      { text:"Even when things are genuinely fine financially, some part of me is bracing for it to fall apart.", dim:"SCARCITY" },
+      { text:"Relaxing fully around money is hard for me, even during the good stretches.", dim:"SCARCITY" },
+      { text:"Accepting money from someone usually comes with strings, even when they insist it doesn't.", dim:"CONTROL" },
+      { text:"I'd rather have less and stay fully independent than have more and owe somebody something.", dim:"CONTROL" }
+    ]},
+  { id:"MEMORY", title:"Way back when", kind:"memory", note:"A few questions about specific memories rather than general feelings. Skip anything that doesn't want to be answered.",
+    questions:[
+      { text:"Think back to your first job, paid or unpaid. When you picture that first bit of money you earned, what's the feeling?", options:[
+        { label:"Relief, more than pride. Like I'd finally proven something", dim:"PRODUCTIVITY" },
+        { label:"I remember exactly what I spent it on, almost immediately", dim:"SCARCITY" },
+        { label:"Honestly, I don't remember it being a big moment", dim:"NUMBING" },
+        { label:"Pure, uncomplicated pride", dim:null } ]},
+      { text:"Was your first proper job something you needed out of necessity, or did it feel more like the start of a career?", options:[
+        { label:"Necessity. We needed the money and that was that", dim:"SUFFERING" },
+        { label:"Career-ish, but I still felt I had to prove I belonged there", dim:"PRODUCTIVITY" },
+        { label:"I don't think it meant much either way, if I'm honest", dim:"NUMBING" },
+        { label:"It felt like a real choice, exciting rather than necessary", dim:null } ]},
+      { text:"Think of a time as a kid when you asked a parent or guardian for money. What comes back to you?", options:[
+        { label:"I learned pretty quickly to just stop asking", dim:"RECEIVING" },
+        { label:"I got a lecture I hadn't really asked for", dim:"CONTROL" },
+        { label:"I felt guilty for asking at all", dim:"UNWORTHY" },
+        { label:"It was straightforward. No big deal either way", dim:null } ]},
+      { text:"Picture the person you knew growing up who had the most money, a relative, a neighbour, someone from TV. What did you quietly make of them?", options:[
+        { label:"I assumed they weren't actually all that happy", dim:"CORRUPTION" },
+        { label:"I assumed they didn't really know what life was like for people like us", dim:"ABANDON" },
+        { label:"I was a bit jealous, and a bit ashamed of that", dim:"GREED" },
+        { label:"Honestly, I didn't think about it much", dim:null } ]}
+    ]},
+  { id:"D", title:"Worth & deserving", kind:"likert", note:"Still no right answers, just what's true for you.",
+    questions:[
+      { text:"Part of me believes I don't really deserve to have more than I need.", dim:"UNWORTHY" },
+      { text:"When something good happens financially, my first feeling is often guilt rather than joy.", dim:"UNWORTHY" },
+      { text:"I feel uneasy resting or relaxing if I haven't “earned” it that day.", dim:"PRODUCTIVITY" },
+      { text:"My sense of self-worth rises and falls with how much I've produced or earned recently.", dim:"PRODUCTIVITY" },
+      { text:"If money comes to me easily, I find myself waiting for the catch.", dim:"SUFFERING" }
+    ]},
+  { id:"SCN2", title:"In the moment: everyday", kind:"scenario", note:"Whichever answer feels most honest, even if it's not the one you'd say out loud.",
+    questions:[
+      { text:"A friend asks to borrow money. You:", options:[
+        { label:"Say yes right away. Saying no feels wrong", dim:"GREED" },
+        { label:"Say yes, but quietly keep track of what they owe you", dim:"CONTROL" },
+        { label:"Want to say no, but feel too guilty to", dim:"UNWORTHY" },
+        { label:"Say no clearly, and feel okay about it", dim:null } ]},
+      { text:"You get a genuine compliment on something you own or achieved financially. You:", options:[
+        { label:"Deflect immediately: “oh, it's nothing”", dim:"VISIBILITY" },
+        { label:"Feel a flush of guilt more than pride", dim:"UNWORTHY" },
+        { label:"Wonder what they actually want from you", dim:"LOVESPLIT" },
+        { label:"Say thank you, and let yourself enjoy it", dim:null } ]},
+      { text:"A bill or invoice arrives that you weren't quite expecting. What's closest to your real reaction?", options:[
+        { label:"I pay it straight away, almost out of fear of what happens if I don't", dim:"UNSAFE" },
+        { label:"I put off opening it for as long as I reasonably can", dim:"NUMBING" },
+        { label:"A flash of panic that I'm now behind on everything", dim:"SCARCITY" },
+        { label:"I check the amount and deal with it when it suits me", dim:null } ]},
+      { text:"A stranger, or someone you've just met, asks how much you earn. You:", options:[
+        { label:"Feel your whole body tense up", dim:"UNSAFE" },
+        { label:"Deflect and change the subject fast", dim:"VISIBILITY" },
+        { label:"Feel oddly caught out, like you've done something wrong", dim:"UNWORTHY" },
+        { label:"Answer plainly. It's just information", dim:null } ]}
+    ]},
+  { id:"F", title:"Love & belonging", kind:"likert", note:"You're a little over a third of the way through.",
+    questions:[
+      { text:"I quietly worry that people with a lot of money aren't loved for who they really are.", dim:"LOVESPLIT" },
+      { text:"I've downplayed my financial success so it wouldn't change how someone saw me.", dim:"LOVESPLIT" },
+      { text:"Doing noticeably better financially than my family would feel like a kind of betrayal.", dim:"LOYALTY" },
+      { text:"I'm afraid that if I outgrow the people I love financially, I'll lose them.", dim:"ABANDON" },
+      { text:"I've slowed myself down financially, to stay close to someone I love.", dim:"ABANDON" }
+    ]},
+  { id:"WORDGRID", title:"What jumps out", kind:"wordgrid", note:"Scan the table below and pick up to three words or phrases that jump out at you, whatever your gut goes to first. No need to overthink it.",
+    words:[
+      { label:"Never enough", dim:"SCARCITY" },
+      { label:"Strings attached", dim:"CONTROL" },
+      { label:"Spotlight", dim:"VISIBILITY" },
+      { label:"Roots", dim:"LOYALTY" },
+      { label:"Hustle", dim:"PRODUCTIVITY" },
+      { label:"Undone", dim:"SABOTAGE" },
+      { label:"Exposed", dim:"UNSAFE" },
+      { label:"Gold-digger", dim:"LOVESPLIT" },
+      { label:"Indebted", dim:"RECEIVING" },
+      { label:"Cold-hearted", dim:"CORRUPTION" },
+      { label:"Outgrown", dim:"ABANDON" },
+      { label:"Look away", dim:"NUMBING" },
+      { label:"Greedy", dim:"GREED" },
+      { label:"Running out", dim:"SCARCITY" },
+      { label:"Unearned", dim:"UNWORTHY" },
+      { label:"Owing", dim:"CONTROL" },
+      { label:"Hard-earned", dim:"SUFFERING" },
+      { label:"A target", dim:"UNSAFE" },
+      { label:"Judged", dim:"VISIBILITY" },
+      { label:"Prove myself", dim:"PRODUCTIVITY" },
+      { label:"Corrupted", dim:"CORRUPTION" },
+      { label:"Betrayal", dim:"LOYALTY" },
+      { label:"Left behind", dim:"ABANDON" },
+      { label:"Undeserving", dim:"UNWORTHY" },
+      { label:"Accepting help", dim:"RECEIVING" },
+      { label:"Selfish", dim:"GREED" },
+      { label:"The catch", dim:"SUFFERING" },
+      { label:"Self-sabotage", dim:"SABOTAGE" },
+      { label:"Conditional", dim:"LOVESPLIT" },
+      { label:"Shut down", dim:"NUMBING" }
+    ]
+  },
+  { id:"H", title:"Being seen", kind:"likert", note:"A little past halfway soon. Noticing is the whole point, there's nothing to get right here.",
+    questions:[
+      { text:"When I do well financially, I expect some kind of judgment or envy to follow.", dim:"VISIBILITY" },
+      { text:"I downplay my achievements so I don't stand out too much.", dim:"VISIBILITY" },
+      { text:"Being complimented on my success makes me uncomfortable, not proud.", dim:"VISIBILITY" },
+      { text:"The more successful I become, the more people seem to expect from me.", dim:"CONTROL" },
+      { text:"I worry that having more money means other people will start making decisions about me.", dim:"CONTROL" }
+    ]},
+  { id:"SCN3", title:"In the moment: growing", kind:"scenario", note:"Whichever answer feels most honest, even if it's not the one you'd say out loud.",
+    questions:[
+      { text:"You're offered a raise, or a big new client, more than you've earned before. Your gut reaction is:", options:[
+        { label:"Excitement, pretty much straight away", dim:null },
+        { label:"A flicker of “I don't think I can actually handle this”", dim:"UNWORTHY" },
+        { label:"Worry about what people will expect of you now", dim:"CONTROL" },
+        { label:"An urge to find a reason to turn it down", dim:"SABOTAGE" } ]},
+      { text:"Someone you love is struggling financially while you're doing okay. You notice:", options:[
+        { label:"Guilt for having more than they do", dim:"LOYALTY" },
+        { label:"An urge to give until it actually costs you something", dim:"UNWORTHY" },
+        { label:"Fear that the gap between you will keep growing", dim:"ABANDON" },
+        { label:"Sadness for them, without guilt about your own situation", dim:null } ]},
+      { text:"You picture yourself clearly financially secure. Real savings, real ease. The first feeling that shows up is:", options:[
+        { label:"Suspicion, like it's not really allowed", dim:"SUFFERING" },
+        { label:"A sense you'd become someone less warm, less real", dim:"CORRUPTION" },
+        { label:"Loneliness, imagining who wouldn't be there with you", dim:"ABANDON" },
+        { label:"Genuine ease. It feels good to imagine", dim:null } ]},
+      { text:"You finish a project, or hit a financial goal, ahead of schedule. Your instinct is to:", options:[
+        { label:"Start worrying about the next thing almost immediately", dim:"SCARCITY" },
+        { label:"Find a small way to undercut the win", dim:"SABOTAGE" },
+        { label:"Feel like it doesn't quite count somehow", dim:"SUFFERING" },
+        { label:"Let yourself actually feel proud, even briefly", dim:null } ]}
+    ]},
+  { id:"I", title:"Who money makes me", kind:"likert", note:"Keep going at whatever pace feels okay.",
+    questions:[
+      { text:"I worry that having significant money would change me into someone colder or less genuine.", dim:"CORRUPTION" },
+      { text:"The wealthy people I've known seemed to lose something important about themselves along the way.", dim:"CORRUPTION" },
+      { text:"Part of me keeps money at a distance to protect who I am.", dim:"CORRUPTION" },
+      { text:"I find it hard to fully trust someone's motives once money is involved.", dim:"LOVESPLIT" },
+      { text:"Succeeding in ways my family or friends haven't feels lonely, even when it's something I wanted.", dim:"ABANDON" }
+    ]},
+  { id:"SCN4", title:"In the moment: after", kind:"scenario", note:"Last scenario round. Thank you for staying with this.",
+    questions:[
+      { text:"Someone offers to pay for dinner. No occasion, no catch. You:", options:[
+        { label:"Insist on paying. It's uncomfortable to just accept", dim:"RECEIVING" },
+        { label:"Feel like you now owe them something", dim:"CONTROL" },
+        { label:"Wonder what they want in return", dim:"LOVESPLIT" },
+        { label:"Say thank you, easily", dim:null } ]},
+      { text:"You imagine telling the people you grew up around about a major financial win. The feeling that comes up first is:", options:[
+        { label:"Dread. Like it'll change how they see you", dim:"LOYALTY" },
+        { label:"An urge to downplay it before you've even said it", dim:"VISIBILITY" },
+        { label:"Fear it'll create distance between you", dim:"ABANDON" },
+        { label:"Simple excitement to share it", dim:null } ]},
+      { text:"When you notice yourself procrastinating on a money task, an invoice, a budget, a hard conversation, what's usually underneath it?", options:[
+        { label:"If I don't look, I don't have to feel whatever's there", dim:"NUMBING" },
+        { label:"Some part of me doesn't think I deserve the outcome anyway", dim:"UNWORTHY" },
+        { label:"I'm quietly avoiding a good outcome I don't fully trust", dim:"SABOTAGE" },
+        { label:"Just ordinary procrastination. Nothing deeper going on", dim:null } ]},
+      { text:"A relative gives you unsolicited advice about your money. You:", options:[
+        { label:"Smile, and quietly resent it", dim:"CONTROL" },
+        { label:"Take it more to heart than you mean to", dim:"UNWORTHY" },
+        { label:"Feel a familiar urge to defend yourself", dim:"VISIBILITY" },
+        { label:"Take what's useful and leave the rest", dim:null } ]}
+    ]},
+  { id:"K", title:"Receiving", kind:"likert", note:"Getting close now.",
+    questions:[
+      { text:"Receiving a gift or a compliment makes me want to immediately give something back.", dim:"RECEIVING" },
+      { text:"Accepting help, even when I need it, feels uncomfortable or shameful.", dim:"RECEIVING" },
+      { text:"It's easier for me to give than to receive.", dim:"RECEIVING" },
+      { text:"When someone offers to pay for me, I feel like I now owe them something.", dim:"CONTROL" },
+      { text:"Being paid well for my work sometimes feels like it's more than I'm actually worth.", dim:"UNWORTHY" }
+    ]},
+  { id:"L", title:"Patterns", kind:"likert", note:"Last section. Take a breath if you need one.",
+    questions:[
+      { text:"Right before something financially good is about to land, I notice myself slowing down or pulling back.", dim:"SABOTAGE" },
+      { text:"I've missed opportunities by procrastinating on the practical steps I needed to take.", dim:"SABOTAGE" },
+      { text:"After a financial win, I sometimes make choices that quietly undo the progress.", dim:"SABOTAGE" },
+      { text:"I avoid checking my bank balance because I'd rather not know.", dim:"NUMBING" },
+      { text:"There are bills or financial letters I've left unopened longer than I'd like to admit.", dim:"NUMBING" }
+    ]}
+];
+
+/* ============================================================
+   APP STATE + LOGIC
+   ============================================================ */
+const flat = [];
+SECTIONS.forEach((sec, si) => {
+  if (sec.kind === 'wordgrid') {
+    flat.push({ secIndex:si, secId:sec.id, kind:'wordgrid', qi:0, words:sec.words });
+  } else {
+    sec.questions.forEach((q, qi) => flat.push({ secIndex:si, secId:sec.id, kind:sec.kind, qi, ...q }));
+  }
+});
+const answers = {}; // key: `${secId}-${qi}` -> value (number | index | array of indices)
+let sectionIndex = -1; // -1 = welcome, SECTIONS.length = results
+
+const el = (id) => document.getElementById(id);
+const topbar = el('topbar');
+const progressWrap = el('progress-wrap');
+
+function keyFor(secId, qi){ return secId + '-' + qi; }
+
+function goWelcome(){
+  sectionIndex = -1;
+  el('screen-welcome').hidden = false;
+  el('screen-quiz').hidden = true;
+  el('screen-results').hidden = true;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  window.scrollTo(0,0);
+}
+
+function goSection(i){
+  sectionIndex = i;
+  el('screen-welcome').hidden = true;
+  el('screen-results').hidden = true;
+  el('screen-quiz').hidden = false;
+  topbar.classList.add('is-quiz');
+  progressWrap.hidden = false;
+  renderSection(i);
+  window.scrollTo(0,0);
+}
+
+function goResults(){
+  sectionIndex = SECTIONS.length;
+  el('screen-quiz').hidden = true;
+  el('screen-welcome').hidden = true;
+  el('screen-results').hidden = false;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  renderResults();
+  window.scrollTo(0,0);
+}
+
+function labelForKind(kind){
+  if (kind === 'likert') return 'Statements';
+  if (kind === 'memory') return 'Memory';
+  if (kind === 'wordgrid') return 'Word round';
+  return 'Scenarios';
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderSection(i){
+  const sec = SECTIONS[i];
+  const eyebrowEl = el('q-eyebrow');
+  eyebrowEl.textContent = 'Section ' + (i+1) + ' of ' + SECTIONS.length + ', ' + labelForKind(sec.kind);
+  el('q-title').textContent = sec.title;
+  el('q-note').textContent = sec.note || '';
+  el('progress-label').textContent = 'Section ' + (i+1) + ' / ' + SECTIONS.length;
+  el('progress-fill').style.width = Math.round(((i)/(SECTIONS.length))*100 + (100/SECTIONS.length)) + '%';
+
+  const group = el('q-group');
+  group.innerHTML = '';
+
+  if (sec.kind === 'wordgrid') {
+    renderWordGrid(sec, group);
+  } else {
+    sec.questions.forEach((q, qi) => renderQuestion(sec, q, qi, group));
+  }
+
+  el('btn-back').disabled = false;
+  el('btn-continue').textContent = (i === SECTIONS.length - 1) ? 'See your results →' : 'Continue →';
+}
+
+function renderQuestion(sec, q, qi, group){
+  const key = keyFor(sec.id, qi);
+  const card = document.createElement('div');
+  card.className = 'qcard' + (sec.kind === 'memory' ? ' is-memory' : '');
+
+  if (sec.kind === 'likert') {
+    const current = answers[key];
+    card.innerHTML =
+      '<p class="qcard-prompt">' + escapeHtml(q.text) + '</p>' +
+      '<div class="scale" role="radiogroup" aria-label="' + escapeHtml(q.text) + '">' +
+        '<div class="scale-row">' +
+          [1,2,3,4,5].map(v => (
+            '<label class="scale-option">' +
+              '<span class="scale-dot-wrap">' +
+                '<input type="radio" name="' + key + '" value="' + v + '"' + (current===v?' checked':'') + '>' +
+                '<span class="scale-dot"></span>' +
+              '</span>' +
+            '</label>'
+          )).join('') +
+        '</div>' +
+        '<div class="scale-caps"><span class="scale-cap">Strongly disagree</span><span class="scale-cap right">Strongly agree</span></div>' +
+      '</div>' +
+      '<p class="skip-line">You can leave this blank if you’d rather not answer.</p>';
+    group.appendChild(card);
+    card.querySelectorAll('input[type=radio]').forEach(inp => {
+      inp.addEventListener('change', () => { answers[key] = parseInt(inp.value, 10); });
+    });
+  } else {
+    // scenario or memory: same rendering
+    const current = answers[key];
+    card.innerHTML =
+      '<p class="qcard-prompt">' + escapeHtml(q.text) + '</p>' +
+      '<div class="opt-list" role="radiogroup" aria-label="options">' +
+        q.options.map((o, oi) => (
+          '<button type="button" class="opt-btn" data-oi="' + oi + '" aria-pressed="' + (current===oi) + '">' +
+            '<span class="dot"></span>' + escapeHtml(o.label) +
+          '</button>'
+        )).join('') +
+      '</div>' +
+      '<p class="skip-line">You can skip this one if you’d rather not answer.</p>';
+    group.appendChild(card);
+    const buttons = card.querySelectorAll('.opt-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const oi = parseInt(btn.getAttribute('data-oi'), 10);
+        if (answers[key] === oi) { delete answers[key]; }
+        else { answers[key] = oi; }
+        buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+        if (answers[key] !== undefined) btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  }
+}
+
+function renderWordGrid(sec, group){
+  const key = keyFor(sec.id, 0);
+  const current = Array.isArray(answers[key]) ? answers[key].slice() : [];
+  const card = document.createElement('div');
+  card.className = 'qcard';
+  card.innerHTML =
+    '<div class="grid-counter"><span><strong id="wg-count">' + current.length + '</strong> of 3 selected</span><span>tap a word to toggle it</span></div>' +
+    '<div class="word-grid" id="wg-grid">' +
+      sec.words.map((w, wi) => (
+        '<button type="button" class="word-chip" data-wi="' + wi + '" aria-pressed="' + current.includes(wi) + '">' + escapeHtml(w.label) + '</button>'
+      )).join('') +
+    '</div>' +
+    '<p class="skip-line">You can pick zero, one, two, or three. Whatever actually jumps out.</p>';
+  group.appendChild(card);
+
+  function refresh(){
+    const sel = Array.isArray(answers[key]) ? answers[key] : [];
+    el('wg-count').textContent = sel.length;
+    card.querySelectorAll('.word-chip').forEach(chip => {
+      const wi = parseInt(chip.getAttribute('data-wi'), 10);
+      const isSel = sel.includes(wi);
+      chip.setAttribute('aria-pressed', isSel);
+      chip.setAttribute('data-blocked', (!isSel && sel.length >= 3) ? 'true' : 'false');
+    });
+  }
+
+  card.querySelectorAll('.word-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const wi = parseInt(chip.getAttribute('data-wi'), 10);
+      let sel = Array.isArray(answers[key]) ? answers[key].slice() : [];
+      if (sel.includes(wi)) {
+        sel = sel.filter(x => x !== wi);
+      } else if (sel.length < 3) {
+        sel.push(wi);
+      } else {
+        return; // already at 3, ignore
+      }
+      if (sel.length) answers[key] = sel; else delete answers[key];
+      refresh();
+    });
+  });
+  refresh();
+}
+
+el('btn-start').addEventListener('click', () => goSection(0));
+el('btn-back').addEventListener('click', () => {
+  if (sectionIndex <= 0) { goWelcome(); return; }
+  goSection(sectionIndex - 1);
+});
+el('btn-continue').addEventListener('click', () => {
+  if (sectionIndex < SECTIONS.length - 1) goSection(sectionIndex + 1);
+  else goResults();
+});
+el('btn-restart').addEventListener('click', () => {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  goWelcome();
+});
+el('btn-print').addEventListener('click', () => window.print());
+
+/* ---------- scoring ---------- */
+const WORDGRID_WEIGHT = 12;
+
+function computeScores(){
+  const totals = {};
+  Object.keys(DIMENSIONS).forEach(d => totals[d] = { achieved:0, max:0 });
+  let answeredCount = 0;
+
+  flat.forEach(q => {
+    const key = keyFor(q.secId, q.qi);
+    const a = answers[key];
+    if (a === undefined) return;
+
+    if (q.kind === 'likert') {
+      answeredCount++;
+      totals[q.dim].achieved += a;
+      totals[q.dim].max += 5;
+    } else if (q.kind === 'wordgrid') {
+      answeredCount++;
+      q.words.forEach(w => { if (w.dim) totals[w.dim].max += WORDGRID_WEIGHT; });
+      a.forEach(wi => { const w = q.words[wi]; if (w && w.dim) totals[w.dim].achieved += WORDGRID_WEIGHT; });
+    } else {
+      answeredCount++;
+      q.options.forEach(o => { if (o.dim) totals[o.dim].max += 2; });
+      const chosen = q.options[a];
+      if (chosen && chosen.dim) totals[chosen.dim].achieved += 2;
+    }
+  });
+
+  const percents = {};
+  Object.keys(DIMENSIONS).forEach(d => {
+    const t = totals[d];
+    percents[d] = t.max > 0 ? Math.round((t.achieved / t.max) * 100) : 50;
+  });
+  return { percents, answeredCount };
+}
+
+function selectTop(percents){
+  const ranked = Object.entries(percents).sort((a,b) => b[1]-a[1]);
+  let selected = ranked.filter(([,p]) => p >= 60);
+  if (selected.length < 5) selected = ranked.slice(0,5);
+  if (selected.length > 10) selected = selected.slice(0,10);
+  return selected.map(([d]) => d);
+}
+
+function renderResults(){
+  const { percents, answeredCount } = computeScores();
+  const selected = selectTop(percents);
+  const ranked = Object.entries(percents).sort((a,b) => b[1]-a[1]);
+
+  el('results-sub').textContent = answeredCount + ' of ' + flat.length + ' prompts answered. Skipped ones were simply left out of your scoring, not counted against you.';
+
+  // synthesis
+  const top = selected.slice(0, Math.min(3, selected.length));
+  const phrases = top.map(d => DIMENSIONS[d].refusalPhrase);
+  let synth = '';
+  if (phrases.length === 1) {
+    synth = 'If part of you resists money, it may not be about willpower. Right now, the clearest signal in your answers points to <em>' + phrases[0] + '</em>.';
+  } else if (phrases.length === 2) {
+    synth = 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + phrases[0] + '</em>, and <em>' + phrases[1] + '</em>.';
+  } else {
+    synth = 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + phrases[0] + '</em>, <em>' + phrases[1] + '</em>, and <em>' + phrases[2] + '</em>.';
+  }
+  synth += ' Below is your full picture: ' + selected.length + ' belief' + (selected.length===1?'':'s') + ' that showed up strongly enough to be worth naming, in the order they showed up most.';
+  el('synthesis-text').innerHTML = '<p>' + synth + '</p>';
+
+  // money script snapshot (4-category summary)
+  const scriptRows = el('script-rows');
+  scriptRows.innerHTML = MONEY_SCRIPTS.map(s => {
+    const avg = Math.round(s.dims.reduce((sum, d) => sum + percents[d], 0) / s.dims.length);
+    return '<div class="script-row" style="--script-color:var(' + s.color + ')">' +
+      '<div class="script-row-head"><span class="script-name">' + escapeHtml(s.label) + '</span><span class="script-pct">' + avg + '%</span></div>' +
+      '<div class="script-track"><div class="script-fill" style="width:' + Math.max(avg,3) + '%"></div></div>' +
+      '<p class="script-desc">' + escapeHtml(s.desc) + '</p>' +
+    '</div>';
+  }).join('');
+
+  // pattern map
+  const mapRows = el('map-rows');
+  mapRows.innerHTML = ranked.map(([d,p]) => {
+    const isTop = selected.includes(d);
+    return '<div class="map-row' + (isTop ? ' is-top' : '') + '">' +
+      '<span class="map-label">' + escapeHtml(DIMENSIONS[d].label) + '</span>' +
+      '<span class="map-track"><span class="map-fill" style="width:' + Math.max(p,3) + '%"></span></span>' +
+      '<span class="map-pct">' + p + '%</span>' +
+    '</div>';
+  }).join('');
+
+  // belief cards
+  el('cards-heading').textContent = 'Your ' + selected.length + ' belief' + (selected.length===1?'':'s');
+  const cardsList = el('cards-list');
+  cardsList.innerHTML = selected.map((d, idx) => {
+    const D = DIMENSIONS[d];
+    return '<article class="belief-card rank-' + (idx+1) + '">' +
+      '<div class="belief-rank-row">' +
+        '<span class="belief-rank">' + String(idx+1).padStart(2,'0') + '</span>' +
+        '<span class="belief-eyebrow">' + escapeHtml(D.label) + '</span>' +
+      '</div>' +
+      '<h3 class="belief-statement">' + escapeHtml(D.belief) + '</h3>' +
+      '<p class="belief-block"><span class="belief-block-label">Where this can come from</span>' + escapeHtml(D.root) + '</p>' +
+      '<p class="belief-block"><span class="belief-block-label">How it can show up</span>' + escapeHtml(D.showsUp) + '</p>' +
+      '<p class="belief-reflect">' + escapeHtml(D.reflection) + '</p>' +
+    '</article>';
+  }).join('');
+
+  // compound insights
+  const compounds = COMPOUND_INSIGHTS.filter(ci => ci.pair.every(d => selected.includes(d)));
+  const compoundSection = el('compound-section');
+  if (compounds.length) {
+    compoundSection.hidden = false;
+    el('compound-list').innerHTML = compounds.slice(0,3).map(ci =>
+      '<div class="compound-card"><h3>' + escapeHtml(ci.title) + '</h3><p>' + escapeHtml(ci.text) + '</p></div>'
+    ).join('');
+  } else {
+    compoundSection.hidden = true;
+  }
+}
+
+/* ---------- hot reload state carry (artifact republish) ---------- */
+function snapshotState(){ return { answers: {...answers}, sectionIndex }; }
+function bootFrom(data){
+  if (data && data.answers) Object.assign(answers, data.answers);
+  if (data && typeof data.sectionIndex === 'number' && data.sectionIndex >= 0 && data.sectionIndex < SECTIONS.length) {
+    goSection(data.sectionIndex);
+  } else if (data && data.sectionIndex === SECTIONS.length) {
+    goResults();
+  } else {
+    goWelcome();
+  }
+}
+if (window.claude && window.claude.hot) {
+  window.claude.hot.snapshot(snapshotState);
+  window.claude.hot.ready ? window.claude.hot.ready(bootFrom) : bootFrom(window.claude.hot.data || {});
+} else {
+  goWelcome();
+}
+</script>
