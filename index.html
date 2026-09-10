@@ -127,6 +127,11 @@
   }
   .lang-btn:hover{opacity:.85; background:var(--surface-2);}
   .lang-btn[aria-current="true"]{opacity:1; border-color:var(--border); background:var(--surface);}
+  .person-badge{
+    font-family:var(--font-mono); font-size:.72rem; color:var(--accent-strong); background:var(--accent-soft);
+    border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); padding:5px 11px; border-radius:99px;
+    white-space:nowrap; flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis;
+  }
 
   /* ---------- buttons ---------- */
   .btn{
@@ -170,6 +175,25 @@
     background:var(--surface-2); border:1px solid var(--border); font-size:.88rem; color:var(--ink-2);
   }
   .safety-note strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- partner mode: welcome toggle + name capture ---------- */
+  .mode-row{display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;}
+  .mode-btn{
+    flex:1 1 190px; text-align:left; padding:15px 17px; border-radius:var(--radius-m);
+    border:1.5px solid var(--border); background:var(--surface); transition:all .12s ease;
+  }
+  .mode-btn:hover{border-color:var(--accent);}
+  .mode-btn[aria-pressed="true"]{border-color:var(--accent); background:var(--accent-soft);}
+  .mode-btn-title{display:block; font-weight:600; color:var(--ink); font-size:.92rem; margin-bottom:4px;}
+  .mode-btn-desc{display:block; color:var(--ink-3); font-size:.79rem; line-height:1.45;}
+
+  .name-field{margin-top:20px; max-width:360px;}
+  .name-field label{display:block; font-size:.85rem; color:var(--ink-2); margin-bottom:8px; font-weight:600;}
+  .name-field input{
+    width:100%; padding:13px 16px; border-radius:var(--radius-s); border:1.5px solid var(--border);
+    background:var(--surface); color:var(--ink); font-family:inherit; font-size:.95rem;
+  }
+  .name-field input:focus-visible{outline:2.5px solid var(--accent-strong); outline-offset:2px;}
 
   /* ---------- quiz screen ---------- */
   .quiz-wrap{padding:38px 0 100px;}
@@ -233,6 +257,49 @@
   .word-chip:hover{border-color:var(--accent); background:var(--accent-soft);}
   .word-chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600;}
   .word-chip[data-blocked="true"]{opacity:.4; cursor:not-allowed;}
+
+  /* ---------- answer-together dual rows ---------- */
+  .dual-row{display:flex; align-items:center; gap:14px; margin-bottom:10px;}
+  .dual-row:last-of-type{margin-bottom:2px;}
+  .dual-row-label{
+    flex:none; width:84px; font-size:.78rem; font-weight:600; color:var(--ink-2);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .scale-compact{flex:1;}
+  .scale-compact .scale-row{gap:4px;}
+  .dual-caps{margin-top:2px; margin-left:98px;}
+
+  .opt-list-dual{display:flex; flex-direction:column; gap:9px;}
+  .opt-row{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px 14px; border-radius:var(--radius-s); border:1.5px solid var(--border); background:var(--surface-2);
+  }
+  .opt-row-text{font-size:.92rem; color:var(--ink); flex:1;}
+  .opt-row-toggles{display:flex; gap:6px; flex:none;}
+  .opt-toggle{
+    width:30px; height:30px; border-radius:50%; border:1.5px solid var(--border); background:var(--surface);
+    font-size:.76rem; font-weight:700; color:var(--ink-3); transition:all .12s ease;
+  }
+  .opt-toggle:hover{border-color:var(--accent);}
+  .opt-toggle[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+
+  .dual-counter{display:flex; flex-direction:column; gap:4px; align-items:flex-start;}
+  .dual-counter strong{color:var(--accent-strong); font-weight:600;}
+  @media (min-width:481px){ .dual-counter{flex-direction:row; gap:18px;} }
+
+  .word-grid-dual{display:flex; flex-wrap:wrap; gap:10px;}
+  .word-chip-dual{
+    display:inline-flex; align-items:center; gap:6px; padding:7px 8px 7px 14px; border-radius:99px;
+    border:1.5px solid var(--border); background:var(--surface-2);
+  }
+  .word-chip-label{font-size:.88rem; color:var(--ink);}
+  .word-toggle{
+    width:22px; height:22px; border-radius:50%; border:1.5px solid var(--border); background:var(--surface);
+    font-size:.66rem; font-weight:700; color:var(--ink-3); transition:all .12s ease;
+  }
+  .word-toggle:hover{border-color:var(--accent);}
+  .word-toggle[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .word-toggle[data-blocked="true"]{opacity:.35; cursor:not-allowed;}
 
   .quiz-nav{
     display:flex; justify-content:space-between; align-items:center; margin-top:38px; gap:12px;
@@ -318,6 +385,30 @@
   .compound-card h3{font-size:1rem; margin-bottom:6px; color:var(--accent-strong);}
   .compound-card p{font-size:.9rem; color:var(--ink-2); line-height:1.55;}
 
+  /* ---------- compare screen ---------- */
+  .compare-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px;}
+  @media (max-width:720px){ .compare-grid{grid-template-columns:1fr;} }
+  .compare-col{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-l);
+    padding:24px 22px; box-shadow:var(--shadow);
+  }
+  .compare-col-head{margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid var(--border);}
+  .compare-name{font-family:var(--font-display); font-weight:600; font-size:1.2rem; color:var(--ink);}
+  .compare-top-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .compare-top-list li{display:flex; gap:10px; align-items:flex-start;}
+  .compare-rank{font-family:var(--font-mono); font-size:.72rem; color:var(--accent-strong); font-weight:600; flex:none; margin-top:3px;}
+  .compare-item-body{flex:1; min-width:0;}
+  .compare-belief-label{display:block; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px;}
+  .compare-belief-statement{font-size:.92rem; color:var(--ink); line-height:1.5;}
+  .btn-small{padding:9px 16px; font-size:.85rem; margin-top:18px; width:100%;}
+  .compare-shared-item{
+    padding:16px 18px; border-radius:var(--radius-m); background:var(--surface-2);
+    border:1px solid color-mix(in srgb, var(--accent-strong) 35%, transparent); margin-bottom:12px;
+  }
+  .compare-shared-item h3{font-size:.98rem; margin-bottom:6px; color:var(--accent-strong);}
+  .compare-shared-item p{font-size:.88rem; color:var(--ink-2); line-height:1.55;}
+  .compare-empty{color:var(--ink-3); font-size:.9rem; font-style:italic;}
+
   .results-footer{
     margin-top:52px; padding-top:30px; border-top:1px solid var(--border);
   }
@@ -328,7 +419,7 @@
   @media print{
     .topbar, .btn, .results-actions{display:none!important;}
     body{background:#fff; color:#000;}
-    .belief-card, .qcard, .synthesis, .compound-card{box-shadow:none!important; break-inside:avoid;}
+    .belief-card, .qcard, .synthesis, .compound-card, .compare-col{box-shadow:none!important; break-inside:avoid;}
   }
 
   @media (max-width:640px){
@@ -339,6 +430,7 @@
     .brand-mark{width:19px; height:19px;}
     .progress-label{font-size:.66rem;}
     .lang-btn{padding:4px 5px; font-size:.9rem;}
+    .person-badge{font-size:.62rem; padding:4px 8px; max-width:32vw;}
 
     .hero{padding:32px 0 32px;}
     .hero-eyebrow{font-size:.66rem; padding:5px 10px; margin-bottom:16px;}
@@ -376,6 +468,21 @@
     .belief-card{padding:22px 16px 20px 20px;}
     .belief-statement{font-size:1.14rem; max-width:none;}
     .script-row-head{gap:6px;}
+
+    .mode-row{margin-top:20px; gap:8px;}
+    .mode-btn{padding:12px 14px;}
+    .name-field{max-width:none;}
+
+    .dual-row-label{width:64px; font-size:.72rem;}
+    .dual-caps{margin-left:78px;}
+    .scale-compact .scale-dot{width:22px; height:22px;}
+    .opt-row{padding:10px 12px;}
+    .opt-toggle{width:26px; height:26px; font-size:.7rem;}
+    .word-toggle{width:20px; height:20px; font-size:.62rem;}
+
+    .compare-grid{gap:16px; margin-top:22px;}
+    .compare-col{padding:18px 16px;}
+    .compare-name{font-size:1.05rem;}
   }
 
   @media (max-width:400px){
@@ -401,6 +508,7 @@
         <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
         <span class="progress-label" id="progress-label">Section 1 / 14</span>
       </div>
+      <span class="person-badge" id="person-badge" hidden></span>
       <div class="lang-switch" id="lang-switch"></div>
     </div>
   </header>
@@ -422,8 +530,71 @@
       <strong>Before you begin:</strong> this is a reflective tool, not a diagnosis or a substitute for therapy. It asks about present-day feelings, instincts, and associations, not for you to recount specific difficult memories. Go at whatever pace feels okay, and stop anytime. If anything here brings up something heavy, it's probably worth exploring further with a therapist.
     </div>
 
+    <div class="mode-row" id="mode-row">
+      <button type="button" class="mode-btn" id="mode-solo" aria-pressed="true">
+        <span class="mode-btn-title" id="mode-solo-title">Just me</span>
+        <span class="mode-btn-desc" id="mode-solo-desc">A private reflection, just for you.</span>
+      </button>
+      <button type="button" class="mode-btn" id="mode-turns" aria-pressed="false">
+        <span class="mode-btn-title" id="mode-turns-title">Take turns, one device</span>
+        <span class="mode-btn-desc" id="mode-turns-desc">One of you goes first and hands the device over.</span>
+      </button>
+      <button type="button" class="mode-btn" id="mode-together" aria-pressed="false">
+        <span class="mode-btn-title" id="mode-together-title">Answer together</span>
+        <span class="mode-btn-desc" id="mode-together-desc">Sit side by side and answer each question as you go.</span>
+      </button>
+    </div>
+
     <div class="btn-row" style="margin-top:32px;">
       <button class="btn" id="btn-start">Begin →</button>
+    </div>
+  </section>
+
+  <!-- ========== TURNS: INTRO (person A) ========== -->
+  <section id="screen-turns-intro" class="shell hero" hidden>
+    <span class="hero-eyebrow" id="turns-intro-eyebrow">Taking this together</span>
+    <h1 id="turns-intro-title">One device, two turns</h1>
+    <p class="hero-lede" id="turns-intro-body">The first person answers on their own, then hands the device over. The second person starts fresh, without seeing any of the first person's answers.</p>
+    <div class="name-field">
+      <label for="name-input-a" id="name-label-a">What should we call you? (optional)</label>
+      <input type="text" id="name-input-a" maxlength="30" placeholder="Person A">
+    </div>
+    <div class="btn-row" style="margin-top:28px;">
+      <button class="btn btn-ghost" id="btn-turns-back">← Back</button>
+      <button class="btn" id="btn-turns-start">Start →</button>
+    </div>
+  </section>
+
+  <!-- ========== TURNS: HANDOFF (to person B) ========== -->
+  <section id="screen-handoff" class="shell hero" hidden>
+    <span class="hero-eyebrow" id="handoff-eyebrow">Nicely done</span>
+    <h1 id="handoff-title">Hand the device to your partner</h1>
+    <p class="hero-lede" id="handoff-body"></p>
+    <div class="name-field">
+      <label for="name-input-b" id="name-label-b">What should we call you? (optional)</label>
+      <input type="text" id="name-input-b" maxlength="30" placeholder="Person B">
+    </div>
+    <div class="btn-row" style="margin-top:28px;">
+      <button class="btn" id="btn-handoff-start">Start →</button>
+    </div>
+  </section>
+
+  <!-- ========== TOGETHER: INTRO (both names) ========== -->
+  <section id="screen-together-intro" class="shell hero" hidden>
+    <span class="hero-eyebrow" id="together-intro-eyebrow">Taking this together</span>
+    <h1 id="together-intro-title">Answer side by side</h1>
+    <p class="hero-lede" id="together-intro-body">Each question will show a row for each of you, so you can both answer it before moving to the next one.</p>
+    <div class="name-field">
+      <label for="name-input-ta" id="name-label-ta">First person's name (optional)</label>
+      <input type="text" id="name-input-ta" maxlength="30" placeholder="Person A">
+    </div>
+    <div class="name-field">
+      <label for="name-input-tb" id="name-label-tb">Second person's name (optional)</label>
+      <input type="text" id="name-input-tb" maxlength="30" placeholder="Person B">
+    </div>
+    <div class="btn-row" style="margin-top:28px;">
+      <button class="btn btn-ghost" id="btn-together-back">← Back</button>
+      <button class="btn" id="btn-together-start">Start →</button>
     </div>
   </section>
 
@@ -483,10 +654,36 @@
       <p id="footer-p1">This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.</p>
       <p id="footer-p2">Downloading or sharing is entirely up to you. Nothing here is stored anywhere else, this page forgets everything the moment you close it.</p>
       <div class="btn-row results-actions">
+        <button class="btn btn-ghost" id="btn-back-to-compare" hidden>← Back to comparison</button>
         <button class="btn" id="btn-pdf">Download as PDF</button>
         <button class="btn btn-ghost" id="btn-share-whatsapp">Share on WhatsApp</button>
         <button class="btn btn-ghost" id="btn-share-email">Share by email</button>
         <button class="btn btn-ghost" id="btn-restart">Start over</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPARE ========== -->
+  <section id="screen-compare" class="shell-wide results-wrap" hidden>
+    <div class="results-head">
+      <span class="results-kicker" id="compare-kicker">Your results, together</span>
+      <h1 id="compare-h1">Where you two connect, and where you differ</h1>
+      <p class="results-sub" id="compare-sub"></p>
+    </div>
+
+    <div class="compare-grid" id="compare-grid"></div>
+
+    <div class="compound-section" id="compare-shared-section">
+      <h2 id="compare-shared-h2">Where you connect</h2>
+      <p class="map-caption" id="compare-shared-intro"></p>
+      <div id="compare-shared-list"></div>
+    </div>
+
+    <div class="results-footer">
+      <p id="compare-footer-p"></p>
+      <div class="btn-row results-actions">
+        <button class="btn" id="btn-compare-pdf">Download as PDF</button>
+        <button class="btn btn-ghost" id="btn-compare-restart">Start over</button>
       </div>
     </div>
   </section>
@@ -875,7 +1072,43 @@ I18N.en.UI = {
   waBtn: "Share on WhatsApp",
   emailBtn: "Share by email",
   restartBtn: "Start over",
-  emailSubject: "My money belief results"
+  emailSubject: "My money belief results",
+
+  modeSoloTitle: "Just me",
+  modeSoloDesc: "A private reflection, just for you.",
+  modeTurnsTitle: "Take turns, one device",
+  modeTurnsDesc: "One of you goes first and hands the device over. Results appear together once you're both done.",
+  modeTogetherTitle: "Answer together",
+  modeTogetherDesc: "Sit side by side and answer each question as you go, one row for each of you.",
+  turnsIntroEyebrow: "Taking this together",
+  turnsIntroTitle: "One device, two turns",
+  turnsIntroBody: "The first person answers on their own, then hands the device over. The second person starts fresh, without seeing any of the first person's answers. Once you're both done, you'll see both sets of results side by side. It might help to look away from the screen while your partner answers, if you'd rather keep your own answers private until the end.",
+  togetherIntroEyebrow: "Taking this together",
+  togetherIntroTitle: "Answer side by side",
+  togetherIntroBody: "Each question will show a row for each of you, so you can both answer it before moving to the next one. Answer honestly for yourself, even if you can see what your partner picked. There's no reason your answers need to match.",
+  nameLabel: "What should we call you? (optional)",
+  nameLabelFirst: "First person's name (optional)",
+  nameLabelSecond: "Second person's name (optional)",
+  personADefault: "Person A",
+  personBDefault: "Person B",
+  startBtn: "Start →",
+  handoffEyebrow: "Nicely done",
+  handoffTitle: "Hand the device to your partner",
+  handoffBody: (name) => name + "'s answers are saved and hidden until you're both finished. When you're ready, it's your partner's turn.",
+  finishTurnBtn: "Finish my turn →",
+  finishTogetherBtn: "See our results →",
+  answeringAs: (name) => "Answering as " + name,
+  answeringTogether: (a,b) => a + " & " + b + " answering together",
+  compareKicker: "Your results, together",
+  compareH1: "Where you two connect, and where you differ",
+  compareSub: (a,b) => a + " and " + b + " each answered independently. Here's both sets of results, side by side.",
+  seeFullResultsBtn: (name) => "See " + name + "'s full results →",
+  compareSharedH2: "Where you connect",
+  compareSharedIntro: "Beliefs that showed up strongly for both of you.",
+  compareSharedItem: (belief) => 'Both of you: "' + belief + '"',
+  compareEmptyShared: "No strongly shared patterns showed up between you, and that's completely normal. Two people can carry very different money histories, even in the same relationship.",
+  compareFooterP: "This comparison only exists on this screen, in this browser. Nothing was sent anywhere, and closing or refreshing the page clears it for good.",
+  backToCompareBtn: "← Back to comparison"
 };
 
 I18N.es.DIMENSIONS = {
@@ -1254,7 +1487,43 @@ I18N.es.UI = {
   waBtn: "Compartir por WhatsApp",
   emailBtn: "Compartir por correo",
   restartBtn: "Empezar de nuevo",
-  emailSubject: "Mis resultados sobre creencias del dinero"
+  emailSubject: "Mis resultados sobre creencias del dinero",
+
+  modeSoloTitle: "Solo yo",
+  modeSoloDesc: "Una reflexión privada, solo para ti.",
+  modeTurnsTitle: "Túrnense, un dispositivo",
+  modeTurnsDesc: "Uno de ustedes empieza y luego pasa el dispositivo. Los resultados aparecen juntos cuando ambos hayan terminado.",
+  modeTogetherTitle: "Respondan juntos",
+  modeTogetherDesc: "Siéntense uno al lado del otro y respondan cada pregunta a medida que avanzan, una fila para cada uno.",
+  turnsIntroEyebrow: "Haciendo esto juntos",
+  turnsIntroTitle: "Un dispositivo, dos turnos",
+  turnsIntroBody: "La primera persona responde sola, y luego pasa el dispositivo. La segunda persona empieza desde cero, sin ver ninguna de las respuestas de la primera. Cuando ambos hayan terminado, verán los dos conjuntos de resultados uno junto al otro. Puede ayudar apartar la vista de la pantalla mientras tu pareja responde, si prefieres mantener tus propias respuestas privadas hasta el final.",
+  togetherIntroEyebrow: "Haciendo esto juntos",
+  togetherIntroTitle: "Respondan uno al lado del otro",
+  togetherIntroBody: "Cada pregunta mostrará una fila para cada uno, así ambos pueden responderla antes de pasar a la siguiente. Responde con honestidad por ti mismo, aunque puedas ver lo que eligió tu pareja. No hay ninguna razón para que sus respuestas coincidan.",
+  nameLabel: "¿Cómo te llamamos? (opcional)",
+  nameLabelFirst: "Nombre de la primera persona (opcional)",
+  nameLabelSecond: "Nombre de la segunda persona (opcional)",
+  personADefault: "Persona A",
+  personBDefault: "Persona B",
+  startBtn: "Empezar →",
+  handoffEyebrow: "Bien hecho",
+  handoffTitle: "Pasa el dispositivo a tu pareja",
+  handoffBody: (name) => "Las respuestas de " + name + " están guardadas y ocultas hasta que ambos terminen. Cuando estés listo, es el turno de tu pareja.",
+  finishTurnBtn: "Terminar mi turno →",
+  finishTogetherBtn: "Ver nuestros resultados →",
+  answeringAs: (name) => "Respondiendo como " + name,
+  answeringTogether: (a,b) => a + " y " + b + " respondiendo juntos",
+  compareKicker: "Sus resultados, juntos",
+  compareH1: "Dónde se conectan ustedes dos, y dónde difieren",
+  compareSub: (a,b) => a + " y " + b + " respondieron cada uno de forma independiente. Aquí están ambos conjuntos de resultados, uno junto al otro.",
+  seeFullResultsBtn: (name) => "Ver los resultados completos de " + name + " →",
+  compareSharedH2: "Dónde se conectan",
+  compareSharedIntro: "Creencias que aparecieron con fuerza en ambos.",
+  compareSharedItem: (belief) => 'Los dos: "' + belief + '"',
+  compareEmptyShared: "No aparecieron patrones fuertemente compartidos entre ustedes, y eso es completamente normal. Dos personas pueden cargar historias muy distintas con el dinero, incluso dentro de la misma relación.",
+  compareFooterP: "Esta comparación solo existe en esta pantalla, en este navegador. Nada se envió a ningún lado, y cerrar o actualizar la página la borra por completo.",
+  backToCompareBtn: "← Volver a la comparación"
 };
 
 I18N.it.DIMENSIONS = {
@@ -1633,7 +1902,43 @@ I18N.it.UI = {
   waBtn: "Condividi su WhatsApp",
   emailBtn: "Condividi via email",
   restartBtn: "Ricomincia",
-  emailSubject: "I miei risultati sulle credenze sul denaro"
+  emailSubject: "I miei risultati sulle credenze sul denaro",
+
+  modeSoloTitle: "Solo io",
+  modeSoloDesc: "Una riflessione privata, solo per te.",
+  modeTurnsTitle: "Fate a turno, un dispositivo",
+  modeTurnsDesc: "Uno di voi inizia e poi passa il dispositivo. I risultati appaiono insieme quando entrambi avrete finito.",
+  modeTogetherTitle: "Rispondete insieme",
+  modeTogetherDesc: "Sedetevi fianco a fianco e rispondete a ogni domanda mentre andate avanti, una riga per ciascuno di voi.",
+  turnsIntroEyebrow: "Farlo insieme",
+  turnsIntroTitle: "Un dispositivo, due turni",
+  turnsIntroBody: "La prima persona risponde da sola, poi passa il dispositivo. La seconda persona inizia da zero, senza vedere le risposte della prima. Quando entrambi avrete finito, vedrete i due insiemi di risultati fianco a fianco. Può aiutare distogliere lo sguardo dallo schermo mentre il tuo partner risponde, se preferisci tenere le tue risposte private fino alla fine.",
+  togetherIntroEyebrow: "Farlo insieme",
+  togetherIntroTitle: "Rispondete fianco a fianco",
+  togetherIntroBody: "Ogni domanda mostrerà una riga per ciascuno di voi, così potete rispondere entrambi prima di passare alla successiva. Rispondi con onestà per te stesso, anche se puoi vedere cosa ha scelto il tuo partner. Non c'è alcuna ragione per cui le vostre risposte debbano coincidere.",
+  nameLabel: "Come ti chiamiamo? (facoltativo)",
+  nameLabelFirst: "Nome della prima persona (facoltativo)",
+  nameLabelSecond: "Nome della seconda persona (facoltativo)",
+  personADefault: "Persona A",
+  personBDefault: "Persona B",
+  startBtn: "Inizia →",
+  handoffEyebrow: "Ben fatto",
+  handoffTitle: "Passa il dispositivo al tuo partner",
+  handoffBody: (name) => "Le risposte di " + name + " sono salvate e nascoste finché non avrete finito entrambi. Quando sei pronto, tocca al tuo partner.",
+  finishTurnBtn: "Termina il mio turno →",
+  finishTogetherBtn: "Vedi i nostri risultati →",
+  answeringAs: (name) => "Stai rispondendo come " + name,
+  answeringTogether: (a,b) => a + " e " + b + " state rispondendo insieme",
+  compareKicker: "I vostri risultati, insieme",
+  compareH1: "Dove vi collegate, e dove differite",
+  compareSub: (a,b) => a + " e " + b + " hanno risposto ciascuno in modo indipendente. Ecco entrambi gli insiemi di risultati, fianco a fianco.",
+  seeFullResultsBtn: (name) => "Vedi i risultati completi di " + name + " →",
+  compareSharedH2: "Dove vi collegate",
+  compareSharedIntro: "Credenze emerse con forza per entrambi.",
+  compareSharedItem: (belief) => 'Per entrambi: "' + belief + '"',
+  compareEmptyShared: "Non sono emersi schemi fortemente condivisi tra voi, ed è del tutto normale. Due persone possono portare storie molto diverse legate al denaro, anche all'interno della stessa relazione.",
+  compareFooterP: "Questo confronto esiste solo in questa schermata, in questo browser. Niente è stato inviato da nessuna parte, e chiudere o aggiornare la pagina lo cancella definitivamente.",
+  backToCompareBtn: "← Torna al confronto"
 };
 
 /* ============================================================
@@ -1660,9 +1965,19 @@ function rebuildFlat(){
   });
 }
 
-const answers = {}; // key: `${secId}-${qi}` -> value (number | index | array of indices)
+const answers = {}; // key: `${secId}-${qi}` -> value (number | index | array of indices); the in-progress person's scratch pad
 let sectionIndex = -1; // -1 = welcome, SECTIONS.length = results
 let shareText = ''; // set by renderResults, read by the share buttons
+
+/* ---------- partner mode state ---------- */
+let mode = 'solo'; // 'solo' | 'turns' | 'together'
+let activePerson = 'A'; // 'A' | 'B', only meaningful in 'turns' mode during the quiz
+let nameA = '';
+let nameB = '';
+let answersA = null; // saved snapshot once person A (or the 'together' pair) is done
+let answersB = null;
+let viewingPerson = null; // null | 'A' | 'B' -- individual results drill-down from the compare screen
+let currentScreenId = 'welcome';
 
 const el = (id) => document.getElementById(id);
 const topbar = el('topbar');
@@ -1670,36 +1985,124 @@ const progressWrap = el('progress-wrap');
 
 function keyFor(secId, qi){ return secId + '-' + qi; }
 
+function hideAllScreens(){
+  el('screen-welcome').hidden = true;
+  el('screen-turns-intro').hidden = true;
+  el('screen-together-intro').hidden = true;
+  el('screen-quiz').hidden = true;
+  el('screen-handoff').hidden = true;
+  el('screen-results').hidden = true;
+  el('screen-compare').hidden = true;
+}
+
+function setMode(m){
+  mode = m;
+  el('mode-solo').setAttribute('aria-pressed', m === 'solo');
+  el('mode-turns').setAttribute('aria-pressed', m === 'turns');
+  el('mode-together').setAttribute('aria-pressed', m === 'together');
+}
+
+function updatePersonBadge(){
+  const badge = el('person-badge');
+  if (mode === 'turns' && currentScreenId === 'quiz') {
+    badge.textContent = UI.answeringAs(activePerson === 'A' ? (nameA || UI.personADefault) : (nameB || UI.personBDefault));
+    badge.hidden = false;
+  } else if (mode === 'together' && currentScreenId === 'quiz') {
+    badge.textContent = UI.answeringTogether(nameA || UI.personADefault, nameB || UI.personBDefault);
+    badge.hidden = false;
+  } else {
+    badge.hidden = true;
+  }
+}
+
 function goWelcome(){
   sectionIndex = -1;
+  currentScreenId = 'welcome';
+  hideAllScreens();
   el('screen-welcome').hidden = false;
-  el('screen-quiz').hidden = true;
-  el('screen-results').hidden = true;
   topbar.classList.remove('is-quiz');
   progressWrap.hidden = true;
+  el('person-badge').hidden = true;
+  window.scrollTo(0,0);
+}
+
+function goTurnsIntro(){
+  currentScreenId = 'turns-intro';
+  hideAllScreens();
+  el('screen-turns-intro').hidden = false;
+  el('name-input-a').value = nameA;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  el('person-badge').hidden = true;
+  window.scrollTo(0,0);
+}
+
+function goTogetherIntro(){
+  currentScreenId = 'together-intro';
+  hideAllScreens();
+  el('screen-together-intro').hidden = false;
+  el('name-input-ta').value = nameA;
+  el('name-input-tb').value = nameB;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  el('person-badge').hidden = true;
   window.scrollTo(0,0);
 }
 
 function goSection(i){
   sectionIndex = i;
-  el('screen-welcome').hidden = true;
-  el('screen-results').hidden = true;
+  currentScreenId = 'quiz';
+  hideAllScreens();
   el('screen-quiz').hidden = false;
   topbar.classList.add('is-quiz');
   progressWrap.hidden = false;
+  updatePersonBadge();
   renderSection(i);
   window.scrollTo(0,0);
 }
 
+function goHandoff(){
+  currentScreenId = 'handoff';
+  hideAllScreens();
+  el('screen-handoff').hidden = false;
+  el('handoff-body').textContent = UI.handoffBody(nameA || UI.personADefault);
+  el('name-input-b').value = nameB;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  el('person-badge').hidden = true;
+  window.scrollTo(0,0);
+}
+
+function goCompare(){
+  currentScreenId = 'compare';
+  viewingPerson = null;
+  hideAllScreens();
+  el('screen-compare').hidden = false;
+  topbar.classList.remove('is-quiz');
+  progressWrap.hidden = true;
+  el('person-badge').hidden = true;
+  renderCompare();
+  window.scrollTo(0,0);
+}
+
 function goResults(){
+  currentScreenId = 'results';
   sectionIndex = SECTIONS.length;
-  el('screen-quiz').hidden = true;
-  el('screen-welcome').hidden = true;
+  hideAllScreens();
   el('screen-results').hidden = false;
   topbar.classList.remove('is-quiz');
   progressWrap.hidden = true;
+  el('person-badge').hidden = true;
+  const viewingFromCompare = mode !== 'solo' && !!viewingPerson;
+  el('btn-back-to-compare').hidden = !viewingFromCompare;
+  el('btn-restart').hidden = viewingFromCompare;
   renderResults();
   window.scrollTo(0,0);
+}
+
+function goIndividualResults(person){
+  viewingPerson = person;
+  goResults();
 }
 
 function labelForKind(kind){
@@ -1732,18 +2135,33 @@ function renderSection(i){
   }
 
   el('btn-back').disabled = false;
-  el('btn-continue').textContent = (i === SECTIONS.length - 1) ? UI.seeResultsBtn : UI.continueBtn;
+  el('btn-continue').textContent = (i === SECTIONS.length - 1)
+    ? (mode === 'turns' ? UI.finishTurnBtn : mode === 'together' ? UI.finishTogetherBtn : UI.seeResultsBtn)
+    : UI.continueBtn;
 }
 
 function renderQuestion(sec, q, qi, group){
   const key = keyFor(sec.id, qi);
   const card = document.createElement('div');
   card.className = 'qcard' + (sec.kind === 'memory' ? ' is-memory' : '');
+  const promptHtml = '<p class="qcard-prompt">' + escapeHtml(q.text) + '</p>';
+
+  if (mode === 'together') {
+    if (sec.kind === 'likert') {
+      card.innerHTML = promptHtml + renderLikertTogether(key) + '<p class="skip-line">' + escapeHtml(UI.skipLikert) + '</p>';
+      group.appendChild(card);
+      wireLikertTogether(card, key);
+    } else {
+      card.innerHTML = promptHtml + renderOptionsTogether(q, key) + '<p class="skip-line">' + escapeHtml(UI.skipChoice) + '</p>';
+      group.appendChild(card);
+      wireOptionsTogether(card, key);
+    }
+    return;
+  }
 
   if (sec.kind === 'likert') {
     const current = answers[key];
-    card.innerHTML =
-      '<p class="qcard-prompt">' + escapeHtml(q.text) + '</p>' +
+    card.innerHTML = promptHtml +
       '<div class="scale" role="radiogroup" aria-label="' + escapeHtml(q.text) + '">' +
         '<div class="scale-row">' +
           [1,2,3,4,5].map(v => (
@@ -1765,8 +2183,7 @@ function renderQuestion(sec, q, qi, group){
   } else {
     // scenario or memory: same rendering
     const current = answers[key];
-    card.innerHTML =
-      '<p class="qcard-prompt">' + escapeHtml(q.text) + '</p>' +
+    card.innerHTML = promptHtml +
       '<div class="opt-list" role="radiogroup" aria-label="options">' +
         q.options.map((o, oi) => (
           '<button type="button" class="opt-btn" data-oi="' + oi + '" aria-pressed="' + (current===oi) + '">' +
@@ -1789,11 +2206,91 @@ function renderQuestion(sec, q, qi, group){
   }
 }
 
+/* ---- answer-together: dual-row likert ---- */
+function renderLikertTogether(key){
+  const rows = ['A','B'].map(p => {
+    const src = p === 'A' ? answersA : answersB;
+    const current = src[key];
+    const label = p === 'A' ? (nameA || UI.personADefault) : (nameB || UI.personBDefault);
+    return '<div class="dual-row" data-person="' + p + '">' +
+      '<span class="dual-row-label">' + escapeHtml(label) + '</span>' +
+      '<div class="scale scale-compact" role="radiogroup" aria-label="' + escapeHtml(label) + '">' +
+        '<div class="scale-row">' +
+          [1,2,3,4,5].map(v => (
+            '<label class="scale-option">' +
+              '<span class="scale-dot-wrap">' +
+                '<input type="radio" name="' + key + '-' + p + '" value="' + v + '"' + (current===v?' checked':'') + '>' +
+                '<span class="scale-dot"></span>' +
+              '</span>' +
+            '</label>'
+          )).join('') +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+  return '<div class="scale">' + rows +
+    '<div class="scale-caps dual-caps"><span class="scale-cap">' + escapeHtml(UI.scaleLeft) + '</span><span class="scale-cap right">' + escapeHtml(UI.scaleRight) + '</span></div>' +
+  '</div>';
+}
+function wireLikertTogether(card, key){
+  card.querySelectorAll('.dual-row').forEach(row => {
+    const p = row.getAttribute('data-person');
+    const target = p === 'A' ? answersA : answersB;
+    row.querySelectorAll('input[type=radio]').forEach(inp => {
+      inp.addEventListener('change', () => { target[key] = parseInt(inp.value, 10); });
+    });
+  });
+}
+
+/* ---- answer-together: dual-toggle options (scenario / memory) ---- */
+function renderOptionsTogether(q, key){
+  const curA = answersA[key];
+  const curB = answersB[key];
+  return '<div class="opt-list-dual">' +
+    q.options.map((o, oi) => (
+      '<div class="opt-row">' +
+        '<span class="opt-row-text">' + escapeHtml(o.label) + '</span>' +
+        '<span class="opt-row-toggles">' +
+          '<button type="button" class="opt-toggle" data-oi="' + oi + '" data-person="A" aria-pressed="' + (curA===oi) + '" title="' + escapeHtml(nameA || UI.personADefault) + '">A</button>' +
+          '<button type="button" class="opt-toggle" data-oi="' + oi + '" data-person="B" aria-pressed="' + (curB===oi) + '" title="' + escapeHtml(nameB || UI.personBDefault) + '">B</button>' +
+        '</span>' +
+      '</div>'
+    )).join('') +
+  '</div>';
+}
+function wireOptionsTogether(card, key){
+  function refresh(){
+    const curA = answersA[key];
+    const curB = answersB[key];
+    card.querySelectorAll('.opt-toggle').forEach(btn => {
+      const oi = parseInt(btn.getAttribute('data-oi'), 10);
+      const p = btn.getAttribute('data-person');
+      btn.setAttribute('aria-pressed', (p === 'A' ? curA : curB) === oi);
+    });
+  }
+  card.querySelectorAll('.opt-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const oi = parseInt(btn.getAttribute('data-oi'), 10);
+      const p = btn.getAttribute('data-person');
+      const target = p === 'A' ? answersA : answersB;
+      if (target[key] === oi) delete target[key]; else target[key] = oi;
+      refresh();
+    });
+  });
+}
+
 function renderWordGrid(sec, group){
   const key = keyFor(sec.id, 0);
-  const current = Array.isArray(answers[key]) ? answers[key].slice() : [];
   const card = document.createElement('div');
   card.className = 'qcard';
+
+  if (mode === 'together') {
+    renderWordGridTogether(sec, key, card);
+    group.appendChild(card);
+    return;
+  }
+
+  const current = Array.isArray(answers[key]) ? answers[key].slice() : [];
   card.innerHTML =
     '<div class="grid-counter"><span><strong id="wg-count">' + current.length + '</strong> ' + escapeHtml(UI.gridSuffix) + '</span><span>' + escapeHtml(UI.gridTap) + '</span></div>' +
     '<div class="word-grid" id="wg-grid">' +
@@ -1833,17 +2330,130 @@ function renderWordGrid(sec, group){
   refresh();
 }
 
-el('btn-start').addEventListener('click', () => goSection(0));
+/* ---- answer-together: dual word grid ---- */
+function renderWordGridTogether(sec, key, card){
+  function counterHtml(){
+    const a = Array.isArray(answersA[key]) ? answersA[key] : [];
+    const b = Array.isArray(answersB[key]) ? answersB[key] : [];
+    return '<span>' + escapeHtml(nameA || UI.personADefault) + ': <strong>' + a.length + '</strong> ' + escapeHtml(UI.gridSuffix) + '</span>' +
+      '<span>' + escapeHtml(nameB || UI.personBDefault) + ': <strong>' + b.length + '</strong> ' + escapeHtml(UI.gridSuffix) + '</span>';
+  }
+  const curA = Array.isArray(answersA[key]) ? answersA[key] : [];
+  const curB = Array.isArray(answersB[key]) ? answersB[key] : [];
+  card.innerHTML =
+    '<div class="grid-counter dual-counter">' + counterHtml() + '</div>' +
+    '<div class="word-grid word-grid-dual">' +
+      sec.words.map((w, wi) => (
+        '<span class="word-chip-dual">' +
+          '<span class="word-chip-label">' + escapeHtml(w.label) + '</span>' +
+          '<button type="button" class="word-toggle" data-wi="' + wi + '" data-person="A" aria-pressed="' + curA.includes(wi) + '" title="' + escapeHtml(nameA || UI.personADefault) + '">A</button>' +
+          '<button type="button" class="word-toggle" data-wi="' + wi + '" data-person="B" aria-pressed="' + curB.includes(wi) + '" title="' + escapeHtml(nameB || UI.personBDefault) + '">B</button>' +
+        '</span>'
+      )).join('') +
+    '</div>' +
+    '<p class="skip-line">' + escapeHtml(UI.skipWordgrid) + '</p>';
+
+  function refresh(){
+    card.querySelector('.dual-counter').innerHTML = counterHtml();
+    const a = Array.isArray(answersA[key]) ? answersA[key] : [];
+    const b = Array.isArray(answersB[key]) ? answersB[key] : [];
+    card.querySelectorAll('.word-toggle').forEach(btn => {
+      const wi = parseInt(btn.getAttribute('data-wi'), 10);
+      const p = btn.getAttribute('data-person');
+      const arr = p === 'A' ? a : b;
+      const isSel = arr.includes(wi);
+      btn.setAttribute('aria-pressed', isSel);
+      btn.setAttribute('data-blocked', (!isSel && arr.length >= 3) ? 'true' : 'false');
+    });
+  }
+
+  card.querySelectorAll('.word-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wi = parseInt(btn.getAttribute('data-wi'), 10);
+      const p = btn.getAttribute('data-person');
+      const target = p === 'A' ? answersA : answersB;
+      let sel = Array.isArray(target[key]) ? target[key].slice() : [];
+      if (sel.includes(wi)) sel = sel.filter(x => x !== wi);
+      else if (sel.length < 3) sel.push(wi);
+      else return;
+      if (sel.length) target[key] = sel; else delete target[key];
+      refresh();
+    });
+  });
+}
+
+el('mode-solo').addEventListener('click', () => setMode('solo'));
+el('mode-turns').addEventListener('click', () => setMode('turns'));
+el('mode-together').addEventListener('click', () => setMode('together'));
+
+el('btn-start').addEventListener('click', () => {
+  if (mode === 'turns') { activePerson = 'A'; goTurnsIntro(); }
+  else if (mode === 'together') { goTogetherIntro(); }
+  else { goSection(0); }
+});
+
+el('btn-turns-back').addEventListener('click', () => goWelcome());
+el('btn-turns-start').addEventListener('click', () => {
+  nameA = el('name-input-a').value.trim();
+  Object.keys(answers).forEach(k => delete answers[k]);
+  answersA = null; answersB = null; viewingPerson = null;
+  activePerson = 'A';
+  goSection(0);
+});
+
+el('btn-handoff-start').addEventListener('click', () => {
+  nameB = el('name-input-b').value.trim();
+  activePerson = 'B';
+  goSection(0);
+});
+
+el('btn-together-back').addEventListener('click', () => goWelcome());
+el('btn-together-start').addEventListener('click', () => {
+  nameA = el('name-input-ta').value.trim();
+  nameB = el('name-input-tb').value.trim();
+  Object.keys(answers).forEach(k => delete answers[k]);
+  answersA = {}; answersB = {}; viewingPerson = null;
+  goSection(0);
+});
+
 el('btn-back').addEventListener('click', () => {
-  if (sectionIndex <= 0) { goWelcome(); return; }
+  if (sectionIndex <= 0) {
+    if (mode === 'turns' && activePerson === 'A') { goTurnsIntro(); return; }
+    if (mode === 'turns' && activePerson === 'B') { goHandoff(); return; }
+    if (mode === 'together') { goTogetherIntro(); return; }
+    goWelcome();
+    return;
+  }
   goSection(sectionIndex - 1);
 });
 el('btn-continue').addEventListener('click', () => {
-  if (sectionIndex < SECTIONS.length - 1) goSection(sectionIndex + 1);
-  else goResults();
+  if (sectionIndex < SECTIONS.length - 1) { goSection(sectionIndex + 1); return; }
+  if (mode === 'turns' && activePerson === 'A') {
+    answersA = {...answers};
+    Object.keys(answers).forEach(k => delete answers[k]);
+    goHandoff();
+  } else if (mode === 'turns' && activePerson === 'B') {
+    answersB = {...answers};
+    goCompare();
+  } else if (mode === 'together') {
+    goCompare();
+  } else {
+    goResults();
+  }
 });
-el('btn-restart').addEventListener('click', () => {
+function resetToSolo(){
   Object.keys(answers).forEach(k => delete answers[k]);
+  answersA = null; answersB = null; nameA = ''; nameB = ''; activePerson = 'A'; viewingPerson = null;
+  setMode('solo');
+}
+el('btn-restart').addEventListener('click', () => {
+  resetToSolo();
+  goWelcome();
+});
+el('btn-back-to-compare').addEventListener('click', () => { viewingPerson = null; goCompare(); });
+el('btn-compare-pdf').addEventListener('click', () => window.print());
+el('btn-compare-restart').addEventListener('click', () => {
+  resetToSolo();
   goWelcome();
 });
 el('btn-pdf').addEventListener('click', () => window.print());
@@ -1858,14 +2468,14 @@ el('btn-share-email').addEventListener('click', () => {
 /* ---------- scoring ---------- */
 const WORDGRID_WEIGHT = 12;
 
-function computeScores(){
+function scoreFor(ansObj){
   const totals = {};
   Object.keys(DIMENSIONS).forEach(d => totals[d] = { achieved:0, max:0 });
   let answeredCount = 0;
 
   flat.forEach(q => {
     const key = keyFor(q.secId, q.qi);
-    const a = answers[key];
+    const a = ansObj[key];
     if (a === undefined) return;
 
     if (q.kind === 'likert') {
@@ -1890,6 +2500,11 @@ function computeScores(){
     percents[d] = t.max > 0 ? Math.round((t.achieved / t.max) * 100) : 50;
   });
   return { percents, answeredCount };
+}
+
+function computeScores(){
+  const src = (mode !== 'solo' && viewingPerson) ? (viewingPerson === 'A' ? answersA : answersB) : answers;
+  return scoreFor(src || {});
 }
 
 function selectTop(percents){
@@ -1977,6 +2592,55 @@ function renderResults(){
   }
 }
 
+/* ---------- compare screen (turns + together modes) ---------- */
+function renderCompareCol(displayName, score, selected, person){
+  const top = selected.slice(0, 5);
+  const listHtml = top.map((d, idx) => {
+    const D = DIMENSIONS[d];
+    return '<li><span class="compare-rank">' + String(idx+1).padStart(2,'0') + '</span>' +
+      '<div class="compare-item-body">' +
+        '<span class="compare-belief-label">' + escapeHtml(D.label) + '</span>' +
+        '<p class="compare-belief-statement">' + escapeHtml(D.belief) + '</p>' +
+      '</div></li>';
+  }).join('');
+  return '<div class="compare-col-head"><span class="compare-name">' + escapeHtml(displayName) + '</span></div>' +
+    '<ol class="compare-top-list">' + listHtml + '</ol>' +
+    '<button type="button" class="btn btn-ghost btn-small" data-person="' + person + '">' + escapeHtml(UI.seeFullResultsBtn(displayName)) + '</button>';
+}
+
+function renderCompare(){
+  const A = scoreFor(answersA || {});
+  const B = scoreFor(answersB || {});
+  const selA = selectTop(A.percents);
+  const selB = selectTop(B.percents);
+  const displayNameA = nameA || UI.personADefault;
+  const displayNameB = nameB || UI.personBDefault;
+
+  el('compare-sub').textContent = UI.compareSub(displayNameA, displayNameB);
+
+  el('compare-grid').innerHTML =
+    '<div class="compare-col">' + renderCompareCol(displayNameA, A, selA, 'A') + '</div>' +
+    '<div class="compare-col">' + renderCompareCol(displayNameB, B, selB, 'B') + '</div>';
+  el('compare-grid').querySelectorAll('.btn-small').forEach(btn => {
+    btn.addEventListener('click', () => goIndividualResults(btn.getAttribute('data-person')));
+  });
+
+  const sharedDims = selA.filter(d => selB.includes(d));
+  sharedDims.sort((x,y) => (B.percents[y]+A.percents[y]) - (B.percents[x]+A.percents[x]));
+  if (sharedDims.length) {
+    el('compare-shared-intro').textContent = UI.compareSharedIntro;
+    el('compare-shared-list').innerHTML = sharedDims.slice(0,5).map(d => {
+      const D = DIMENSIONS[d];
+      return '<div class="compare-shared-item"><h3>' + escapeHtml(D.label) + '</h3><p>' + escapeHtml(UI.compareSharedItem(D.belief)) + '</p></div>';
+    }).join('');
+  } else {
+    el('compare-shared-intro').textContent = '';
+    el('compare-shared-list').innerHTML = '<p class="compare-empty">' + escapeHtml(UI.compareEmptyShared) + '</p>';
+  }
+
+  el('compare-footer-p').textContent = UI.compareFooterP;
+}
+
 /* ---------- language switching ---------- */
 function applyUI(lang){
   const t = I18N[lang].UI;
@@ -1990,6 +2654,46 @@ function applyUI(lang){
   el('safety-note').innerHTML = t.safetyNote;
   el('btn-start').textContent = t.beginBtn;
   el('btn-back').textContent = t.backBtn;
+
+  el('mode-solo-title').textContent = t.modeSoloTitle;
+  el('mode-solo-desc').textContent = t.modeSoloDesc;
+  el('mode-turns-title').textContent = t.modeTurnsTitle;
+  el('mode-turns-desc').textContent = t.modeTurnsDesc;
+  el('mode-together-title').textContent = t.modeTogetherTitle;
+  el('mode-together-desc').textContent = t.modeTogetherDesc;
+
+  el('turns-intro-eyebrow').textContent = t.turnsIntroEyebrow;
+  el('turns-intro-title').textContent = t.turnsIntroTitle;
+  el('turns-intro-body').textContent = t.turnsIntroBody;
+  el('name-label-a').textContent = t.nameLabel;
+  el('name-input-a').placeholder = t.personADefault;
+  el('btn-turns-back').textContent = t.backBtn;
+  el('btn-turns-start').textContent = t.startBtn;
+
+  el('handoff-eyebrow').textContent = t.handoffEyebrow;
+  el('handoff-title').textContent = t.handoffTitle;
+  el('name-label-b').textContent = t.nameLabel;
+  el('name-input-b').placeholder = t.personBDefault;
+  el('btn-handoff-start').textContent = t.startBtn;
+
+  el('together-intro-eyebrow').textContent = t.togetherIntroEyebrow;
+  el('together-intro-title').textContent = t.togetherIntroTitle;
+  el('together-intro-body').textContent = t.togetherIntroBody;
+  el('name-label-ta').textContent = t.nameLabelFirst;
+  el('name-input-ta').placeholder = t.personADefault;
+  el('name-label-tb').textContent = t.nameLabelSecond;
+  el('name-input-tb').placeholder = t.personBDefault;
+  el('btn-together-back').textContent = t.backBtn;
+  el('btn-together-start').textContent = t.startBtn;
+
+  el('compare-kicker').textContent = t.compareKicker;
+  el('compare-h1').textContent = t.compareH1;
+  el('compare-shared-h2').textContent = t.compareSharedH2;
+  el('compare-footer-p').textContent = t.compareFooterP;
+  el('btn-back-to-compare').textContent = t.backToCompareBtn;
+  el('btn-compare-pdf').textContent = t.pdfBtn;
+  el('btn-compare-restart').textContent = t.restartBtn;
+
   el('results-kicker').textContent = t.resultsKicker;
   el('results-h1').textContent = t.resultsH1;
   el('synthesis-h2').textContent = t.synthesisH2;
@@ -2030,17 +2734,36 @@ function applyLang(lang){
   renderLangSwitch();
   try { localStorage.setItem('mbc-lang', lang); } catch (e) {}
 
-  if (sectionIndex >= 0 && sectionIndex < SECTIONS.length) renderSection(sectionIndex);
-  else if (sectionIndex === SECTIONS.length) renderResults();
+  if (currentScreenId === 'quiz') renderSection(sectionIndex);
+  else if (currentScreenId === 'results') renderResults();
+  else if (currentScreenId === 'compare') renderCompare();
+  else if (currentScreenId === 'handoff') el('handoff-body').textContent = UI.handoffBody(nameA || UI.personADefault);
+  updatePersonBadge();
 }
 
 /* ---------- hot reload state carry (artifact republish) ---------- */
-function snapshotState(){ return { answers: {...answers}, sectionIndex, currentLang }; }
+function snapshotState(){
+  return {
+    answers: {...answers}, sectionIndex, currentLang, currentScreenId,
+    mode, activePerson, nameA, nameB,
+    answersA: answersA ? {...answersA} : null,
+    answersB: answersB ? {...answersB} : null
+  };
+}
 function bootFrom(data){
   if (data && data.answers) Object.assign(answers, data.answers);
+  mode = (data && data.mode) || 'solo';
+  activePerson = (data && data.activePerson) || 'A';
+  nameA = (data && data.nameA) || '';
+  nameB = (data && data.nameB) || '';
+  answersA = (data && data.answersA) || null;
+  answersB = (data && data.answersB) || null;
   const lang = (data && data.currentLang) || (function(){ try { return localStorage.getItem('mbc-lang'); } catch(e){ return null; } })() || 'en';
   applyLang(lang);
-  if (data && typeof data.sectionIndex === 'number' && data.sectionIndex >= 0 && data.sectionIndex < SECTIONS.length) {
+  setMode(mode);
+  if (data && data.currentScreenId === 'compare' && answersA && answersB) {
+    goCompare();
+  } else if (data && typeof data.sectionIndex === 'number' && data.sectionIndex >= 0 && data.sectionIndex < SECTIONS.length) {
     goSection(data.sectionIndex);
   } else if (data && data.sectionIndex === SECTIONS.length) {
     goResults();
