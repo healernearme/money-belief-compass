@@ -120,6 +120,13 @@
   .progress-track{flex:1; height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; border:1px solid var(--border);}
   .progress-fill{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent-strong)); border-radius:99px; transition:width .4s ease;}
   .progress-label{font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:.72rem; color:var(--ink-3); white-space:nowrap;}
+  .lang-switch{display:flex; align-items:center; gap:4px; flex:none;}
+  .lang-btn{
+    font-size:1rem; line-height:1; padding:5px 7px; border-radius:8px; border:1px solid transparent;
+    background:transparent; opacity:.5; transition:all .12s ease;
+  }
+  .lang-btn:hover{opacity:.85; background:var(--surface-2);}
+  .lang-btn[aria-current="true"]{opacity:1; border-color:var(--border); background:var(--surface);}
 
   /* ---------- buttons ---------- */
   .btn{
@@ -331,6 +338,7 @@
     .brand{font-size:.88rem; gap:7px;}
     .brand-mark{width:19px; height:19px;}
     .progress-label{font-size:.66rem;}
+    .lang-btn{padding:4px 5px; font-size:.9rem;}
 
     .hero{padding:32px 0 32px;}
     .hero-eyebrow{font-size:.66rem; padding:5px 10px; margin-bottom:16px;}
@@ -393,23 +401,24 @@
         <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
         <span class="progress-label" id="progress-label">Section 1 / 14</span>
       </div>
+      <div class="lang-switch" id="lang-switch"></div>
     </div>
   </header>
 
   <!-- ========== WELCOME ========== -->
   <section id="screen-welcome" class="shell hero">
-    <span class="hero-eyebrow">A private, self-guided reflection</span>
-    <h1>The money <span class="accent-word">belief system</span> you didn't choose</h1>
-    <p class="hero-lede">Most of what shapes how we handle money isn't really about money. It's about safety, worth, belonging, and what we picked up, often long before we had words for it, about wanting things for ourselves.</p>
-    <p class="hero-lede">This is a mix of statements to agree or disagree with, some quick scenarios, a few memory prompts, and one round where you'll pick from a table of thirty words. Together they map a specific, personal set of beliefs that may be quietly shaping your relationship with money. Not a generic "money type", your own particular pattern.</p>
+    <span class="hero-eyebrow" id="hero-eyebrow">A private, self-guided reflection</span>
+    <h1 id="hero-title">The money <span class="accent-word">belief system</span> you didn't choose</h1>
+    <p class="hero-lede" id="hero-lede-1">Most of what shapes how we handle money isn't really about money. It's about safety, worth, belonging, and what we picked up, often long before we had words for it, about wanting things for ourselves.</p>
+    <p class="hero-lede" id="hero-lede-2">This is a mix of statements to agree or disagree with, some quick scenarios, a few memory prompts, and one round where you'll pick from a table of thirty words. Together they map a specific, personal set of beliefs that may be quietly shaping your relationship with money. Not a generic "money type", your own particular pattern.</p>
 
     <div class="chip-row">
-      <div class="chip"><span class="chip-num">~15-20 min</span><span class="chip-text">Go slowly, or quickly. There's no timer.</span></div>
-      <div class="chip"><span class="chip-num">Skip anything</span><span class="chip-text">If a question doesn't sit right, just leave it and continue.</span></div>
-      <div class="chip"><span class="chip-num">Stays with you</span><span class="chip-text">Nothing is sent anywhere. It all stays in this browser.</span></div>
+      <div class="chip"><span class="chip-num" id="chip1-num">~15-20 min</span><span class="chip-text" id="chip1-text">Go slowly, or quickly. There's no timer.</span></div>
+      <div class="chip"><span class="chip-num" id="chip2-num">Skip anything</span><span class="chip-text" id="chip2-text">If a question doesn't sit right, just leave it and continue.</span></div>
+      <div class="chip"><span class="chip-num" id="chip3-num">Stays with you</span><span class="chip-text" id="chip3-text">Nothing is sent anywhere. It all stays in this browser.</span></div>
     </div>
 
-    <div class="safety-note">
+    <div class="safety-note" id="safety-note">
       <strong>Before you begin:</strong> this is a reflective tool, not a diagnosis or a substitute for therapy. It asks about present-day feelings, instincts, and associations, not for you to recount specific difficult memories. Go at whatever pace feels okay, and stop anytime. If anything here brings up something heavy, it's probably worth exploring further with a therapist.
     </div>
 
@@ -435,44 +444,44 @@
   <!-- ========== RESULTS ========== -->
   <section id="screen-results" class="shell-wide results-wrap" hidden>
     <div class="results-head">
-      <span class="results-kicker">Your results</span>
-      <h1>Why part of you might be keeping money at a distance</h1>
+      <span class="results-kicker" id="results-kicker">Your results</span>
+      <h1 id="results-h1">Why part of you might be keeping money at a distance</h1>
       <p class="results-sub" id="results-sub"></p>
     </div>
 
     <div class="synthesis">
-      <h2>What's showing up most</h2>
+      <h2 id="synthesis-h2">What's showing up most</h2>
       <p id="synthesis-text"></p>
     </div>
 
     <div class="scripts-section">
-      <h3 class="scripts-title">Your money script snapshot</h3>
-      <p class="scripts-caption">Financial psychology groups money patterns into four broad scripts: avoidance, worship, status, and vigilance. Here's how your answers land across all four, alongside the personalized picture below. Because this tool is built around beliefs that push money away, avoidance and vigilance tend to run higher for most people; that's expected, not a flaw in your answers.</p>
+      <h3 class="scripts-title" id="scripts-title">Your money script snapshot</h3>
+      <p class="scripts-caption" id="scripts-caption">Financial psychology groups money patterns into four broad scripts: avoidance, worship, status, and vigilance. Here's how your answers land across all four, alongside the personalized picture below. Because this tool is built around beliefs that push money away, avoidance and vigilance tend to run higher for most people; that's expected, not a flaw in your answers.</p>
       <div class="script-rows" id="script-rows"></div>
     </div>
 
     <div class="map-section">
-      <h3 class="map-title">Your full pattern map</h3>
-      <p class="map-caption">All 15 dimensions this tool looks at. The highlighted ones below are the beliefs you'll see written out in full.</p>
+      <h3 class="map-title" id="map-title">Your full pattern map</h3>
+      <p class="map-caption" id="map-caption">All 15 dimensions this tool looks at. The highlighted ones below are the beliefs you'll see written out in full.</p>
       <div class="map-rows" id="map-rows"></div>
     </div>
 
     <div class="cards-section">
       <div class="cards-head">
         <h2 id="cards-heading">Your beliefs, in your own results</h2>
-        <p>Ranked by how strongly each one showed up in your answers, not by how "bad" it is. These are protective patterns, not character flaws.</p>
+        <p id="cards-caption">Ranked by how strongly each one showed up in your answers, not by how "bad" it is. These are protective patterns, not character flaws.</p>
       </div>
       <div id="cards-list"></div>
     </div>
 
     <div class="compound-section" id="compound-section" hidden>
-      <h2>Where these connect</h2>
+      <h2 id="compound-h2">Where these connect</h2>
       <div id="compound-list"></div>
     </div>
 
     <div class="results-footer">
-      <p>This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.</p>
-      <p>Downloading or sharing is entirely up to you. Nothing here is stored anywhere else, this page forgets everything the moment you close it.</p>
+      <p id="footer-p1">This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.</p>
+      <p id="footer-p2">Downloading or sharing is entirely up to you. Nothing here is stored anywhere else, this page forgets everything the moment you close it.</p>
       <div class="btn-row results-actions">
         <button class="btn" id="btn-pdf">Download as PDF</button>
         <button class="btn btn-ghost" id="btn-share-whatsapp">Share on WhatsApp</button>
@@ -488,7 +497,9 @@
 /* ============================================================
    DATA
    ============================================================ */
-const DIMENSIONS = {
+const I18N = { en: {}, es: {} };
+
+I18N.en.DIMENSIONS = {
   SCARCITY: { label:"There's never enough", belief:"No matter how much I have, it won't be enough.",
     root:"If money felt unpredictable when you were growing up, or there was even one stretch where it genuinely ran out, your nervous system may have learned that resources are never quite stable enough to relax into. That kind of learning doesn't update easily just because your bank balance has.",
     showsUp:"Over-saving and still feeling behind. Replaying prices in your head long after you've paid them. A flicker of dread that shows up even when your accounts are, by any reasonable measure, fine.",
@@ -566,7 +577,7 @@ const DIMENSIONS = {
     refusalPhrase:"a habit of looking away because looking closely once felt like too much" }
 };
 
-const MONEY_SCRIPTS = [
+I18N.en.MONEY_SCRIPTS = [
   { id:"AVOIDANCE", label:"Money Avoidance", color:"--accent",
     desc:"Pushing money away: discomfort with having it, wanting it, or being seen with it.",
     dims:["UNWORTHY","GREED","SUFFERING","SABOTAGE","NUMBING","LOVESPLIT","CORRUPTION"] },
@@ -581,7 +592,7 @@ const MONEY_SCRIPTS = [
     dims:["UNSAFE","CONTROL","RECEIVING"] }
 ];
 
-const COMPOUND_INSIGHTS = [
+I18N.en.COMPOUND_INSIGHTS = [
   { pair:["UNWORTHY","PRODUCTIVITY"], title:"Worth, on a meter",
     text:"Your sense of deserving seems tightly linked to output, as if worth has to be earned fresh every day with nothing carried over from yesterday." },
   { pair:["LOYALTY","ABANDON"], title:"The staying-small agreement",
@@ -600,7 +611,7 @@ const COMPOUND_INSIGHTS = [
     text:"If wanting more feels shameful, wanting less, staying small, can start to feel like the only clearly acceptable option." }
 ];
 
-const SECTIONS = [
+I18N.en.SECTIONS = [
   { id:"A", title:"Where it started", kind:"likert", note:"Simple statements about growing up. Agree, disagree, there's no right answer, and you can skip anything.",
     questions:[
       { text:"Growing up, I sensed that money could disappear at any moment, even when things looked fine on the surface.", dim:"SCARCITY" },
@@ -817,17 +828,458 @@ const SECTIONS = [
     ]}
 ];
 
+I18N.en.UI = {
+  langLabel: "English",
+  heroEyebrow: "A private, self-guided reflection",
+  heroTitle: 'The money <span class="accent-word">belief system</span> you didn\'t choose',
+  heroLede1: "Most of what shapes how we handle money isn't really about money. It's about safety, worth, belonging, and what we picked up, often long before we had words for it, about wanting things for ourselves.",
+  heroLede2: 'This is a mix of statements to agree or disagree with, some quick scenarios, a few memory prompts, and one round where you\'ll pick from a table of thirty words. Together they map a specific, personal set of beliefs that may be quietly shaping your relationship with money. Not a generic "money type", your own particular pattern.',
+  chip1Num: "~15-20 min", chip1Text: "Go slowly, or quickly. There's no timer.",
+  chip2Num: "Skip anything", chip2Text: "If a question doesn't sit right, just leave it and continue.",
+  chip3Num: "Stays with you", chip3Text: "Nothing is sent anywhere. It all stays in this browser.",
+  safetyNote: '<strong>Before you begin:</strong> this is a reflective tool, not a diagnosis or a substitute for therapy. It asks about present-day feelings, instincts, and associations, not for you to recount specific difficult memories. Go at whatever pace feels okay, and stop anytime. If anything here brings up something heavy, it\'s probably worth exploring further with a therapist.',
+  beginBtn: "Begin →",
+  backBtn: "← Back",
+  continueBtn: "Continue →",
+  seeResultsBtn: "See your results →",
+  kindStatements: "Statements", kindMemory: "Memory", kindWordgrid: "Word round", kindScenario: "Scenarios",
+  sectionEyebrow: (i, n, kind) => "Section " + i + " of " + n + ", " + kind,
+  progressLabel: (i, n) => "Section " + i + " / " + n,
+  scaleLeft: "Strongly disagree", scaleRight: "Strongly agree",
+  skipLikert: "You can leave this blank if you’d rather not answer.",
+  skipChoice: "You can skip this one if you’d rather not answer.",
+  skipWordgrid: "You can pick zero, one, two, or three. Whatever actually jumps out.",
+  gridSuffix: "of 3 selected",
+  gridTap: "tap a word to toggle it",
+  resultsKicker: "Your results",
+  resultsH1: "Why part of you might be keeping money at a distance",
+  resultsSub: (a, n) => a + " of " + n + " prompts answered. Skipped ones were simply left out of your scoring, not counted against you.",
+  synthesisH2: "What's showing up most",
+  synth1: (a) => 'If part of you resists money, it may not be about willpower. Right now, the clearest signal in your answers points to <em>' + a + '</em>.',
+  synth2: (a,b) => 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + a + '</em>, and <em>' + b + '</em>.',
+  synth3: (a,b,c) => 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + a + '</em>, <em>' + b + '</em>, and <em>' + c + '</em>.',
+  synthTail: (n) => ' Below is your full picture: ' + n + ' belief' + (n===1?'':'s') + ' that showed up strongly enough to be worth naming, in the order they showed up most.',
+  shareText: (statement) => 'I just took the Money Belief Compass, a free trauma-informed quiz about unconscious money beliefs. One of mine: "' + statement + '" Worth 15 minutes if you are curious about yours: https://moneybeliefs.org',
+  scriptsTitle: "Your money script snapshot",
+  scriptsCaption: "Financial psychology groups money patterns into four broad scripts: avoidance, worship, status, and vigilance. Here's how your answers land across all four, alongside the personalized picture below. Because this tool is built around beliefs that push money away, avoidance and vigilance tend to run higher for most people; that's expected, not a flaw in your answers.",
+  mapTitle: "Your full pattern map",
+  mapCaption: "All 15 dimensions this tool looks at. The highlighted ones below are the beliefs you'll see written out in full.",
+  cardsHeading: (n) => "Your " + n + " belief" + (n===1?"":"s"),
+  cardsCaption: 'Ranked by how strongly each one showed up in your answers, not by how "bad" it is. These are protective patterns, not character flaws.',
+  whereFrom: "Where this can come from",
+  showsUpLabel: "How it can show up",
+  compoundH2: "Where these connect",
+  footer1: "This tool reflects patterns in how you answered a couple of dozen prompts and one bigger word round, on one particular day. It's a starting point for curiosity, not a fixed label or a clinical assessment. Beliefs like these usually formed for a good reason, as ways of staying safe. Naming them is often the first step in loosening their grip, and it's rarely something to do entirely alone if it brings up a lot.",
+  footer2: "Downloading or sharing is entirely up to you. Nothing here is stored anywhere else, this page forgets everything the moment you close it.",
+  pdfBtn: "Download as PDF",
+  waBtn: "Share on WhatsApp",
+  emailBtn: "Share by email",
+  restartBtn: "Start over",
+  emailSubject: "My money belief results"
+};
+
+I18N.es.DIMENSIONS = {
+  SCARCITY: { label:"Nunca es suficiente", belief:"No importa cuánto tenga, nunca será suficiente.",
+    root:"Si el dinero se sentía impredecible cuando eras pequeño, o hubo incluso una época en la que de verdad se acabó, tu sistema nervioso puede haber aprendido que los recursos nunca son lo bastante estables como para relajarte. Ese tipo de aprendizaje no se actualiza fácilmente solo porque tu saldo bancario haya cambiado.",
+    showsUp:"Ahorrar en exceso y aun así sentir que vas atrasado. Repasar precios en tu cabeza mucho después de haberlos pagado. Un destello de temor que aparece incluso cuando tus cuentas están, según cualquier criterio razonable, bien.",
+    reflection:"Cuando imaginas tener suficiente, ¿qué es lo que realmente te impide creerlo?",
+    refusalPhrase:"un sistema nervioso que todavía se prepara para una escasez que ya no es real" },
+  UNSAFE: { label:"El dinero me convierte en un blanco", belief:"Tener dinero me expone, me hace sentir inseguro, o me convierte en un blanco.",
+    root:"Esta suele tener un recuerdo concreto detrás: un momento en el que te notaron, o en el que tuviste más que otra persona, y eso trajo consecuencias reales. Envidia, resentimiento, incluso peligro. Así el cuerpo aprendió a asociar visibilidad con riesgo, y el dinero es una de las cosas más visibles que existen.",
+    showsUp:"Minimizar tus logros. Cobrar menos de lo que vales por tu trabajo. Una incomodidad silenciosa con que alguien conozca tus cifras reales.",
+    reflection:"¿De la atención de quién aprendiste a esconderte, y el dinero atrae ahora ese mismo tipo de atención?",
+    refusalPhrase:"una vieja sensación de que ser visto con más invita al peligro" },
+  UNWORTHY: { label:"No me lo merezco", belief:"No merezco tener más de lo que necesito.",
+    root:"En algún momento del camino puede que absorbieras la idea de que tus necesidades pasaban a segundo plano, o que querer cosas para ti mismo no estaba del todo permitido. Esa creencia casi nunca llega como una sola frase. Suele construirse a partir de años de pequeños momentos.",
+    showsUp:"Regalar imprevistos casi de inmediato. Incomodidad al recibir lo que realmente vales. Culpa que llega antes que la alegría cuando las cosas van bien.",
+    reflection:"Si de verdad creyeras que mereces vivir con más soltura, ¿qué te permitirías tener esta semana?",
+    refusalPhrase:"una creencia silenciosa de que no te has ganado el derecho a tener más" },
+  GREED: { label:"Querer más me hace mala persona", belief:"Querer más dinero me convierte en una persona codiciosa y mala.",
+    root:"Muchas familias, religiones y comunidades tratan la ambición como algo moralmente sospechoso, incluso mientras la necesitan en silencio para sobrevivir. Si creciste en una de ellas, querer más puede haberse enredado con la idea de ser peor persona.",
+    showsUp:"Disculparte antes de decir un precio. Incomodidad al negociar. Tratar la ambición como algo que hay que esconder, en lugar de algo que se te permite tener.",
+    reflection:"¿Quién te enseñó que querer más decía algo malo sobre quién eres?",
+    refusalPhrase:"un miedo a que querer más diga algo vergonzoso sobre ti" },
+  LOYALTY: { label:"Que me vaya mejor sería una traición", belief:"Tener más que las personas de donde vengo sería una especie de traición.",
+    root:"Cuando el amor y la lucha estaban entrelazados durante tu infancia, que te vaya notablemente mejor puede empezar a sentirse, por dentro, como dejar atrás a alguien. Nadie tiene que decirlo en voz alta para que se instale.",
+    showsUp:"Autosabotaje justo antes de que las cosas mejoren. Culpa al gastar en ti mismo. Incomodidad real al ganar más que un padre, un hermano o una pareja.",
+    reflection:"¿Hay alguien por quien te mantienes pequeño en silencio, por amor o por lealtad?",
+    refusalPhrase:"una lealtad hacia tus orígenes que hace que avanzar se sienta como dejar a alguien atrás" },
+  CORRUPTION: { label:"El dinero me cambiaría para peor", belief:"El dinero me convertirá en alguien más frío, más duro, o menos yo mismo.",
+    root:"Tal vez fue un personaje de televisión, un familiar, o simplemente la historia general que tu familia contaba sobre la gente con dinero: que algo se pierde en el camino hacia tener más. Si esa historia caló lo bastante hondo, mantenerte a distancia del dinero puede sentirse como mantenerte fiel a ti mismo.",
+    showsUp:"Evitar el crecimiento financiero para proteger tu identidad. Incomodidad cerca de personas con más dinero que tú. Mantener el dinero alejado de tu sentido de identidad.",
+    reflection:"¿Qué parte de ti temes que el dinero te quitaría, y es eso realmente cierto?",
+    refusalPhrase:"un miedo a que tener seguridad financiera signifique convertirte en alguien que no reconocerías" },
+  LOVESPLIT: { label:"El dinero y el amor no coexisten del todo", belief:"A las personas con dinero no se las ama por quienes realmente son.",
+    root:"Si alguna vez viste una relación donde el dinero complicó la confianza, alguien cortejado por sus recursos, el amor volviéndose condicional en cuanto apareció la riqueza, eso puede enseñarte que las dos cosas no se mezclan con seguridad.",
+    showsUp:"Ocultar tu éxito financiero a una pareja. Incomodidad cuando te piden dinero. Una sospecha reflexiva sobre las motivaciones de la gente una vez que tienes más.",
+    reflection:"¿Dónde aprendiste que el dinero complica el amor, y sigue siendo cierto aquí?",
+    refusalPhrase:"una sospecha de que el dinero y el amor verdadero no pueden coexistir del todo" },
+  VISIBILITY: { label:"El éxito invita al juicio", belief:"Si tengo éxito de forma visible, seré juzgado, envidiado o castigado por ello.",
+    root:"Esta suele tener raíces en algo que realmente ocurrió: burlas, exclusión, o un resentimiento silencioso después de un logro. El sistema nervioso lo recuerda, y empieza a encogerte de nuevo antes de que pueda volver a pasar.",
+    showsUp:"Minimizar tus logros. Dudar antes de compartir buenas noticias. Quedarte en un nivel que se siente seguro, aunque seas capaz de más.",
+    reflection:"¿Qué pasó la última vez que te permitiste que te vieran haciéndolo bien?",
+    refusalPhrase:"un recuerdo de haber sido objeto de burlas, exclusión o castigo por hacerlo bien" },
+  CONTROL: { label:"Más dinero significa más obligación", belief:"Tener dinero significa que le deberé algo a la gente, o que perderé el control de mis propias decisiones.",
+    root:"Si alguna vez la ayuda vino con condiciones, un pago emocional, una obligación, una deuda que nunca se nombró del todo, puede que hayas aprendido que los recursos y el control están conectados. Más dinero empieza a parecer más poder que otras personas pueden usar sobre ti.",
+    showsUp:"Evitar la dependencia financiera en cualquier dirección. Incomodidad con las finanzas compartidas. Rechazar ayuda incluso cuando se ofrece libremente.",
+    reflection:"¿Qué te costó recibir antes, que todavía proteges en silencio?",
+    refusalPhrase:"una cautela de que más dinero significa más obligación hacia gente que podría usarlo en tu contra" },
+  PRODUCTIVITY: { label:"Solo valgo lo que produzco", belief:"Mi valor se mide por cuánto gano o produzco.",
+    root:"Si el amor o la aprobación durante tu infancia dependían de los logros, de ser útil, de ser impresionante, más que de simplemente estar presente, es fácil llegar a esta conclusión: tu valor hay que ganárselo de nuevo cada día, a través de lo que produces.",
+    showsUp:"Dificultad para descansar sin sentir culpa. Autoestima que sube y baja con los ingresos. Sentirte un fracaso durante períodos normales de calma.",
+    reflection:"¿Quién seguirías siendo si no ganaras nada durante un mes?",
+    refusalPhrase:"una creencia de que tu valor hay que ganárselo a través de lo que produces, no simplemente tenerlo" },
+  SUFFERING: { label:"Tengo que sufrir para merecer cosas buenas", belief:"Primero tengo que luchar, antes de que se me permita recibir algo bueno.",
+    root:"Cuando la comodidad misma era escasa o sospechosa durante tu infancia, el bienestar tenía que ganarse a través de la dificultad, o tratarse como un lujo inmerecido, eso puede convertirse en una regla: las cosas buenas solo cuentan si antes te costaron algo.",
+    showsUp:"Hacer las cosas más difíciles de lo necesario. Desconfiar de las oportunidades que llegan con facilidad. Un destello de culpa ante la comodidad financiera.",
+    reflection:"¿Qué significaría dejar que algo fuera fácil, sin tener que ganárselo primero?",
+    refusalPhrase:"una vieja regla de que las cosas buenas solo cuentan si costaron un gran esfuerzo" },
+  SABOTAGE: { label:"Una parte de mí se frena justo antes de lograrlo", belief:"Una parte de mí sabotea en silencio el progreso financiero justo antes de que se consolide.",
+    root:"Esto suele ser protector, no autodestructivo. Si la decepción te resulta un territorio conocido, deshacer las cosas tú mismo puede sentirse más seguro que esperar a que te decepcione alguien, o algo, más.",
+    showsUp:"Plazos incumplidos justo cerca de una gran oportunidad. Un gasto impulsivo justo después de un avance. Procrastinar en la única tarea que realmente movería las cosas hacia adelante.",
+    reflection:"¿De qué podría estar protegiéndote este patrón?",
+    refusalPhrase:"un hábito protector de frenarte justo antes de que algo bueno se consolide del todo" },
+  RECEIVING: { label:"Recibir se siente inseguro", belief:"Recibir, ayuda, regalos, dinero, me hace sentir expuesto o en deuda.",
+    root:"Si aceptar ayuda alguna vez vino con vergüenza, condiciones, o una pérdida silenciosa de independencia, recibir dejó de sentirse simple. Empezó a sentirse como el primer paso de una transacción que no habías aceptado.",
+    showsUp:"Incomodidad al aceptar cumplidos, regalos o pagos. Un reflejo de corresponder de inmediato. Dificultad real para pedir lo que necesitas.",
+    reflection:"¿Qué se siente en tu cuerpo, ahora mismo, al imaginar simplemente recibir, sin devolver nada?",
+    refusalPhrase:"una incomodidad con simplemente recibir, sin necesidad de ganárselo o devolverlo" },
+  ABANDON: { label:"Me quedaré atrás si supero a los demás", belief:"Si supero económicamente a las personas que quiero, las perderé.",
+    root:"En familias o comunidades donde el sentido de pertenencia dependía de mantenerse en un nivel parecido, la similitud era lo que hacía que todos se sintieran seguros juntos. Superar eso puede sentirse menos como un éxito y más como un riesgo para la relación misma.",
+    showsUp:"Frenar tu propio crecimiento para igualar a los demás. Ocultar tus avances a las personas que quieres. Incomodidad con la independencia financiera dentro de relaciones cercanas.",
+    reflection:"¿El amor de quién temes perder si de verdad te permitieras prosperar?",
+    refusalPhrase:"un miedo a que crecer más allá de las personas que quieres signifique perderlas" },
+  NUMBING: { label:"Es más fácil no mirar", belief:"Es más seguro no mirar de cerca el dinero.",
+    root:"La evitación suele ser solo el sistema nervioso haciendo su trabajo. Si un tema alguna vez trajo angustia real, apartar la mirada se convirtió en la ruta más rápida y confiable de vuelta a la calma, y ese atajo puede quedarse mucho después de que la razón original haya pasado.",
+    showsUp:"Evitar revisar el saldo bancario. Facturas sin abrir. Respuestas vagas cuando alguien pregunta por tus finanzas. Un alivio silencioso cada vez que cambia el tema.",
+    reflection:"¿Qué sensación aparece primero, justo antes de que normalmente apartarías la mirada?",
+    refusalPhrase:"un hábito de apartar la mirada porque mirar de cerca alguna vez se sintió como demasiado" }
+};
+
+I18N.es.MONEY_SCRIPTS = [
+  { id:"AVOIDANCE", label:"Evitación del dinero", color:"--accent",
+    desc:"Alejar el dinero: incomodidad con tenerlo, quererlo, o que te vean con él.",
+    dims:["UNWORTHY","GREED","SUFFERING","SABOTAGE","NUMBING","LOVESPLIT","CORRUPTION"] },
+  { id:"WORSHIP", label:"Idealización del dinero", color:"--gold",
+    desc:"La creencia de que más dinero por fin arreglaría las cosas, junto con la sensación de que nunca hay del todo suficiente.",
+    dims:["SCARCITY","PRODUCTIVITY"] },
+  { id:"STATUS", label:"Estatus a través del dinero", color:"--wine",
+    desc:"Vincular tu valor o tu sentido de pertenencia con cómo se comparan tus finanzas con las de los demás.",
+    dims:["VISIBILITY","ABANDON","LOYALTY"] },
+  { id:"VIGILANCE", label:"Vigilancia del dinero", color:"--slate",
+    desc:"Cautela alrededor del dinero: estar atento a condiciones ocultas, obligaciones, o a que se aprovechen de ti.",
+    dims:["UNSAFE","CONTROL","RECEIVING"] }
+];
+
+I18N.es.COMPOUND_INSIGHTS = [
+  { pair:["UNWORTHY","PRODUCTIVITY"], title:"El valor propio, con medidor",
+    text:"Tu sentido de merecer algo parece estar muy ligado a lo que produces, como si el valor hubiera que ganárselo de nuevo cada día, sin que nada se traslade del día anterior." },
+  { pair:["LOYALTY","ABANDON"], title:"El acuerdo de quedarse pequeño",
+    text:"Que te vaya mejor puede sentirse, sin que seas del todo consciente, como poner en riesgo relaciones reales, así que una parte de ti puede haber llegado a un compromiso silencioso: suficiente progreso para salir adelante, no tanto como para dejar a alguien atrás." },
+  { pair:["SABOTAGE","VISIBILITY"], title:"El éxito, hasta que alguien lo ve",
+    text:"Frenarte puede no tener tanto que ver con el dinero en sí. Puede tener que ver con lo que viene después: que te observen, te juzguen, o esperen que sigas rindiendo al mismo nivel." },
+  { pair:["UNSAFE","NUMBING"], title:"Apartar la mirada para estar a salvo",
+    text:"La evitación aquí probablemente no es pereza. Puede ser una de las formas más rápidas que tu cuerpo encontró para bajar una respuesta de amenaza que las conversaciones sobre dinero activan de forma constante." },
+  { pair:["RECEIVING","CONTROL"], title:"Una deuda antes de deberla",
+    text:"Incluso las cosas que se dan con libertad pueden registrarse como una obligación futura, lo que hace que simplemente recibir se sienta como firmar algo que aún no has leído." },
+  { pair:["CORRUPTION","LOVESPLIT"], title:"Mantener el dinero lejos del amor",
+    text:"Puede haber un viejo temor de que el éxito financiero y ser amado de forma genuina y sin complicaciones no puedan ocupar por completo la misma vida a la vez." },
+  { pair:["SCARCITY","SUFFERING"], title:"Lo suficiente hay que ganárselo con sangre",
+    text:"Relajarte en la sensación de tener suficiente puede sentirse inseguro a menos que te haya costado algo real. La facilidad, por sí sola, puede acabar sintiéndose poco confiable." },
+  { pair:["GREED","UNWORTHY"], title:"Querer menos para que no esté mal",
+    text:"Si querer más se siente vergonzoso, querer menos, mantenerte pequeño, puede empezar a sentirse como la única opción claramente aceptable." }
+];
+
+I18N.es.SECTIONS = [
+  { id:"A", title:"Dónde empezó todo", kind:"likert", note:"Afirmaciones sencillas sobre tu infancia. De acuerdo, en desacuerdo, no hay una respuesta correcta, y puedes saltarte lo que quieras.",
+    questions:[
+      { text:"Cuando era pequeño, sentía que el dinero podía desaparecer en cualquier momento, incluso cuando todo parecía estar bien en la superficie.", dim:"SCARCITY" },
+      { text:"En mi casa, escuchaba mucho «no podemos permitirnos eso», sin siempre entender por qué.", dim:"SCARCITY" },
+      { text:"Aprendí que las cosas buenas había que ganárselas con esfuerzo o dificultad, nunca simplemente recibirlas.", dim:"SUFFERING" },
+      { text:"Las conversaciones sobre dinero en mi familia se sentían tensas, así que aprendí a desconectarme de ellas.", dim:"NUMBING" },
+      { text:"Querer más de lo que tenía mi familia se sentía como si significara dejar a alguien atrás.", dim:"LOYALTY" }
+    ]},
+  { id:"SCN1", title:"En el momento: un imprevisto", kind:"scenario", note:"Elige la reacción que se sienta como tu instinto real y honesto, no la más razonable.",
+    questions:[
+      { text:"Recibes inesperadamente 500 €, sin ninguna condición. Tu primer instinto es:", options:[
+        { label:"Ahorrarlo de inmediato y no decírselo a nadie", dim:"UNSAFE" },
+        { label:"Sentir culpa, y querer regalar parte de ese dinero", dim:"UNWORTHY" },
+        { label:"Gastarlo bastante rápido, antes de que algo cambie", dim:"SCARCITY" },
+        { label:"Sentir desconfianza, como si hubiera truco en algún lado", dim:"SUFFERING" } ]},
+      { text:"Ahora imagina que son 50.000 € en lugar de eso. Lo mismo: inesperado, sin condiciones. ¿Qué es lo primero que cambia?", options:[
+        { label:"La magnitud. De pronto se siente como algo que hay que esconder", dim:"UNSAFE" },
+        { label:"La duda. Empiezo a preguntarme si sabría manejarlo bien", dim:"PRODUCTIVITY" },
+        { label:"La culpa también crece, no se reduce", dim:"UNWORTHY" },
+        { label:"Sobre todo alivio. Simplemente sería útil", dim:null } ]},
+      { text:"Un amigo cercano o un hermano recibe inesperadamente 50.000 €. Debajo de la alegría por ellos, tu primera reacción honesta es:", options:[
+        { label:"Una punzada de comparación de la que no me siento orgulloso", dim:"GREED" },
+        { label:"Preguntarme en silencio si eso cambiará las cosas entre nosotros", dim:"ABANDON" },
+        { label:"Suponer que eso va a cambiar quiénes son", dim:"CORRUPTION" },
+        { label:"Alegría genuina, sin nada complicado detrás", dim:null } ]},
+      { text:"Al pensar en revisar tu saldo bancario ahora mismo, notas:", options:[
+        { label:"Un impulso de posponerlo un poco más", dim:"NUMBING" },
+        { label:"Ansiedad de que esté peor de lo que crees", dim:"SCARCITY" },
+        { label:"Una sensación de tensión y alerta en el cuerpo", dim:"UNSAFE" },
+        { label:"No mucha reacción, la verdad", dim:null } ]}
+    ]},
+  { id:"BN", title:"Seguridad, en la mente y en el cuerpo", kind:"likert", note:"Algunas de estas son sobre pensamientos, otras sobre sensaciones físicas. Ambas cuentan.",
+    questions:[
+      { text:"Si la gente a mi alrededor supiera exactamente cuánto dinero tengo, me sentiría incómodamente expuesto.", dim:"UNSAFE" },
+      { text:"Negociar por más dinero, o incluso solo pensarlo, me genera un nudo en el estómago.", dim:"UNSAFE" },
+      { text:"Incluso cuando las cosas están de verdad bien económicamente, una parte de mí se prepara para que todo se derrumbe.", dim:"SCARCITY" },
+      { text:"Relajarme por completo con el tema del dinero me resulta difícil, incluso en las épocas buenas.", dim:"SCARCITY" },
+      { text:"Aceptar dinero de alguien suele venir con condiciones, incluso cuando insisten en que no las hay.", dim:"CONTROL" },
+      { text:"Prefiero tener menos y mantenerme totalmente independiente, que tener más y deberle algo a alguien.", dim:"CONTROL" }
+    ]},
+  { id:"MEMORY", title:"Hace tiempo", kind:"memory", note:"Algunas preguntas sobre recuerdos concretos en lugar de sensaciones generales. Sáltate cualquiera que no quiera ser respondida.",
+    questions:[
+      { text:"Piensa en tu primer trabajo, remunerado o no. Cuando imaginas ese primer dinero que ganaste, ¿qué sientes?", options:[
+        { label:"Alivio, más que orgullo. Como si por fin hubiera demostrado algo", dim:"PRODUCTIVITY" },
+        { label:"Recuerdo exactamente en qué lo gasté, casi de inmediato", dim:"SCARCITY" },
+        { label:"Sinceramente, no recuerdo que fuera un momento importante", dim:"NUMBING" },
+        { label:"Orgullo puro, sin complicaciones", dim:null } ]},
+      { text:"¿Tu primer trabajo de verdad fue algo que necesitabas por necesidad, o se sintió más como el comienzo de una carrera?", options:[
+        { label:"Necesidad. Nos hacía falta el dinero y punto", dim:"SUFFERING" },
+        { label:"Algo así como una carrera, pero aun así sentía que tenía que demostrar que merecía estar ahí", dim:"PRODUCTIVITY" },
+        { label:"Sinceramente, no creo que significara mucho de una forma u otra", dim:"NUMBING" },
+        { label:"Se sintió como una elección real, emocionante más que necesaria", dim:null } ]},
+      { text:"Piensa en alguna vez, de niño, en que le pediste dinero a un padre, madre o tutor. ¿Qué recuerdas?", options:[
+        { label:"Aprendí bastante rápido a simplemente dejar de pedir", dim:"RECEIVING" },
+        { label:"Recibí un sermón que no había pedido", dim:"CONTROL" },
+        { label:"Sentí culpa solo por pedirlo", dim:"UNWORTHY" },
+        { label:"Fue sencillo. No fue gran cosa de ninguna manera", dim:null } ]},
+      { text:"Piensa en la persona que conocías de niño que tenía más dinero, un familiar, un vecino, alguien de la televisión. ¿Qué pensabas de ella en silencio?", options:[
+        { label:"Suponía que en realidad no eran tan felices", dim:"CORRUPTION" },
+        { label:"Suponía que no sabían realmente cómo era la vida para gente como nosotros", dim:"ABANDON" },
+        { label:"Sentía algo de envidia, y algo de vergüenza por eso", dim:"GREED" },
+        { label:"Sinceramente, no pensaba mucho en eso", dim:null } ]}
+    ]},
+  { id:"D", title:"Valor y merecimiento", kind:"likert", note:"Sigue sin haber respuestas correctas, solo lo que es cierto para ti.",
+    questions:[
+      { text:"Una parte de mí cree que no merezco de verdad tener más de lo que necesito.", dim:"UNWORTHY" },
+      { text:"Cuando pasa algo bueno económicamente, mi primer sentimiento suele ser culpa en lugar de alegría.", dim:"UNWORTHY" },
+      { text:"Me siento incómodo al descansar o relajarme si no me lo he «ganado» ese día.", dim:"PRODUCTIVITY" },
+      { text:"Mi sentido de valor propio sube y baja según cuánto haya producido o ganado últimamente.", dim:"PRODUCTIVITY" },
+      { text:"Si el dinero me llega con facilidad, me encuentro esperando el truco.", dim:"SUFFERING" }
+    ]},
+  { id:"SCN2", title:"En el momento: el día a día", kind:"scenario", note:"La respuesta que se sienta más honesta, aunque no sea la que dirías en voz alta.",
+    questions:[
+      { text:"Un amigo te pide dinero prestado. Tú:", options:[
+        { label:"Dices que sí enseguida. Decir que no se siente mal", dim:"GREED" },
+        { label:"Dices que sí, pero llevas la cuenta en silencio de lo que te deben", dim:"CONTROL" },
+        { label:"Quieres decir que no, pero te sientes demasiado culpable", dim:"UNWORTHY" },
+        { label:"Dices que no con claridad, y te sientes bien con eso", dim:null } ]},
+      { text:"Recibes un cumplido genuino por algo que tienes o has logrado económicamente. Tú:", options:[
+        { label:"Lo esquivas de inmediato: «ah, no es nada»", dim:"VISIBILITY" },
+        { label:"Sientes un arrebato de culpa más que de orgullo", dim:"UNWORTHY" },
+        { label:"Te preguntas qué es lo que realmente quieren de ti", dim:"LOVESPLIT" },
+        { label:"Dices gracias, y te permites disfrutarlo", dim:null } ]},
+      { text:"Llega una factura que no esperabas del todo. ¿Cuál se acerca más a tu reacción real?", options:[
+        { label:"La pago de inmediato, casi por miedo a lo que pase si no lo hago", dim:"UNSAFE" },
+        { label:"Postergo abrirla todo el tiempo que razonablemente puedo", dim:"NUMBING" },
+        { label:"Un ataque de pánico de que ahora estoy atrasado en todo", dim:"SCARCITY" },
+        { label:"Reviso el monto y me ocupo cuando me conviene", dim:null } ]},
+      { text:"Un desconocido, o alguien que acabas de conocer, te pregunta cuánto ganas. Tú:", options:[
+        { label:"Sientes que todo tu cuerpo se tensa", dim:"UNSAFE" },
+        { label:"Lo esquivas y cambias de tema rápido", dim:"VISIBILITY" },
+        { label:"Te sientes extrañamente descubierto, como si hubieras hecho algo mal", dim:"UNWORTHY" },
+        { label:"Respondes con naturalidad. Es solo información", dim:null } ]}
+    ]},
+  { id:"F", title:"Amor y pertenencia", kind:"likert", note:"Ya llevas un poco más de un tercio del camino.",
+    questions:[
+      { text:"Me preocupa en silencio que las personas con mucho dinero no sean amadas por quienes realmente son.", dim:"LOVESPLIT" },
+      { text:"He minimizado mi éxito financiero para que no cambiara cómo me veía alguien.", dim:"LOVESPLIT" },
+      { text:"Que me fuera notablemente mejor económicamente que a mi familia se sentiría como una especie de traición.", dim:"LOYALTY" },
+      { text:"Tengo miedo de que, si supero económicamente a las personas que quiero, las pierda.", dim:"ABANDON" },
+      { text:"Me he frenado económicamente, para mantenerme cerca de alguien que quiero.", dim:"ABANDON" }
+    ]},
+  { id:"WORDGRID", title:"Lo que más te llama la atención", kind:"wordgrid", note:"Recorre la siguiente tabla y elige hasta tres palabras o frases que te llamen la atención, lo primero a lo que vaya tu instinto. No hace falta pensarlo demasiado.",
+    words:[
+      { label:"Nunca suficiente", dim:"SCARCITY" },
+      { label:"Con condiciones", dim:"CONTROL" },
+      { label:"Foco de atención", dim:"VISIBILITY" },
+      { label:"Raíces", dim:"LOYALTY" },
+      { label:"Esfuerzo constante", dim:"PRODUCTIVITY" },
+      { label:"Deshecho", dim:"SABOTAGE" },
+      { label:"Expuesto", dim:"UNSAFE" },
+      { label:"Cazafortunas", dim:"LOVESPLIT" },
+      { label:"En deuda", dim:"RECEIVING" },
+      { label:"De corazón frío", dim:"CORRUPTION" },
+      { label:"Superado", dim:"ABANDON" },
+      { label:"Mirar hacia otro lado", dim:"NUMBING" },
+      { label:"Codicioso", dim:"GREED" },
+      { label:"Se está acabando", dim:"SCARCITY" },
+      { label:"Inmerecido", dim:"UNWORTHY" },
+      { label:"Deber algo", dim:"CONTROL" },
+      { label:"Ganado con esfuerzo", dim:"SUFFERING" },
+      { label:"Un blanco", dim:"UNSAFE" },
+      { label:"Juzgado", dim:"VISIBILITY" },
+      { label:"Demostrar mi valor", dim:"PRODUCTIVITY" },
+      { label:"Corrompido", dim:"CORRUPTION" },
+      { label:"Traición", dim:"LOYALTY" },
+      { label:"Dejado atrás", dim:"ABANDON" },
+      { label:"Indigno", dim:"UNWORTHY" },
+      { label:"Aceptar ayuda", dim:"RECEIVING" },
+      { label:"Egoísta", dim:"GREED" },
+      { label:"El truco", dim:"SUFFERING" },
+      { label:"Autosabotaje", dim:"SABOTAGE" },
+      { label:"Condicional", dim:"LOVESPLIT" },
+      { label:"Cerrarse por dentro", dim:"NUMBING" }
+    ]
+  },
+  { id:"H", title:"Ser visto", kind:"likert", note:"Pronto pasarás la mitad. Darte cuenta es lo importante, aquí no hay nada que tengas que acertar.",
+    questions:[
+      { text:"Cuando me va bien económicamente, espero que venga algún tipo de juicio o envidia.", dim:"VISIBILITY" },
+      { text:"Minimizo mis logros para no destacar demasiado.", dim:"VISIBILITY" },
+      { text:"Que me feliciten por mi éxito me incomoda, no me enorgullece.", dim:"VISIBILITY" },
+      { text:"Cuanto más éxito tengo, más parece esperar la gente de mí.", dim:"CONTROL" },
+      { text:"Me preocupa que tener más dinero signifique que otras personas empiecen a tomar decisiones sobre mí.", dim:"CONTROL" }
+    ]},
+  { id:"SCN3", title:"En el momento: al crecer", kind:"scenario", note:"La respuesta que se sienta más honesta, aunque no sea la que dirías en voz alta.",
+    questions:[
+      { text:"Te ofrecen un aumento, o un cliente grande y nuevo, más de lo que has ganado antes. Tu reacción instintiva es:", options:[
+        { label:"Entusiasmo, casi de inmediato", dim:null },
+        { label:"Un destello de «no creo que pueda manejar esto de verdad»", dim:"UNWORTHY" },
+        { label:"Preocupación por lo que la gente esperará de ti ahora", dim:"CONTROL" },
+        { label:"Un impulso de buscar una razón para rechazarlo", dim:"SABOTAGE" } ]},
+      { text:"Alguien a quien quieres está pasando dificultades económicas mientras a ti te va bien. Notas:", options:[
+        { label:"Culpa por tener más que esa persona", dim:"LOYALTY" },
+        { label:"Un impulso de dar hasta que realmente te cueste algo", dim:"UNWORTHY" },
+        { label:"Miedo de que la distancia entre ustedes siga creciendo", dim:"ABANDON" },
+        { label:"Tristeza por esa persona, sin culpa por tu propia situación", dim:null } ]},
+      { text:"Te imaginas con una seguridad financiera clara. Ahorros reales, tranquilidad real. El primer sentimiento que aparece es:", options:[
+        { label:"Desconfianza, como si en realidad no estuviera permitido", dim:"SUFFERING" },
+        { label:"La sensación de que te convertirías en alguien menos cálido, menos auténtico", dim:"CORRUPTION" },
+        { label:"Soledad, al imaginar quién no estaría ahí contigo", dim:"ABANDON" },
+        { label:"Tranquilidad genuina. Se siente bien imaginarlo", dim:null } ]},
+      { text:"Terminas un proyecto, o alcanzas una meta financiera, antes de lo previsto. Tu instinto es:", options:[
+        { label:"Empezar a preocuparte por lo siguiente casi de inmediato", dim:"SCARCITY" },
+        { label:"Encontrar una pequeña forma de restarle valor al logro", dim:"SABOTAGE" },
+        { label:"Sentir que de alguna manera no cuenta del todo", dim:"SUFFERING" },
+        { label:"Permitirte sentir orgullo de verdad, aunque sea brevemente", dim:null } ]}
+    ]},
+  { id:"I", title:"En quién me convierte el dinero", kind:"likert", note:"Sigue al ritmo que te resulte cómodo.",
+    questions:[
+      { text:"Me preocupa que tener una cantidad importante de dinero me convierta en alguien más frío o menos auténtico.", dim:"CORRUPTION" },
+      { text:"Las personas adineradas que he conocido parecían perder algo importante de sí mismas en el camino.", dim:"CORRUPTION" },
+      { text:"Una parte de mí mantiene el dinero a distancia para proteger quién soy.", dim:"CORRUPTION" },
+      { text:"Me cuesta confiar del todo en las motivaciones de alguien una vez que el dinero está involucrado.", dim:"LOVESPLIT" },
+      { text:"Tener éxito en cosas que mi familia o mis amigos no han logrado se siente solitario, incluso cuando era algo que yo quería.", dim:"ABANDON" }
+    ]},
+  { id:"SCN4", title:"En el momento: después", kind:"scenario", note:"Última ronda de escenarios. Gracias por seguir con esto.",
+    questions:[
+      { text:"Alguien se ofrece a pagar la cena. Sin ocasión especial, sin truco. Tú:", options:[
+        { label:"Insistes en pagar. Es incómodo simplemente aceptar", dim:"RECEIVING" },
+        { label:"Sientes que ahora les debes algo", dim:"CONTROL" },
+        { label:"Te preguntas qué quieren a cambio", dim:"LOVESPLIT" },
+        { label:"Dices gracias, con naturalidad", dim:null } ]},
+      { text:"Imaginas contarles a las personas con las que creciste sobre un gran logro financiero. Lo primero que sientes es:", options:[
+        { label:"Temor. Como si fuera a cambiar cómo te ven", dim:"LOYALTY" },
+        { label:"Un impulso de restarle importancia antes incluso de decirlo", dim:"VISIBILITY" },
+        { label:"Miedo de que cree distancia entre ustedes", dim:"ABANDON" },
+        { label:"Simple entusiasmo por compartirlo", dim:null } ]},
+      { text:"Cuando notas que estás postergando una tarea relacionada con el dinero, una factura, un presupuesto, una conversación difícil, ¿qué suele haber detrás?", options:[
+        { label:"Si no lo miro, no tengo que sentir lo que sea que hay ahí", dim:"NUMBING" },
+        { label:"Alguna parte de mí no cree que merezca el resultado de todos modos", dim:"UNWORTHY" },
+        { label:"Estoy evitando en silencio un buen resultado en el que no confío del todo", dim:"SABOTAGE" },
+        { label:"Solo procrastinación normal. No hay nada más profundo detrás", dim:null } ]},
+      { text:"Un familiar te da consejos que no pediste sobre tu dinero. Tú:", options:[
+        { label:"Sonríes, y lo resientes en silencio", dim:"CONTROL" },
+        { label:"Te lo tomas más a pecho de lo que quisieras", dim:"UNWORTHY" },
+        { label:"Sientes un impulso familiar de defenderte", dim:"VISIBILITY" },
+        { label:"Te quedas con lo útil y dejas el resto", dim:null } ]}
+    ]},
+  { id:"K", title:"Recibir", kind:"likert", note:"Ya casi llegas.",
+    questions:[
+      { text:"Recibir un regalo o un cumplido me hace querer devolver algo de inmediato.", dim:"RECEIVING" },
+      { text:"Aceptar ayuda, incluso cuando la necesito, se siente incómodo o vergonzoso.", dim:"RECEIVING" },
+      { text:"Me resulta más fácil dar que recibir.", dim:"RECEIVING" },
+      { text:"Cuando alguien se ofrece a pagar por mí, siento que ahora le debo algo.", dim:"CONTROL" },
+      { text:"Que me paguen bien por mi trabajo a veces se siente como más de lo que realmente valgo.", dim:"UNWORTHY" }
+    ]},
+  { id:"L", title:"Patrones", kind:"likert", note:"Última sección. Respira hondo si lo necesitas.",
+    questions:[
+      { text:"Justo antes de que algo económicamente bueno esté por concretarse, noto que me frené o me echo para atrás.", dim:"SABOTAGE" },
+      { text:"He perdido oportunidades por postergar los pasos prácticos que necesitaba dar.", dim:"SABOTAGE" },
+      { text:"Después de un logro financiero, a veces tomo decisiones que deshacen en silencio ese avance.", dim:"SABOTAGE" },
+      { text:"Evito revisar mi saldo bancario porque prefiero no saberlo.", dim:"NUMBING" },
+      { text:"Hay facturas o cartas financieras que he dejado sin abrir más tiempo del que me gustaría admitir.", dim:"NUMBING" }
+    ]}
+];
+
+I18N.es.UI = {
+  langLabel: "Español",
+  heroEyebrow: "Una reflexión privada y guiada por ti mismo",
+  heroTitle: 'El <span class="accent-word">sistema de creencias</span> sobre el dinero que no elegiste',
+  heroLede1: "La mayor parte de lo que determina cómo manejamos el dinero no tiene que ver realmente con el dinero. Tiene que ver con la seguridad, el valor propio, la pertenencia, y lo que aprendimos, muchas veces antes de tener palabras para nombrarlo, sobre querer cosas para nosotros mismos.",
+  heroLede2: 'Esta es una mezcla de afirmaciones para estar de acuerdo o en desacuerdo, algunos escenarios rápidos, algunos recuerdos, y una ronda en la que elegirás palabras de una tabla de treinta. Juntas, trazan un conjunto específico y personal de creencias que pueden estar moldeando en silencio tu relación con el dinero. No un "tipo de persona" genérico, sino tu propio patrón particular.',
+  chip1Num: "~15-20 min", chip1Text: "Ve despacio, o rápido. No hay cronómetro.",
+  chip2Num: "Sáltate lo que quieras", chip2Text: "Si una pregunta no te resuena, simplemente déjala y sigue adelante.",
+  chip3Num: "Queda contigo", chip3Text: "Nada se envía a ningún lado. Todo se queda en este navegador.",
+  safetyNote: '<strong>Antes de empezar:</strong> esta es una herramienta de reflexión, no un diagnóstico ni un sustituto de la terapia. Pregunta sobre sensaciones, instintos y asociaciones del presente, no busca que recuerdes momentos difíciles concretos. Ve al ritmo que te resulte cómodo, y detente cuando quieras. Si algo de esto remueve algo intenso, probablemente valga la pena explorarlo más a fondo con un terapeuta.',
+  beginBtn: "Empezar →",
+  backBtn: "← Atrás",
+  continueBtn: "Continuar →",
+  seeResultsBtn: "Ver tus resultados →",
+  kindStatements: "Afirmaciones", kindMemory: "Recuerdos", kindWordgrid: "Ronda de palabras", kindScenario: "Escenarios",
+  sectionEyebrow: (i, n, kind) => "Sección " + i + " de " + n + ", " + kind,
+  progressLabel: (i, n) => "Sección " + i + " / " + n,
+  scaleLeft: "Muy en desacuerdo", scaleRight: "Muy de acuerdo",
+  skipLikert: "Puedes dejar esto en blanco si prefieres no responder.",
+  skipChoice: "Puedes saltarte esta si prefieres no responder.",
+  skipWordgrid: "Puedes elegir cero, una, dos o tres. Lo que realmente te llame la atención.",
+  gridSuffix: "de 3 seleccionadas",
+  gridTap: "toca una palabra para seleccionarla",
+  resultsKicker: "Tus resultados",
+  resultsH1: "Por qué una parte de ti podría estar manteniendo el dinero a distancia",
+  resultsSub: (a, n) => a + " de " + n + " preguntas respondidas. Las que se saltaron simplemente no se contaron en tu puntuación, no jugaron en tu contra.",
+  synthesisH2: "Lo que más aparece",
+  synth1: (a) => 'Si una parte de ti rechaza el dinero, puede que no sea por falta de voluntad. Ahora mismo, la señal más clara en tus respuestas apunta a <em>' + a + '</em>.',
+  synth2: (a,b) => 'Si una parte de ti rechaza el dinero, puede que no sea por falta de voluntad. Puede ser tu sistema nervioso, intentando protegerte. Ahora mismo, las señales más claras en tus respuestas apuntan a <em>' + a + '</em>, y a <em>' + b + '</em>.',
+  synth3: (a,b,c) => 'Si una parte de ti rechaza el dinero, puede que no sea por falta de voluntad. Puede ser tu sistema nervioso, intentando protegerte. Ahora mismo, las señales más claras en tus respuestas apuntan a <em>' + a + '</em>, <em>' + b + '</em>, y a <em>' + c + '</em>.',
+  synthTail: (n) => ' A continuación tienes tu panorama completo: ' + n + (n===1 ? ' creencia' : ' creencias') + ' que aparecieron con suficiente fuerza como para nombrarlas, en el orden en que más se destacaron.',
+  shareText: (statement) => 'Acabo de hacer el Money Belief Compass, un test gratuito e informado sobre el trauma que explora las creencias inconscientes sobre el dinero. Una de las mías: "' + statement + '" Vale la pena dedicarle 15 minutos si sientes curiosidad por las tuyas: https://moneybeliefs.org',
+  scriptsTitle: "Tu panorama de guiones sobre el dinero",
+  scriptsCaption: "La psicología financiera agrupa los patrones de dinero en cuatro grandes guiones: evitación, idealización, estatus y vigilancia. Así es como se distribuyen tus respuestas entre los cuatro, junto con el panorama personalizado de abajo. Como esta herramienta está construida a partir de creencias que alejan el dinero, la evitación y la vigilancia suelen salir más altas para la mayoría de las personas; eso es lo esperable, no un fallo en tus respuestas.",
+  mapTitle: "Tu mapa de patrones completo",
+  mapCaption: "Las 15 dimensiones que analiza esta herramienta. Las que aparecen resaltadas abajo son las creencias que verás desarrolladas por completo.",
+  cardsHeading: (n) => "Tus " + n + (n===1 ? " creencia" : " creencias"),
+  cardsCaption: 'Ordenadas según con qué fuerza apareció cada una en tus respuestas, no según qué tan "mala" sea. Son patrones de protección, no defectos de carácter.',
+  whereFrom: "De dónde puede venir",
+  showsUpLabel: "Cómo puede manifestarse",
+  compoundH2: "Dónde se conectan",
+  footer1: "Esta herramienta refleja patrones en cómo respondiste un par de docenas de preguntas y una ronda más grande de palabras, en un día en particular. Es un punto de partida para la curiosidad, no una etiqueta fija ni una evaluación clínica. Creencias como estas suelen formarse por una buena razón, como formas de mantenerte a salvo. Nombrarlas suele ser el primer paso para soltar su control, y rara vez es algo para hacer completamente solo si remueve mucho.",
+  footer2: "Descargar o compartir depende enteramente de ti. Nada de esto se guarda en ningún otro lado, esta página olvida todo en el momento en que la cierras.",
+  pdfBtn: "Descargar como PDF",
+  waBtn: "Compartir por WhatsApp",
+  emailBtn: "Compartir por correo",
+  restartBtn: "Empezar de nuevo",
+  emailSubject: "Mis resultados sobre creencias del dinero"
+};
+
 /* ============================================================
    APP STATE + LOGIC
    ============================================================ */
-const flat = [];
-SECTIONS.forEach((sec, si) => {
-  if (sec.kind === 'wordgrid') {
-    flat.push({ secIndex:si, secId:sec.id, kind:'wordgrid', qi:0, words:sec.words });
-  } else {
-    sec.questions.forEach((q, qi) => flat.push({ secIndex:si, secId:sec.id, kind:sec.kind, qi, ...q }));
-  }
-});
+const LANGS = [
+  { code:"en", flag:"🇬🇧" },
+  { code:"es", flag:"🇪🇸" }
+]; // more languages land here as they're finished
+
+let currentLang = "en";
+let DIMENSIONS, MONEY_SCRIPTS, COMPOUND_INSIGHTS, SECTIONS, UI;
+let flat = [];
+
+function rebuildFlat(){
+  flat = [];
+  SECTIONS.forEach((sec, si) => {
+    if (sec.kind === 'wordgrid') {
+      flat.push({ secIndex:si, secId:sec.id, kind:'wordgrid', qi:0, words:sec.words });
+    } else {
+      sec.questions.forEach((q, qi) => flat.push({ secIndex:si, secId:sec.id, kind:sec.kind, qi, ...q }));
+    }
+  });
+}
+
 const answers = {}; // key: `${secId}-${qi}` -> value (number | index | array of indices)
 let sectionIndex = -1; // -1 = welcome, SECTIONS.length = results
 let shareText = ''; // set by renderResults, read by the share buttons
@@ -871,10 +1323,10 @@ function goResults(){
 }
 
 function labelForKind(kind){
-  if (kind === 'likert') return 'Statements';
-  if (kind === 'memory') return 'Memory';
-  if (kind === 'wordgrid') return 'Word round';
-  return 'Scenarios';
+  if (kind === 'likert') return UI.kindStatements;
+  if (kind === 'memory') return UI.kindMemory;
+  if (kind === 'wordgrid') return UI.kindWordgrid;
+  return UI.kindScenario;
 }
 
 function escapeHtml(str){
@@ -884,10 +1336,10 @@ function escapeHtml(str){
 function renderSection(i){
   const sec = SECTIONS[i];
   const eyebrowEl = el('q-eyebrow');
-  eyebrowEl.textContent = 'Section ' + (i+1) + ' of ' + SECTIONS.length + ', ' + labelForKind(sec.kind);
+  eyebrowEl.textContent = UI.sectionEyebrow(i+1, SECTIONS.length, labelForKind(sec.kind));
   el('q-title').textContent = sec.title;
   el('q-note').textContent = sec.note || '';
-  el('progress-label').textContent = 'Section ' + (i+1) + ' / ' + SECTIONS.length;
+  el('progress-label').textContent = UI.progressLabel(i+1, SECTIONS.length);
   el('progress-fill').style.width = Math.round(((i)/(SECTIONS.length))*100 + (100/SECTIONS.length)) + '%';
 
   const group = el('q-group');
@@ -900,7 +1352,7 @@ function renderSection(i){
   }
 
   el('btn-back').disabled = false;
-  el('btn-continue').textContent = (i === SECTIONS.length - 1) ? 'See your results →' : 'Continue →';
+  el('btn-continue').textContent = (i === SECTIONS.length - 1) ? UI.seeResultsBtn : UI.continueBtn;
 }
 
 function renderQuestion(sec, q, qi, group){
@@ -923,9 +1375,9 @@ function renderQuestion(sec, q, qi, group){
             '</label>'
           )).join('') +
         '</div>' +
-        '<div class="scale-caps"><span class="scale-cap">Strongly disagree</span><span class="scale-cap right">Strongly agree</span></div>' +
+        '<div class="scale-caps"><span class="scale-cap">' + escapeHtml(UI.scaleLeft) + '</span><span class="scale-cap right">' + escapeHtml(UI.scaleRight) + '</span></div>' +
       '</div>' +
-      '<p class="skip-line">You can leave this blank if you’d rather not answer.</p>';
+      '<p class="skip-line">' + escapeHtml(UI.skipLikert) + '</p>';
     group.appendChild(card);
     card.querySelectorAll('input[type=radio]').forEach(inp => {
       inp.addEventListener('change', () => { answers[key] = parseInt(inp.value, 10); });
@@ -942,7 +1394,7 @@ function renderQuestion(sec, q, qi, group){
           '</button>'
         )).join('') +
       '</div>' +
-      '<p class="skip-line">You can skip this one if you’d rather not answer.</p>';
+      '<p class="skip-line">' + escapeHtml(UI.skipChoice) + '</p>';
     group.appendChild(card);
     const buttons = card.querySelectorAll('.opt-btn');
     buttons.forEach(btn => {
@@ -963,13 +1415,13 @@ function renderWordGrid(sec, group){
   const card = document.createElement('div');
   card.className = 'qcard';
   card.innerHTML =
-    '<div class="grid-counter"><span><strong id="wg-count">' + current.length + '</strong> of 3 selected</span><span>tap a word to toggle it</span></div>' +
+    '<div class="grid-counter"><span><strong id="wg-count">' + current.length + '</strong> ' + escapeHtml(UI.gridSuffix) + '</span><span>' + escapeHtml(UI.gridTap) + '</span></div>' +
     '<div class="word-grid" id="wg-grid">' +
       sec.words.map((w, wi) => (
         '<button type="button" class="word-chip" data-wi="' + wi + '" aria-pressed="' + current.includes(wi) + '">' + escapeHtml(w.label) + '</button>'
       )).join('') +
     '</div>' +
-    '<p class="skip-line">You can pick zero, one, two, or three. Whatever actually jumps out.</p>';
+    '<p class="skip-line">' + escapeHtml(UI.skipWordgrid) + '</p>';
   group.appendChild(card);
 
   function refresh(){
@@ -1073,25 +1525,25 @@ function renderResults(){
   const selected = selectTop(percents);
   const ranked = Object.entries(percents).sort((a,b) => b[1]-a[1]);
 
-  el('results-sub').textContent = answeredCount + ' of ' + flat.length + ' prompts answered. Skipped ones were simply left out of your scoring, not counted against you.';
+  el('results-sub').textContent = UI.resultsSub(answeredCount, flat.length);
 
   // synthesis
   const top = selected.slice(0, Math.min(3, selected.length));
   const phrases = top.map(d => DIMENSIONS[d].refusalPhrase);
   let synth = '';
   if (phrases.length === 1) {
-    synth = 'If part of you resists money, it may not be about willpower. Right now, the clearest signal in your answers points to <em>' + phrases[0] + '</em>.';
+    synth = UI.synth1(phrases[0]);
   } else if (phrases.length === 2) {
-    synth = 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + phrases[0] + '</em>, and <em>' + phrases[1] + '</em>.';
+    synth = UI.synth2(phrases[0], phrases[1]);
   } else {
-    synth = 'If part of you resists money, it may not be about willpower. It may be your nervous system, trying to protect you. Right now, the clearest signals in your answers point to <em>' + phrases[0] + '</em>, <em>' + phrases[1] + '</em>, and <em>' + phrases[2] + '</em>.';
+    synth = UI.synth3(phrases[0], phrases[1], phrases[2]);
   }
-  synth += ' Below is your full picture: ' + selected.length + ' belief' + (selected.length===1?'':'s') + ' that showed up strongly enough to be worth naming, in the order they showed up most.';
+  synth += UI.synthTail(selected.length);
   el('synthesis-text').innerHTML = '<p>' + synth + '</p>';
 
   // text used by the share buttons, built from this person's actual top result
   const topStatement = DIMENSIONS[selected[0]].belief;
-  shareText = 'I just took the Money Belief Compass, a free trauma-informed quiz about unconscious money beliefs. One of mine: "' + topStatement + '" Worth 15 minutes if you are curious about yours: https://moneybeliefs.org';
+  shareText = UI.shareText(topStatement);
 
   // money script snapshot (4-category summary)
   const scriptRows = el('script-rows');
@@ -1116,7 +1568,7 @@ function renderResults(){
   }).join('');
 
   // belief cards
-  el('cards-heading').textContent = 'Your ' + selected.length + ' belief' + (selected.length===1?'':'s');
+  el('cards-heading').textContent = UI.cardsHeading(selected.length);
   const cardsList = el('cards-list');
   cardsList.innerHTML = selected.map((d, idx) => {
     const D = DIMENSIONS[d];
@@ -1126,8 +1578,8 @@ function renderResults(){
         '<span class="belief-eyebrow">' + escapeHtml(D.label) + '</span>' +
       '</div>' +
       '<h3 class="belief-statement">' + escapeHtml(D.belief) + '</h3>' +
-      '<p class="belief-block"><span class="belief-block-label">Where this can come from</span>' + escapeHtml(D.root) + '</p>' +
-      '<p class="belief-block"><span class="belief-block-label">How it can show up</span>' + escapeHtml(D.showsUp) + '</p>' +
+      '<p class="belief-block"><span class="belief-block-label">' + escapeHtml(UI.whereFrom) + '</span>' + escapeHtml(D.root) + '</p>' +
+      '<p class="belief-block"><span class="belief-block-label">' + escapeHtml(UI.showsUpLabel) + '</span>' + escapeHtml(D.showsUp) + '</p>' +
       '<p class="belief-reflect">' + escapeHtml(D.reflection) + '</p>' +
     '</article>';
   }).join('');
@@ -1145,10 +1597,69 @@ function renderResults(){
   }
 }
 
+/* ---------- language switching ---------- */
+function applyUI(lang){
+  const t = I18N[lang].UI;
+  el('hero-eyebrow').textContent = t.heroEyebrow;
+  el('hero-title').innerHTML = t.heroTitle;
+  el('hero-lede-1').textContent = t.heroLede1;
+  el('hero-lede-2').textContent = t.heroLede2;
+  el('chip1-num').textContent = t.chip1Num; el('chip1-text').textContent = t.chip1Text;
+  el('chip2-num').textContent = t.chip2Num; el('chip2-text').textContent = t.chip2Text;
+  el('chip3-num').textContent = t.chip3Num; el('chip3-text').textContent = t.chip3Text;
+  el('safety-note').innerHTML = t.safetyNote;
+  el('btn-start').textContent = t.beginBtn;
+  el('btn-back').textContent = t.backBtn;
+  el('results-kicker').textContent = t.resultsKicker;
+  el('results-h1').textContent = t.resultsH1;
+  el('synthesis-h2').textContent = t.synthesisH2;
+  el('scripts-title').textContent = t.scriptsTitle;
+  el('scripts-caption').textContent = t.scriptsCaption;
+  el('map-title').textContent = t.mapTitle;
+  el('map-caption').textContent = t.mapCaption;
+  el('cards-caption').textContent = t.cardsCaption;
+  el('compound-h2').textContent = t.compoundH2;
+  el('footer-p1').textContent = t.footer1;
+  el('footer-p2').textContent = t.footer2;
+  el('btn-pdf').textContent = t.pdfBtn;
+  el('btn-share-whatsapp').textContent = t.waBtn;
+  el('btn-share-email').textContent = t.emailBtn;
+  el('btn-restart').textContent = t.restartBtn;
+  document.documentElement.lang = lang;
+}
+
+function renderLangSwitch(){
+  el('lang-switch').innerHTML = LANGS.map(l =>
+    '<button type="button" class="lang-btn" data-lang="' + l.code + '" aria-current="' + (l.code === currentLang) + '" title="' + escapeHtml(I18N[l.code].UI.langLabel) + '">' + l.flag + '</button>'
+  ).join('');
+  el('lang-switch').querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+}
+
+function applyLang(lang){
+  if (!I18N[lang]) lang = 'en';
+  currentLang = lang;
+  DIMENSIONS = I18N[lang].DIMENSIONS;
+  MONEY_SCRIPTS = I18N[lang].MONEY_SCRIPTS;
+  COMPOUND_INSIGHTS = I18N[lang].COMPOUND_INSIGHTS;
+  SECTIONS = I18N[lang].SECTIONS;
+  UI = I18N[lang].UI;
+  rebuildFlat();
+  applyUI(lang);
+  renderLangSwitch();
+  try { localStorage.setItem('mbc-lang', lang); } catch (e) {}
+
+  if (sectionIndex >= 0 && sectionIndex < SECTIONS.length) renderSection(sectionIndex);
+  else if (sectionIndex === SECTIONS.length) renderResults();
+}
+
 /* ---------- hot reload state carry (artifact republish) ---------- */
-function snapshotState(){ return { answers: {...answers}, sectionIndex }; }
+function snapshotState(){ return { answers: {...answers}, sectionIndex, currentLang }; }
 function bootFrom(data){
   if (data && data.answers) Object.assign(answers, data.answers);
+  const lang = (data && data.currentLang) || (function(){ try { return localStorage.getItem('mbc-lang'); } catch(e){ return null; } })() || 'en';
+  applyLang(lang);
   if (data && typeof data.sectionIndex === 'number' && data.sectionIndex >= 0 && data.sectionIndex < SECTIONS.length) {
     goSection(data.sectionIndex);
   } else if (data && data.sectionIndex === SECTIONS.length) {
@@ -1161,6 +1672,6 @@ if (window.claude && window.claude.hot) {
   window.claude.hot.snapshot(snapshotState);
   window.claude.hot.ready ? window.claude.hot.ready(bootFrom) : bootFrom(window.claude.hot.data || {});
 } else {
-  goWelcome();
+  bootFrom({});
 }
 </script>
