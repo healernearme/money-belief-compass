@@ -497,7 +497,7 @@
 /* ============================================================
    DATA
    ============================================================ */
-const I18N = { en: {}, es: {} };
+const I18N = { en: {}, es: {}, it: {} };
 
 I18N.en.DIMENSIONS = {
   SCARCITY: { label:"There's never enough", belief:"No matter how much I have, it won't be enough.",
@@ -1257,12 +1257,392 @@ I18N.es.UI = {
   emailSubject: "Mis resultados sobre creencias del dinero"
 };
 
+I18N.it.DIMENSIONS = {
+  SCARCITY: { label:"Non basta mai", belief:"Per quanto ne abbia, non sarà mai abbastanza.",
+    root:"Se il denaro sembrava imprevedibile durante la tua infanzia, o c'è stato anche solo un periodo in cui è davvero mancato, il tuo sistema nervoso potrebbe aver imparato che le risorse non sono mai abbastanza stabili da permettersi di rilassarsi. Questo tipo di apprendimento non si aggiorna facilmente solo perché il tuo conto in banca lo ha fatto.",
+    showsUp:"Risparmiare troppo e sentirsi comunque indietro. Ripassare mentalmente i prezzi molto dopo averli pagati. Un lampo di angoscia che si presenta anche quando i tuoi conti sono, secondo qualsiasi criterio ragionevole, a posto.",
+    reflection:"Quando immagini di avere abbastanza, cosa ti impedisce davvero di crederci?",
+    refusalPhrase:"un sistema nervoso ancora in allerta per una scarsità che non è più reale" },
+  UNSAFE: { label:"Il denaro mi espone", belief:"Avere denaro mi rende esposto, insicuro, o un bersaglio.",
+    root:"Spesso questa credenza ha un ricordo specifico legato ad essa: un momento in cui essere notato, o avere più di qualcun altro, ha portato conseguenze reali. Invidia, risentimento, persino pericolo. Così il corpo ha imparato a collegare la visibilità al rischio, e il denaro è una delle cose più visibili che esistano.",
+    showsUp:"Minimizzare i successi. Farsi pagare meno di quanto si vale. Un disagio silenzioso all'idea che qualcuno conosca le tue cifre reali.",
+    reflection:"Di chi hai imparato a evitare l'attenzione, e il denaro porta oggi lo stesso tipo di attenzione?",
+    refusalPhrase:"una vecchia sensazione che farsi vedere con di più inviti il pericolo" },
+  UNWORTHY: { label:"Non me lo merito", belief:"Non merito di avere più di quanto mi serve.",
+    root:"Da qualche parte lungo il cammino, potresti aver assorbito l'idea che i tuoi bisogni venissero dopo, o che volere cose per te stesso non fosse del tutto permesso. Questa credenza raramente arriva come un'unica frase. Di solito si costruisce da anni di piccoli momenti.",
+    showsUp:"Regalare via un guadagno inatteso quasi subito. Disagio nell'essere pagato per quanto vali davvero. Il senso di colpa che arriva prima della gioia quando le cose vanno bene.",
+    reflection:"Se credessi davvero di meritare sollievo, cosa ti permetteresti questa settimana?",
+    refusalPhrase:"una credenza silenziosa che tu non abbia guadagnato il diritto di avere di più" },
+  GREED: { label:"Volere di più mi rende cattivo", belief:"Volere più denaro mi rende una persona avida e cattiva.",
+    root:"Molte famiglie, religioni e comunità trattano l'ambizione come moralmente sospetta, anche mentre ne hanno bisogno in silenzio per sopravvivere. Se sei cresciuto in una di queste, volere di più potrebbe essersi confuso con l'essere una persona peggiore.",
+    showsUp:"Scusarsi prima ancora di dire un prezzo. Disagio nel negoziare. Trattare l'ambizione come qualcosa da nascondere invece che qualcosa che ti è permesso avere.",
+    reflection:"Chi ti ha insegnato che volere di più dicesse qualcosa di brutto su chi sei?",
+    refusalPhrase:"una paura che volere di più dica qualcosa di vergognoso su di te" },
+  LOYALTY: { label:"Stare meglio sarebbe un tradimento", belief:"Avere più di quanto abbia la mia famiglia d'origine sarebbe una specie di tradimento.",
+    root:"Quando amore e difficoltà erano intrecciati durante la crescita, fare notevolmente meglio può iniziare a sembrare, nel profondo, come lasciare indietro qualcuno. Nessuno deve dirlo ad alta voce perché questo attecchisca.",
+    showsUp:"Auto-sabotaggio proprio prima che le cose migliorino. Senso di colpa nello spendere per te stesso. Un vero disagio nel guadagnare più di un genitore, un fratello, o un partner.",
+    reflection:"C'è qualcuno per cui ti stai tenendo piccolo in silenzio, per amore o lealtà?",
+    refusalPhrase:"una lealtà verso le tue origini che rende l'andare avanti simile al lasciare indietro qualcuno" },
+  CORRUPTION: { label:"Il denaro mi cambierà in peggio", belief:"Il denaro mi trasformerà in qualcuno di più freddo, più duro, o meno me stesso.",
+    root:"Forse era un personaggio in TV, un parente, o semplicemente la storia generale che la tua famiglia raccontava sulle persone ricche: che qualcosa si perde lungo il cammino verso l'avere di più. Se quella storia era abbastanza radicata, restare a distanza dal denaro può sembrare un modo per restare te stesso.",
+    showsUp:"Evitare la crescita finanziaria per proteggere la propria identità. Disagio vicino a persone più abbienti. Tenere il denaro a distanza dal proprio senso di sé.",
+    reflection:"Quale parte di te temi che il denaro porterebbe via, ed è davvero così?",
+    refusalPhrase:"una paura che diventare finanziariamente sicuro significhi diventare qualcuno che non riconosceresti" },
+  LOVESPLIT: { label:"Denaro e amore non possono davvero coesistere", belief:"Le persone con denaro non sono amate per chi sono realmente.",
+    root:"Se hai mai osservato una relazione in cui il denaro ha complicato la fiducia, qualcuno corteggiato per le sue risorse, l'amore che diventa condizionato appena arriva la ricchezza, questo può insegnarti che i due non si mescolano in sicurezza.",
+    showsUp:"Nascondere il successo finanziario a un partner. Disagio nell'essere a cui viene chiesto denaro. Un sospetto riflesso verso le motivazioni delle persone una volta che hai di più.",
+    reflection:"Dove hai imparato che il denaro complica l'amore, ed è ancora vero qui?",
+    refusalPhrase:"un sospetto che denaro e amore vero non possano davvero coesistere" },
+  VISIBILITY: { label:"Il successo invita al giudizio", belief:"Se riesco in modo visibile, sarò giudicato, invidiato, o punito per questo.",
+    root:"Questa credenza è di solito radicata in qualcosa che è davvero successo: essere preso in giro, escluso, o silenziosamente risentito dopo un successo. Il sistema nervoso se lo ricorda, e inizia a farti rimpicciolire prima che possa succedere di nuovo.",
+    showsUp:"Minimizzare i traguardi raggiunti. Esitare a condividere buone notizie. Restare a un livello che sembra sicuro, anche quando sei capace di di più.",
+    reflection:"Cosa è successo l'ultima volta che ti sei lasciato vedere mentre andava bene?",
+    refusalPhrase:"un ricordo di essere stato preso in giro, escluso, o punito per essere andato bene" },
+  CONTROL: { label:"Più denaro significa più obbligo", belief:"Avere denaro significa che dovrò qualcosa a qualcuno, o perderò il controllo delle mie scelte.",
+    root:"Se l'aiuto è mai arrivato con delle condizioni, un contraccambio emotivo, un obbligo, un debito mai davvero nominato, potresti aver imparato che risorse e controllo sono collegati. Più denaro inizia a sembrare più leva che altre persone possono usare su di te.",
+    showsUp:"Evitare la dipendenza finanziaria in entrambe le direzioni. Disagio con le finanze condivise. Rifiutare aiuto anche quando viene offerto liberamente.",
+    reflection:"Cosa ti è costato ricevere in passato, di cui ti stai ancora silenziosamente proteggendo?",
+    refusalPhrase:"una diffidenza per cui più denaro significa più obbligo verso persone che potrebbero usarlo contro di te" },
+  PRODUCTIVITY: { label:"Valgo solo per quanto produco", belief:"Il mio valore si misura da quanto guadagno o produco.",
+    root:"Se l'amore o l'approvazione durante la crescita seguivano da vicino il rendimento, l'essere utile, l'essere impressionante, invece del semplice esistere, è facile arrivare a questa conclusione: il tuo valore deve essere guadagnato ogni giorno da capo, attraverso ciò che produci.",
+    showsUp:"Difficoltà a riposare senza sensi di colpa. Autostima che sale e scende con il reddito. Sentirsi un fallimento durante periodi normalmente tranquilli.",
+    reflection:"Chi saresti ancora se per un mese non guadagnassi nulla?",
+    refusalPhrase:"una credenza che il tuo valore debba essere guadagnato attraverso ciò che produci, non semplicemente dato" },
+  SUFFERING: { label:"Devo soffrire per meritare le cose belle", belief:"Devo prima faticare, prima di potermi permettere di ricevere qualcosa di buono.",
+    root:"Quando anche la facilità era scarsa o sospetta durante la crescita, il benessere doveva essere guadagnato tramite la difficoltà, o trattato come un lusso immeritato, questo può fissarsi come una regola: le cose belle contano solo se ti sono costate qualcosa prima.",
+    showsUp:"Rendere le cose più difficili di quanto debbano essere. Diffidare delle opportunità che arrivano facilmente. Un lampo di senso di colpa attorno al benessere finanziario.",
+    reflection:"Cosa significherebbe lasciare che qualcosa sia facile, senza doverlo guadagnare prima?",
+    refusalPhrase:"una vecchia regola per cui le cose belle contano solo se sono state conquistate con fatica" },
+  SABOTAGE: { label:"Una parte di me si tira indietro proprio prima che arrivi", belief:"Una parte di me mina in silenzio il progresso finanziario proprio prima che si concretizzi del tutto.",
+    root:"Questo è di solito protettivo, non autodistruttivo. Se la delusione è un territorio familiare, disfare le cose da soli può sembrare più sicuro che aspettare di essere delusi da qualcun altro, o da qualcos'altro.",
+    showsUp:"Scadenze mancate proprio vicino a una grande opportunità. Una spesa impulsiva subito dopo un progresso. Procrastinare sull'unico compito che farebbe davvero avanzare le cose.",
+    reflection:"Da cosa potrebbe proteggerti questo schema, dal sentire cosa?",
+    refusalPhrase:"un'abitudine protettiva di tirarsi indietro proprio prima che qualcosa di buono si concretizzi del tutto" },
+  RECEIVING: { label:"Ricevere sembra insicuro", belief:"Ricevere, aiuto, regali, denaro, mi fa sentire esposto o in debito.",
+    root:"Se accettare aiuto è mai arrivato con vergogna, condizioni, o una perdita silenziosa di indipendenza, ricevere ha smesso di sembrare semplice. Ha iniziato a sembrare la prima mossa di una transazione a cui non avevi acconsentito.",
+    showsUp:"Disagio nell'accettare complimenti, regali, o pagamenti. Un riflesso di ricambiare immediatamente. Vera difficoltà nel chiedere ciò di cui hai bisogno.",
+    reflection:"Che sensazione ha nel tuo corpo, proprio ora, immaginare di ricevere semplicemente, senza restituire?",
+    refusalPhrase:"un disagio nel ricevere semplicemente, senza dover guadagnare o restituire" },
+  ABANDON: { label:"Resterò indietro se supero le persone", belief:"Se supero economicamente le persone che amo, le perderò.",
+    root:"In famiglie o comunità dove l'appartenenza dipendeva dal restare a un livello simile, la somiglianza era ciò che teneva tutti al sicuro insieme. Crescere oltre quel livello può sembrare meno un successo e più un rischio per la relazione stessa.",
+    showsUp:"Rallentare la propria crescita per allinearsi agli altri. Nascondere i progressi alle persone che ami. Disagio con l'indipendenza finanziaria dentro relazioni strette.",
+    reflection:"L'amore di chi temi di perdere se ti lasciassi davvero prosperare?",
+    refusalPhrase:"una paura che crescere oltre le persone che ami significhi perderle" },
+  NUMBING: { label:"È più facile non guardare", belief:"È più sicuro non guardare da vicino il denaro.",
+    root:"L'evitamento è spesso solo un sistema nervoso che fa il suo lavoro. Se un argomento ha portato una vera angoscia in passato, guardare altrove è diventato il modo più veloce e affidabile per tornare alla calma, e questa scorciatoia può restare molto dopo che la ragione originale è passata.",
+    showsUp:"Evitare i saldi bancari. Bollette non aperte. Risposte vaghe quando qualcuno chiede delle tue finanze. Un sollievo silenzioso ogni volta che l'argomento cambia.",
+    reflection:"Quale sensazione arriva per prima, proprio prima che normalmente distoglieresti lo sguardo?",
+    refusalPhrase:"un'abitudine di distogliere lo sguardo perché guardare da vicino una volta sembrava troppo" }
+};
+
+I18N.it.MONEY_SCRIPTS = [
+  { id:"AVOIDANCE", label:"Evitamento del denaro", color:"--accent",
+    desc:"Allontanare il denaro: disagio nell'averlo, volerlo, o essere visti con esso.",
+    dims:["UNWORTHY","GREED","SUFFERING","SABOTAGE","NUMBING","LOVESPLIT","CORRUPTION"] },
+  { id:"WORSHIP", label:"Idealizzazione del denaro", color:"--gold",
+    desc:"La credenza che più denaro sistemerebbe finalmente le cose, insieme alla sensazione che non ce ne sia mai abbastanza.",
+    dims:["SCARCITY","PRODUCTIVITY"] },
+  { id:"STATUS", label:"Status attraverso il denaro", color:"--wine",
+    desc:"Collegare il proprio valore o senso di appartenenza a come le proprie finanze si confrontano con quelle degli altri.",
+    dims:["VISIBILITY","ABANDON","LOYALTY"] },
+  { id:"VIGILANCE", label:"Vigilanza sul denaro", color:"--slate",
+    desc:"Diffidenza verso il denaro: attenzione a condizioni nascoste, obblighi, o al rischio di essere sfruttati.",
+    dims:["UNSAFE","CONTROL","RECEIVING"] }
+];
+
+I18N.it.COMPOUND_INSIGHTS = [
+  { pair:["UNWORTHY","PRODUCTIVITY"], title:"Il valore, su un contatore",
+    text:"Il tuo senso di meritare sembra strettamente legato alla produttività, come se il valore dovesse essere guadagnato ogni giorno da capo, senza nulla riportato da ieri." },
+  { pair:["LOYALTY","ABANDON"], title:"L'accordo di restare piccoli",
+    text:"Fare meglio potrebbe inconsciamente sembrare che metta a rischio relazioni reali, quindi una parte di te potrebbe essersi accordata su un compromesso silenzioso: abbastanza progresso per cavarsela, non così tanto da lasciare indietro qualcuno." },
+  { pair:["SABOTAGE","VISIBILITY"], title:"Il successo, fino a quando non viene visto",
+    text:"Tirarsi indietro potrebbe non riguardare davvero il denaro. Potrebbe riguardare ciò che succede dopo: essere osservati, giudicati, o doversi aspettare di continuare a dimostrare qualcosa." },
+  { pair:["UNSAFE","NUMBING"], title:"Guardare altrove per restare al sicuro",
+    text:"L'evitamento qui probabilmente non è pigrizia. Potrebbe essere uno dei modi più rapidi che il tuo corpo ha trovato per abbassare una risposta di allarme che le conversazioni sul denaro innescano in modo affidabile." },
+  { pair:["RECEIVING","CONTROL"], title:"Un debito prima ancora che esista",
+    text:"Anche le cose date liberamente possono registrarsi come un obbligo futuro, il che rende il semplice ricevere simile a firmare qualcosa che non hai ancora letto." },
+  { pair:["CORRUPTION","LOVESPLIT"], title:"Tenere il denaro a distanza dall'amore",
+    text:"Potrebbe esserci una vecchia paura che successo finanziario ed essere amati in modo genuino e senza complicazioni non possano occupare pienamente la stessa vita insieme." },
+  { pair:["SCARCITY","SUFFERING"], title:"L'abbastanza va guadagnato col sangue",
+    text:"Rilassarsi nell'abbastanza potrebbe sembrare rischioso a meno che non sia arrivato con un vero costo. La facilità da sola può finire per sembrare inaffidabile." },
+  { pair:["GREED","UNWORTHY"], title:"Volere meno perché non possa essere sbagliato",
+    text:"Se volere di più sembra vergognoso, volere meno, restare piccoli, può iniziare a sembrare l'unica opzione chiaramente accettabile." }
+];
+
+I18N.it.SECTIONS = [
+  { id:"A", title:"Da dove è iniziato tutto", kind:"likert", note:"Semplici affermazioni sulla tua infanzia. D'accordo, in disaccordo, non c'è una risposta giusta, e puoi saltare quello che vuoi.",
+    questions:[
+      { text:"Crescendo, percepivo che il denaro potesse sparire in qualsiasi momento, anche quando le cose sembravano andare bene in superficie.", dim:"SCARCITY" },
+      { text:"A casa mia, sentivo spesso dire «non possiamo permettercelo», senza sempre capire perché.", dim:"SCARCITY" },
+      { text:"Ho imparato che le cose belle dovevano essere guadagnate con duro lavoro o difficoltà, mai semplicemente ricevute.", dim:"SUFFERING" },
+      { text:"Le conversazioni sul denaro nella mia famiglia mi mettevano a disagio, così ho imparato a estraniarmi.", dim:"NUMBING" },
+      { text:"Volere più di quanto avesse la mia famiglia mi sembrava significasse lasciare indietro qualcuno.", dim:"LOYALTY" }
+    ]},
+  { id:"SCN1", title:"Nel momento: un guadagno inatteso", kind:"scenario", note:"Scegli qualsiasi reazione ti sembri il tuo vero, onesto primo istinto, non quella più ragionevole.",
+    questions:[
+      { text:"Ricevi inaspettatamente 500 euro, senza condizioni. Il tuo primo istinto è:", options:[
+        { label:"Risparmiarli subito e non dirlo a nessuno", dim:"UNSAFE" },
+        { label:"Sentirsi in colpa, e voler regalarne una parte", dim:"UNWORTHY" },
+        { label:"Spenderli abbastanza in fretta, prima che qualcosa cambi", dim:"SCARCITY" },
+        { label:"Sentirsi sospettosi, come se ci fosse un tranello da qualche parte", dim:"SUFFERING" } ]},
+      { text:"Ora immagina che siano 50.000 euro invece. Stessa cosa: inaspettati, senza condizioni. Cos'è la prima cosa che cambia?", options:[
+        { label:"La posta in gioco. Improvvisamente sembra qualcosa da nascondere", dim:"UNSAFE" },
+        { label:"Il dubbio. Inizio a chiedermi se saprei gestirli bene", dim:"PRODUCTIVITY" },
+        { label:"Anche il senso di colpa cresce, non diminuisce", dim:"UNWORTHY" },
+        { label:"Soprattutto sollievo. Sarebbero semplicemente utili", dim:null } ]},
+      { text:"Un amico stretto o un fratello o sorella riceve inaspettatamente 50.000 euro. Sotto la felicità per loro, la tua vera prima reazione è:", options:[
+        { label:"Una fitta di confronto di cui non vado fiero", dim:"GREED" },
+        { label:"Un chiedersi in silenzio se cambierà le cose tra noi", dim:"ABANDON" },
+        { label:"Un presupposto che li cambierà come persone", dim:"CORRUPTION" },
+        { label:"Felicità autentica, senza nulla di complicato attaccato", dim:null } ]},
+      { text:"Pensando a controllare il tuo saldo bancario proprio ora, noti:", options:[
+        { label:"Una spinta a rimandarlo un po' più a lungo", dim:"NUMBING" },
+        { label:"Ansia che sia peggio di quanto pensi", dim:"SCARCITY" },
+        { label:"Una sensazione tesa, all'erta, nel corpo", dim:"UNSAFE" },
+        { label:"Non granché come reazione in un senso o nell'altro", dim:null } ]}
+    ]},
+  { id:"BN", title:"Sicurezza, nella mente e nel corpo", kind:"likert", note:"Alcune di queste riguardano i pensieri, altre le sensazioni fisiche. Entrambe contano.",
+    questions:[
+      { text:"Se le persone intorno a me sapessero esattamente quanto denaro ho, mi sentirei scomodamente esposto.", dim:"UNSAFE" },
+      { text:"Negoziare per più denaro, o anche solo pensarci, mi stringe lo stomaco.", dim:"UNSAFE" },
+      { text:"Anche quando le cose vanno davvero bene dal punto di vista economico, una parte di me si prepara al fatto che tutto crolli.", dim:"SCARCITY" },
+      { text:"Rilassarmi completamente riguardo al denaro mi risulta difficile, anche nei periodi belli.", dim:"SCARCITY" },
+      { text:"Accettare denaro da qualcuno di solito ha delle condizioni, anche quando quella persona insiste che non ce ne siano.", dim:"CONTROL" },
+      { text:"Preferirei avere meno e restare completamente indipendente, piuttosto che avere di più e dovere qualcosa a qualcuno.", dim:"CONTROL" }
+    ]},
+  { id:"MEMORY", title:"Tanto tempo fa", kind:"memory", note:"Alcune domande su ricordi specifici piuttosto che su sensazioni generali. Salta ciò che non vuole essere risposto.",
+    questions:[
+      { text:"Ripensa al tuo primo lavoro, retribuito o no. Quando immagini quel primo po' di denaro guadagnato, qual è la sensazione?", options:[
+        { label:"Sollievo, più che orgoglio. Come se avessi finalmente dimostrato qualcosa", dim:"PRODUCTIVITY" },
+        { label:"Ricordo esattamente per cosa li ho spesi, quasi subito", dim:"SCARCITY" },
+        { label:"Onestamente, non ricordo che fosse un grande momento", dim:"NUMBING" },
+        { label:"Orgoglio puro, senza complicazioni", dim:null } ]},
+      { text:"Il tuo primo vero lavoro era qualcosa di cui avevi bisogno per necessità, o sembrava più l'inizio di una carriera?", options:[
+        { label:"Necessità. Avevamo bisogno del denaro e basta", dim:"SUFFERING" },
+        { label:"Tipo una carriera, ma sentivo comunque di dover dimostrare di appartenere a quel posto", dim:"PRODUCTIVITY" },
+        { label:"Non credo significasse molto in un senso o nell'altro, se devo essere onesto", dim:"NUMBING" },
+        { label:"Sembrava una vera scelta, entusiasmante piuttosto che necessaria", dim:null } ]},
+      { text:"Pensa a una volta da bambino in cui hai chiesto denaro a un genitore o tutore. Cosa ti torna in mente?", options:[
+        { label:"Ho imparato abbastanza in fretta a smettere di chiedere", dim:"RECEIVING" },
+        { label:"Ho ricevuto una ramanzina che non avevo davvero chiesto", dim:"CONTROL" },
+        { label:"Mi sono sentito in colpa solo per aver chiesto", dim:"UNWORTHY" },
+        { label:"È stato semplice. Niente di che in un senso o nell'altro", dim:null } ]},
+      { text:"Immagina la persona che conoscevi crescendo con più denaro, un parente, un vicino, qualcuno visto in TV. Cosa pensavi di loro in silenzio?", options:[
+        { label:"Presumevo che non fossero poi così felici", dim:"CORRUPTION" },
+        { label:"Presumevo che non sapessero davvero com'era la vita per persone come noi", dim:"ABANDON" },
+        { label:"Ero un po' geloso, e un po' vergognato di esserlo", dim:"GREED" },
+        { label:"Onestamente, non ci pensavo molto", dim:null } ]}
+    ]},
+  { id:"D", title:"Valore e meritare", kind:"likert", note:"Ancora nessuna risposta giusta, solo ciò che è vero per te.",
+    questions:[
+      { text:"Una parte di me crede di non meritare davvero di avere più di quanto mi serve.", dim:"UNWORTHY" },
+      { text:"Quando succede qualcosa di economicamente positivo, il mio primo sentimento è spesso senso di colpa piuttosto che gioia.", dim:"UNWORTHY" },
+      { text:"Mi sento a disagio a riposare o rilassarmi se non me lo sono «guadagnato» quel giorno.", dim:"PRODUCTIVITY" },
+      { text:"Il mio senso di autostima sale e scende con quanto ho prodotto o guadagnato di recente.", dim:"PRODUCTIVITY" },
+      { text:"Se il denaro arriva a me facilmente, mi ritrovo ad aspettare il tranello.", dim:"SUFFERING" }
+    ]},
+  { id:"SCN2", title:"Nel momento: quotidiano", kind:"scenario", note:"Qualsiasi risposta ti sembri più onesta, anche se non è quella che diresti ad alta voce.",
+    questions:[
+      { text:"Un amico ti chiede di prestargli del denaro. Tu:", options:[
+        { label:"Dici subito di sì. Dire no sembra sbagliato", dim:"GREED" },
+        { label:"Dici di sì, ma tieni traccia in silenzio di quanto ti deve", dim:"CONTROL" },
+        { label:"Vorresti dire di no, ma ti senti troppo in colpa", dim:"UNWORTHY" },
+        { label:"Dici chiaramente di no, e ti senti a posto così", dim:null } ]},
+      { text:"Ricevi un complimento genuino su qualcosa che possiedi o hai ottenuto economicamente. Tu:", options:[
+        { label:"Sminuisci subito: «oh, non è niente»", dim:"VISIBILITY" },
+        { label:"Senti un'ondata di senso di colpa più che di orgoglio", dim:"UNWORTHY" },
+        { label:"Ti chiedi cosa vogliano davvero da te", dim:"LOVESPLIT" },
+        { label:"Dici grazie, e ti permetti di goderti il momento", dim:null } ]},
+      { text:"Arriva una bolletta o una fattura che non ti aspettavi del tutto. Cosa è più vicino alla tua reazione reale?", options:[
+        { label:"La pago subito, quasi per paura di cosa succede se non lo faccio", dim:"UNSAFE" },
+        { label:"Rimando ad aprirla il più a lungo possibile", dim:"NUMBING" },
+        { label:"Un lampo di panico di essere ormai indietro con tutto", dim:"SCARCITY" },
+        { label:"Controllo l'importo e me ne occupo quando mi fa comodo", dim:null } ]},
+      { text:"Uno sconosciuto, o qualcuno appena conosciuto, ti chiede quanto guadagni. Tu:", options:[
+        { label:"Senti tutto il corpo irrigidirsi", dim:"UNSAFE" },
+        { label:"Sminuisci e cambi argomento in fretta", dim:"VISIBILITY" },
+        { label:"Ti senti stranamente colto in fallo, come se avessi fatto qualcosa di sbagliato", dim:"UNWORTHY" },
+        { label:"Rispondi in modo semplice. È solo un'informazione", dim:null } ]}
+    ]},
+  { id:"F", title:"Amore e appartenenza", kind:"likert", note:"Sei a poco più di un terzo del percorso.",
+    questions:[
+      { text:"Mi preoccupo in silenzio che le persone con molto denaro non siano amate per chi sono davvero.", dim:"LOVESPLIT" },
+      { text:"Ho minimizzato il mio successo finanziario perché non cambiasse il modo in cui qualcuno mi vedeva.", dim:"LOVESPLIT" },
+      { text:"Stare notevolmente meglio economicamente della mia famiglia sembrerebbe una specie di tradimento.", dim:"LOYALTY" },
+      { text:"Ho paura che se supero economicamente le persone che amo, le perderò.", dim:"ABANDON" },
+      { text:"Mi sono rallentato economicamente, per restare vicino a qualcuno che amo.", dim:"ABANDON" }
+    ]},
+  { id:"WORDGRID", title:"Cosa salta all'occhio", kind:"wordgrid", note:"Scorri la tabella qui sotto e scegli fino a tre parole o frasi che ti saltano all'occhio, qualunque cosa ti venga in mente per prima d'istinto. Non serve pensarci troppo.",
+    words:[
+      { label:"Mai abbastanza", dim:"SCARCITY" },
+      { label:"Con condizioni", dim:"CONTROL" },
+      { label:"Sotto i riflettori", dim:"VISIBILITY" },
+      { label:"Radici", dim:"LOYALTY" },
+      { label:"Sgobbare", dim:"PRODUCTIVITY" },
+      { label:"Disfatto", dim:"SABOTAGE" },
+      { label:"Esposto", dim:"UNSAFE" },
+      { label:"Cacciatore di dote", dim:"LOVESPLIT" },
+      { label:"Indebitato", dim:"RECEIVING" },
+      { label:"Senza cuore", dim:"CORRUPTION" },
+      { label:"Superato", dim:"ABANDON" },
+      { label:"Distogliere lo sguardo", dim:"NUMBING" },
+      { label:"Avido", dim:"GREED" },
+      { label:"Sta finendo", dim:"SCARCITY" },
+      { label:"Non guadagnato", dim:"UNWORTHY" },
+      { label:"In debito", dim:"CONTROL" },
+      { label:"Guadagnato con fatica", dim:"SUFFERING" },
+      { label:"Un bersaglio", dim:"UNSAFE" },
+      { label:"Giudicato", dim:"VISIBILITY" },
+      { label:"Dimostrare il mio valore", dim:"PRODUCTIVITY" },
+      { label:"Corrotto", dim:"CORRUPTION" },
+      { label:"Tradimento", dim:"LOYALTY" },
+      { label:"Lasciato indietro", dim:"ABANDON" },
+      { label:"Immeritevole", dim:"UNWORTHY" },
+      { label:"Accettare aiuto", dim:"RECEIVING" },
+      { label:"Egoista", dim:"GREED" },
+      { label:"Il tranello", dim:"SUFFERING" },
+      { label:"Auto-sabotaggio", dim:"SABOTAGE" },
+      { label:"Condizionato", dim:"LOVESPLIT" },
+      { label:"Chiuso", dim:"NUMBING" }
+    ]
+  },
+  { id:"H", title:"Essere visti", kind:"likert", note:"Poco oltre la metà a breve. Notare è tutto il punto, qui non c'è niente da fare bene o male.",
+    questions:[
+      { text:"Quando vado bene economicamente, mi aspetto che segua un qualche giudizio o invidia.", dim:"VISIBILITY" },
+      { text:"Minimizzo i miei traguardi per non risaltare troppo.", dim:"VISIBILITY" },
+      { text:"Essere elogiato per il mio successo mi mette a disagio, non mi rende orgoglioso.", dim:"VISIBILITY" },
+      { text:"Più divento di successo, più le persone sembrano aspettarsi da me.", dim:"CONTROL" },
+      { text:"Mi preoccupo che avere più denaro significhi che altre persone inizieranno a prendere decisioni su di me.", dim:"CONTROL" }
+    ]},
+  { id:"SCN3", title:"Nel momento: crescere", kind:"scenario", note:"Qualsiasi risposta ti sembri più onesta, anche se non è quella che diresti ad alta voce.",
+    questions:[
+      { text:"Ti viene offerto un aumento, o un grande nuovo cliente, più di quanto tu abbia mai guadagnato prima. La tua reazione istintiva è:", options:[
+        { label:"Entusiasmo, quasi subito", dim:null },
+        { label:"Un lampo di «non credo di riuscire davvero a gestirlo»", dim:"UNWORTHY" },
+        { label:"Preoccupazione per cosa la gente si aspetterà ora da te", dim:"CONTROL" },
+        { label:"Un impulso a trovare una scusa per rifiutare", dim:"SABOTAGE" } ]},
+      { text:"Qualcuno che ami sta faticando economicamente mentre tu te la cavi bene. Noti:", options:[
+        { label:"Senso di colpa per avere più di loro", dim:"LOYALTY" },
+        { label:"Un impulso a dare finché non ti costa davvero qualcosa", dim:"UNWORTHY" },
+        { label:"Paura che il divario tra voi continui a crescere", dim:"ABANDON" },
+        { label:"Tristezza per loro, senza senso di colpa per la tua situazione", dim:null } ]},
+      { text:"Ti immagini chiaramente economicamente sicuro. Risparmi veri, agio vero. La prima sensazione che arriva è:", options:[
+        { label:"Sospetto, come se non fosse davvero permesso", dim:"SUFFERING" },
+        { label:"La sensazione di diventare qualcuno di meno caloroso, meno vero", dim:"CORRUPTION" },
+        { label:"Solitudine, immaginando chi non sarebbe lì con te", dim:"ABANDON" },
+        { label:"Agio genuino. È bello immaginarlo", dim:null } ]},
+      { text:"Finisci un progetto, o raggiungi un obiettivo finanziario, in anticipo sui tempi. Il tuo istinto è:", options:[
+        { label:"Iniziare a preoccuparti della prossima cosa quasi subito", dim:"SCARCITY" },
+        { label:"Trovare un piccolo modo per sminuire la vittoria", dim:"SABOTAGE" },
+        { label:"Sentire che in qualche modo non conta del tutto", dim:"SUFFERING" },
+        { label:"Lasciarti sentire davvero orgoglioso, anche solo per un momento", dim:null } ]}
+    ]},
+  { id:"I", title:"Chi mi rende il denaro", kind:"likert", note:"Continua al ritmo che ti sembra giusto.",
+    questions:[
+      { text:"Mi preoccupo che avere molto denaro mi cambierebbe in qualcuno di più freddo o meno genuino.", dim:"CORRUPTION" },
+      { text:"Le persone ricche che ho conosciuto sembravano perdere qualcosa di importante di sé lungo il cammino.", dim:"CORRUPTION" },
+      { text:"Una parte di me tiene il denaro a distanza per proteggere chi sono.", dim:"CORRUPTION" },
+      { text:"Trovo difficile fidarmi pienamente delle motivazioni di qualcuno una volta che il denaro è coinvolto.", dim:"LOVESPLIT" },
+      { text:"Avere successo in modi che la mia famiglia o i miei amici non hanno avuto mi fa sentire solo, anche quando è qualcosa che volevo.", dim:"ABANDON" }
+    ]},
+  { id:"SCN4", title:"Nel momento: dopo", kind:"scenario", note:"Ultimo giro di scenari. Grazie per essere rimasto fino a qui.",
+    questions:[
+      { text:"Qualcuno si offre di pagare la cena. Nessuna occasione speciale, nessun tranello. Tu:", options:[
+        { label:"Insisti a pagare tu. Ti risulta scomodo semplicemente accettare", dim:"RECEIVING" },
+        { label:"Senti di dovere ora qualcosa a quella persona", dim:"CONTROL" },
+        { label:"Ti chiedi cosa vogliano in cambio", dim:"LOVESPLIT" },
+        { label:"Dici grazie, con facilità", dim:null } ]},
+      { text:"Immagini di raccontare alle persone con cui sei cresciuto un grande successo finanziario. La sensazione che arriva per prima è:", options:[
+        { label:"Angoscia. Come se cambiasse il modo in cui ti vedono", dim:"LOYALTY" },
+        { label:"Un impulso a sminuirlo ancora prima di averlo detto", dim:"VISIBILITY" },
+        { label:"Paura che creerà distanza tra voi", dim:"ABANDON" },
+        { label:"Semplice entusiasmo nel condividerlo", dim:null } ]},
+      { text:"Quando ti accorgi di procrastinare su un compito legato al denaro, una fattura, un budget, una conversazione difficile, cosa c'è di solito sotto?", options:[
+        { label:"Se non guardo, non devo sentire qualunque cosa ci sia lì", dim:"NUMBING" },
+        { label:"Una parte di me non pensa comunque di meritare il risultato", dim:"UNWORTHY" },
+        { label:"Sto silenziosamente evitando un buon risultato di cui non mi fido del tutto", dim:"SABOTAGE" },
+        { label:"Solo procrastinazione ordinaria. Niente di più profondo in corso", dim:null } ]},
+      { text:"Un parente ti dà consigli non richiesti sul tuo denaro. Tu:", options:[
+        { label:"Sorridi, e in silenzio te la prendi", dim:"CONTROL" },
+        { label:"Lo prendi più a cuore di quanto vorresti", dim:"UNWORTHY" },
+        { label:"Senti un familiare impulso a difenderti", dim:"VISIBILITY" },
+        { label:"Prendi ciò che è utile e lasci perdere il resto", dim:null } ]}
+    ]},
+  { id:"K", title:"Ricevere", kind:"likert", note:"Ci stiamo avvicinando.",
+    questions:[
+      { text:"Ricevere un regalo o un complimento mi fa venire voglia di ricambiare subito.", dim:"RECEIVING" },
+      { text:"Accettare aiuto, anche quando ne ho bisogno, mi risulta scomodo o vergognoso.", dim:"RECEIVING" },
+      { text:"Per me è più facile dare che ricevere.", dim:"RECEIVING" },
+      { text:"Quando qualcuno si offre di pagare per me, sento di dovergli ora qualcosa.", dim:"CONTROL" },
+      { text:"Essere pagato bene per il mio lavoro a volte sembra più di quanto valga davvero.", dim:"UNWORTHY" }
+    ]},
+  { id:"L", title:"Schemi", kind:"likert", note:"Ultima sezione. Respira se ne hai bisogno.",
+    questions:[
+      { text:"Proprio prima che qualcosa di economicamente positivo stia per concretizzarsi, mi accorgo di rallentare o tirarmi indietro.", dim:"SABOTAGE" },
+      { text:"Ho perso opportunità procrastinando sui passi pratici che dovevo compiere.", dim:"SABOTAGE" },
+      { text:"Dopo un successo finanziario, a volte prendo decisioni che disfano in silenzio quel progresso.", dim:"SABOTAGE" },
+      { text:"Evito di controllare il mio saldo bancario perché preferisco non saperlo.", dim:"NUMBING" },
+      { text:"Ci sono bollette o lettere finanziarie che ho lasciato non aperte più a lungo di quanto vorrei ammettere.", dim:"NUMBING" }
+    ]}
+];
+
+I18N.it.UI = {
+  langLabel: "Italiano",
+  heroEyebrow: "Una riflessione privata e guidata da te",
+  heroTitle: 'Il <span class="accent-word">sistema di credenze</span> sul denaro che non hai scelto',
+  heroLede1: "Gran parte di ciò che determina come gestiamo il denaro non riguarda davvero il denaro. Riguarda la sicurezza, il valore personale, l'appartenenza, e ciò che abbiamo assorbito, spesso prima ancora di avere le parole per nominarlo, sul volere cose per noi stessi.",
+  heroLede2: 'Questo è un insieme di affermazioni da approvare o meno, alcuni scenari rapidi, qualche richiamo alla memoria, e un giro in cui sceglierai parole da una tabella di trenta. Insieme, tracciano un insieme specifico e personale di credenze che potrebbero star silenziosamente plasmando il tuo rapporto con il denaro. Non un "tipo di persona" generico, ma il tuo particolare schema personale.',
+  chip1Num: "~15-20 min", chip1Text: "Vai piano, o veloce. Non c'è un cronometro.",
+  chip2Num: "Salta ciò che vuoi", chip2Text: "Se una domanda non ti convince, lasciala e prosegui.",
+  chip3Num: "Resta con te", chip3Text: "Niente viene inviato da nessuna parte. Tutto resta in questo browser.",
+  safetyNote: '<strong>Prima di iniziare:</strong> questo è uno strumento di riflessione, non una diagnosi né un sostituto della terapia. Chiede di sensazioni, istinti e associazioni del presente, non di raccontare ricordi difficili specifici. Vai al ritmo che ti sembra giusto, e fermati quando vuoi. Se qualcosa qui fa emergere qualcosa di pesante, probabilmente vale la pena esplorarlo ulteriormente con un terapeuta.',
+  beginBtn: "Inizia →",
+  backBtn: "← Indietro",
+  continueBtn: "Continua →",
+  seeResultsBtn: "Vedi i tuoi risultati →",
+  kindStatements: "Affermazioni", kindMemory: "Ricordi", kindWordgrid: "Giro di parole", kindScenario: "Scenari",
+  sectionEyebrow: (i, n, kind) => "Sezione " + i + " di " + n + ", " + kind,
+  progressLabel: (i, n) => "Sezione " + i + " / " + n,
+  scaleLeft: "Fortemente in disaccordo", scaleRight: "Fortemente d'accordo",
+  skipLikert: "Puoi lasciare questo in bianco se preferisci non rispondere.",
+  skipChoice: "Puoi saltare questa se preferisci non rispondere.",
+  skipWordgrid: "Puoi scegliere zero, una, due, o tre. Quello che davvero ti salta all'occhio.",
+  gridSuffix: "di 3 selezionate",
+  gridTap: "tocca una parola per selezionarla",
+  resultsKicker: "I tuoi risultati",
+  resultsH1: "Perché una parte di te potrebbe tenere il denaro a distanza",
+  resultsSub: (a, n) => a + " di " + n + " domande risposte. Quelle saltate sono state semplicemente escluse dal tuo punteggio, non contate contro di te.",
+  synthesisH2: "Cosa emerge di più",
+  synth1: (a) => 'Se una parte di te rifiuta il denaro, potrebbe non trattarsi di forza di volontà. Proprio ora, il segnale più chiaro nelle tue risposte punta a <em>' + a + '</em>.',
+  synth2: (a,b) => 'Se una parte di te rifiuta il denaro, potrebbe non trattarsi di forza di volontà. Potrebbe essere il tuo sistema nervoso, che cerca di proteggerti. Proprio ora, i segnali più chiari nelle tue risposte puntano a <em>' + a + '</em>, e a <em>' + b + '</em>.',
+  synth3: (a,b,c) => 'Se una parte di te rifiuta il denaro, potrebbe non trattarsi di forza di volontà. Potrebbe essere il tuo sistema nervoso, che cerca di proteggerti. Proprio ora, i segnali più chiari nelle tue risposte puntano a <em>' + a + '</em>, <em>' + b + '</em>, e a <em>' + c + '</em>.',
+  synthTail: (n) => ' Qui sotto trovi il tuo quadro completo: ' + n + (n===1 ? ' credenza' : ' credenze') + ' emerse con abbastanza forza da meritare un nome, nell\'ordine in cui sono emerse di più.',
+  shareText: (statement) => 'Ho appena fatto il Money Belief Compass, un test gratuito e consapevole del trauma sulle credenze inconsce legate al denaro. Una delle mie: "' + statement + '" Vale 15 minuti se sei curioso delle tue: https://moneybeliefs.org',
+  scriptsTitle: "Il tuo quadro degli schemi sul denaro",
+  scriptsCaption: "La psicologia finanziaria raggruppa gli schemi sul denaro in quattro grandi categorie: evitamento, idealizzazione, status e vigilanza. Ecco come si distribuiscono le tue risposte tra queste quattro, insieme al quadro personalizzato qui sotto. Poiché questo strumento è costruito attorno a credenze che allontanano il denaro, evitamento e vigilanza tendono a risultare più alti per la maggior parte delle persone; è previsto, non un difetto nelle tue risposte.",
+  mapTitle: "La tua mappa completa degli schemi",
+  mapCaption: "Tutte le 15 dimensioni che questo strumento analizza. Quelle evidenziate qui sotto sono le credenze che vedrai descritte per intero.",
+  cardsHeading: (n) => "Le tue " + n + (n===1 ? " credenza" : " credenze"),
+  cardsCaption: 'Ordinate in base a quanto fortemente ciascuna è emersa nelle tue risposte, non in base a quanto sia "negativa". Sono schemi protettivi, non difetti di carattere.',
+  whereFrom: "Da dove può venire",
+  showsUpLabel: "Come può manifestarsi",
+  compoundH2: "Dove si collegano",
+  footer1: "Questo strumento riflette schemi in come hai risposto a un paio di dozzine di domande e a un giro di parole più ampio, in un giorno particolare. È un punto di partenza per la curiosità, non un'etichetta fissa né una valutazione clinica. Credenze come queste di solito si formano per una buona ragione, come modi per restare al sicuro. Nominarle è spesso il primo passo per allentarne la presa, e raramente è qualcosa da fare del tutto da soli se fa emergere molto.",
+  footer2: "Scaricare o condividere dipende interamente da te. Niente di tutto questo viene salvato altrove, questa pagina dimentica tutto nel momento in cui la chiudi.",
+  pdfBtn: "Scarica come PDF",
+  waBtn: "Condividi su WhatsApp",
+  emailBtn: "Condividi via email",
+  restartBtn: "Ricomincia",
+  emailSubject: "I miei risultati sulle credenze sul denaro"
+};
+
 /* ============================================================
    APP STATE + LOGIC
    ============================================================ */
 const LANGS = [
   { code:"en", flag:"🇬🇧" },
-  { code:"es", flag:"🇪🇸" }
+  { code:"es", flag:"🇪🇸" },
+  { code:"it", flag:"🇮🇹" }
 ]; // more languages land here as they're finished
 
 let currentLang = "en";
